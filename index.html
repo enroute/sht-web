@@ -84,16 +84,21 @@
 
  var currentTab = "divEat";
  var currentPage = [0, 0];
+ var tagEat = 1;
+ var tagPlay = 2;
 
  $(function(){
 
-     requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divEat"), 0, true);
-     requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divPlay"), 1, true);
+     requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divEat"), tagEat, true);
+     requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divPlay"), tagPlay, true);
 
-     function requestRecommendationList(url, element, type, isFirstLoad){
+     function requestRecommendationList(url, element, tag, isFirstLoad){
+         var tab = tag - 1;
+         var url = buildRequestUrl(url, "tag=" + tag + "page=" + currentPage[tab]);
+         console.log("requesting url:" + url);
          $.ajax({
              /* url:buildRequestUrl("api/v1/getShopList", ""),*/
-             url:buildRequestUrl(url, "page=" + currentPage[type]),
+             url:url,
              type:"get",
              success:function(data){
                  var shopListData = JSON.parse(data);
@@ -123,7 +128,7 @@
                      element.append(li);
                  }
 
-                 currentPage[type] ++;
+                 currentPage[tab] ++;
 
                  //update stars
                  $.fn.stars = function() {
@@ -180,9 +185,9 @@
 
          $("#loadMore").click(function(){
              if ("divEat" == currentTab){
-                 requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divEat"), 0, false);
+                 requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divEat"), tagEat, false);
              }else if("divPlay" == currentTab){
-                 requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divPlay"), 1, false);
+                 requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divPlay"), tagPlay, false);
              }else{
                  /* TODO: Shoudl not happened! */
                  alert("on load more error");

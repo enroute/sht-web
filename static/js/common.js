@@ -9,8 +9,8 @@ var API_URL_GET_LUCKY_DRAW         = API_PREFIX + "getLuckyDraw";
 var API_URL_GET_LUCKY_DRAW_RESULT  = API_PREFIX + "getLuckyDrawResult";
 var API_URL_GET_SCORE_INFO         = API_PREFIX + "getScoreInfo";
 var API_URL_GET_SHOP_DETAIL        = API_PREFIX + "getShopDetail";
-var API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList?type=0";
-var API_URL_GET_SHOP_LIST_PLAY     = API_PREFIX + "getShopList?type=1";
+var API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList";
+// var API_URL_GET_SHOP_LIST_PLAY     = API_PREFIX + "getShopList?type=1";
 var API_URL_GET_WECHAT_INFO        = API_PREFIX + "getWechatInfo";
 var API_URL_SIGN_IN                = API_PREFIX + "signIn";
 

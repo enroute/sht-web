@@ -76,6 +76,7 @@
 <script type="text/javascript" src="static/js/common.js"></script>
 <script type="text/javascript">
  var currentPage = 0;
+ var category = getRequestParameterString('category');
  includeAllHtmlFile();
  /* var currentTab = "divEat";*/
  $(function(){
@@ -84,9 +85,11 @@
      /* requestRecommendationList("api/v1/getShopListPlay", $("#divPlay"), true);*/
 
      function requestRecommendationList(url, element, isFirstLoad){
+         var url = buildRequestUrl(url, "page=" + currentPage + "&category=" + category);
+         console.log("requesting url:" + url);
          $.ajax({
              /* url:buildRequestUrl("api/v1/getShopList", ""),*/
-             url:buildRequestUrl(url, "page=" + currentPage),
+             url:url,
              type:"get",
              success:function(data){
                  var shopListData = JSON.parse(data);

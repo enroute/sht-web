@@ -3,14 +3,14 @@
         <!-- Navigation -->
         <div>
             <ul class="nav navbar-nav" id="ulNavCategory">
-                <li class="active"><a href="#" class="ulNavCategoryA" type="0"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>美食推荐</p></a></li>
-                <li><a href="#" class="ulNavCategoryA" type="1"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>饮品咖啡</p></a></li>
-                <li><a href="#" class="ulNavCategoryA" type="2"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>教育培训</p></a></li>
-                <li><a href="#" class="ulNavCategoryA" type="3"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>休闲娱乐</p></a></li>
-                <li><a href="#" class="ulNavCategoryA" type="4"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>蔬菜粮油</p></a></li>
-                <li><a href="#" class="ulNavCategoryA" type="5"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>家政搬家</p></a></li>
-                <li><a href="#" class="ulNavCategoryA" type="6"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>冷门服务</p></a></li>
-                <li><a href="#" class="ulNavCategoryA" type="7"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>物业便民</p></a></li>
+                <li class="active"><a href="#" class="ulNavCategoryA" category="0"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>美食推荐</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" category="1"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>饮品咖啡</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" category="2"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>教育培训</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" category="3"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>K歌休闲</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" category="4"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>水果蔬菜</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" category="5"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>运动健身</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" category="6"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>美容美甲</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" category="7"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>家政搬家</p></a></li>
             </ul>
         </div>
     </div>
@@ -22,8 +22,8 @@
      /* bind click event */
      $("#ulNavCategory").on("click", ".ulNavCategoryA", function(event){
          var url = "#";
-         var type = $(this).attr('type');
-         switch(type){
+         var category = $(this).attr('category');
+         switch(category){
              case '0':
              case '1':
              case '2':
@@ -32,7 +32,7 @@
              case '5':
              case '6':
              case '7':
-                 url = "shops.html?" + sessionParameterString + "&type=" + type;
+                 url = "shops.html?" + sessionParameterString + "&category=" + category;
                  break;
 
              default:
