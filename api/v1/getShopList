@@ -1,0 +1,25 @@
+{
+    "status":0,
+    "data":{
+        "shop_list":[
+            {
+                "logo":"static/images/p1.png",
+                "name":"米萝咖啡",
+                "shopid":"00012345",
+                "star_level":2.2,
+                "average_cost":75,
+                "tags":["美食", "西餐"],
+                "distance":1442
+            },
+            {
+                "logo":"static/images/p2.png",
+                "name":"永和大王",
+                "shopid":"88898",
+                "star_level":3.6,
+                "average_cost":75,
+                "tags":["美食", "西餐"],
+                "distance":2
+            }
+        ]
+    }
+}

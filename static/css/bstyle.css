@@ -1,0 +1,40 @@
+.nav{ overflow: hidden; background: #fafafa; padding: 0px;}
+.nav li{ float: left; width: 25%; text-align: center; padding:0px;}
+.nav li a{ color: #666;}
+.nav li img{ width: 50%;}
+.nav li p{ font-size: 1.5rem;}
+
+@media (min-width: 0px) {
+    .nav-justified > li {
+        display: table-cell !important;
+        width: 1%;
+    }
+}
+
+.reward{
+    border:1px solid #FE5D72;
+    border-radius:5px;
+    text-align:center;
+    float: right;
+    margin-top: -5px;
+    padding: 0px 10px;
+}
+
+span.stars, span.stars span {
+    display: inline-block;      /* inline-block to no new line after, block makes new line after it */
+    background: url(../images/stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+
+.container {
+    padding-right: 0; /*15px in bootstrap.css*/
+    padding-left: 0;  /*idem*/
+    margin-right: auto;
+    margin-left: auto;
+}

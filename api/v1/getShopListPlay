@@ -1,0 +1,25 @@
+{
+    "status":0,
+    "data":{
+        "shop_list":[
+            {
+                "logo":"static/images/p1.png",
+                "name":"米萝K吧",
+                "shopid":"00012335",
+                "star_level":4.3,
+                "average_cost":75,
+                "tags":["美食", "西餐"],
+                "distance":2722
+            },
+            {
+                "logo":"static/images/p2.png",
+                "name":"面点王",
+                "shopid":"828",
+                "star_level":1.6,
+                "average_cost":25,
+                "tags":["美食", "中餐"],
+                "distance":2
+            }
+        ]
+    }
+}

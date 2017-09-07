@@ -1,0 +1,54 @@
+<br /><br />
+
+<nav class="navbar navbar-default navbar-fixed-bottom nav-justified">
+    <div class="container" align="center" id="divFooterNav">
+        <style>
+         .nav-tabs { text-align: center; height: 48px; line-height: 40px; }
+         a { color: gray; text-decoration: none; }
+        </style>
+        <ul class="nav nav-tabs nav-tabs-justified">
+            <div class="col-md-3 col-sm-3 col-xs-3" style="border-right:1px solid #CCCCCC;"><a href="#" class="footerA" type="home">
+                <p style="font-size:16px;"><span class="glyphicon glyphicon-home">主页</span></p>
+            </a></div>
+            <div class="col-md-5 col-sm-5 col-xs-5" style="border-right:1px solid #CCCCCC;"><a href="#" class="footerA" type="favorite">
+                <p style="font-size:16px;"><span class="glyphicon glyphicon-heart">我的关注</p>
+            </a></div>
+            <div class="col-md-4 col-sm-4 col-xs-4"><a href="#" class="footerA" type="myself">
+                <p style="font-size:16px;"><span class="glyphicon glyphicon-user">个人中心</p>
+            </a></div>
+        </ul>
+    </div>
+</nav>
+
+<!-- <div class="row clearfix" id="divFooterNav" style="position:fixed; bottom:0px; width:100%; object-fit:contain;">
+     <div class="col-xs-4"><p class="text-center"><a href="#" class="footerA" type="home">主页</a></p></div>
+     <div class="col-xs-4"><p class="text-center"><a href="#" class="footerA" type="favorite">我的关注</a></p></div>
+     <div class="col-xs-4"><p class="text-center"><a href="#" class="footerA" type="myself">个人中心</a></p></div>
+     </div> -->
+
+<script type="text/javascript">
+ $(function(){
+     /* bind click event */
+     $("#divFooterNav").on("click", ".footerA", function(event){
+         var url = "#";
+
+         switch($(this).attr('type')){
+             case 'home':
+                 url = "index.html?" + sessionParameterString;
+                 break;
+
+             case 'favorite':
+                 url = "favorite.html?" + sessionParameterString;
+                 break;
+
+             case 'myself':
+                 url = "myself.html?" + sessionParameterString;
+                 break;
+         }
+
+         location.href = url;
+
+         return false;
+     });
+ });
+</script>

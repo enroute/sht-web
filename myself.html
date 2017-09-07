@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>个人中心</title>
+    <meta name="description" content="商城" />
+    <meta name="keywords" content="商城"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <link rel="stylesheet" href="static/css/bstyle.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+<div class="row" style="background-image: linear-gradient(90deg, #4F364C, #FFFFFF);" >
+    <div class="col-xs-4"><img class="img-circle" id="imgUserAvatar" style="max-width:100px; max-height:100%; object-fit:contain;" /></div>
+    <div class="col-xs-4"><p id="pUserName" style="margin-top:10px; font-size:18px; font-weight:bold;"></p>积分:<span id="score"></span></div>
+    <div class="col-xs-4"><p class="text-right"><a href="#" id="aSignIn">签到</a><br />已连续签到<span id="continuousSignIns"></span>天</p></div>
+</div>
+
+<br />
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h4><p class="text-center">我的优惠券</p></h4>
+    </div>
+</div>
+
+<div class="row clearfix">
+<ul class="nav nav-pills nav-justified">
+    <li id="navCouponValid" class="active"><a href="#">有效</a></li>
+    <li id="navCouponUsed"><a href="#">已使用</a></li>
+    <li id="navCouponExpired"><a href="#">已过期</a></li>
+</ul>
+</div>
+
+<div id="divCouponValid">
+    <ul id="ulCouponValid" class="list-group">
+    </ul>
+</div>
+
+<div id="divCouponUsed" style="display:none;">
+    <ul id="ulCouponUsed" class="list-group"></ul>
+</div>
+
+<div id="divCouponExpired" style="display:none;">
+    <ul id="ulCouponExpired" class="list-group"></ul>
+</div>
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h5><p class="text-center" id="loadMore"><a href="#">加载更多</a></p></h5>
+    </div>
+</div>
+
+<div data-include="footer"></div>
+
+</div><!-- container -->
+</body>
+<script type="text/javascript" src="static/js/common.js"></script>
+<script type="text/javascript">
+ var tabs = ["#navCouponValid", "#navCouponUsed", "#navCouponExpired"];
+ var tabDivs = ["#divCouponValid", "#divCouponUsed", "#divCouponExpired"];
+ var tabUls =  ["#ulCouponValid", "#ulCouponUsed", "#ulCouponExpired"];
+ var currentPage = [0, 0, 0];
+ var currentTabIndex = 0;
+ includeAllHtmlFile();
+
+ var isSignIn = false;
+ function updateSignIn(){
+     if(isSignIn){
+         $("#aSignIn").html("已签到");
+     }
+ }
+
+ function updateScoreInfo(scoreInfo){
+     console.log(scoreInfo);
+     $("#score").html(scoreInfo.data.score);
+     $("#continuousSignIns").html(scoreInfo.data.continuous_signins);
+
+     if(scoreInfo.data.sign_in_status != 0){
+         isSignIn = true;
+         updateSignIn();
+     }
+ }
+
+ /* sign in */
+ $("#aSignIn").click(function(){
+     if(! isSignIn){
+         $.ajax({
+             url:buildRequestUrl(API_URL_SIGN_IN, ""),
+             type:"get",
+             success:function(data){
+                 var scoreInfo = JSON.parse(data);
+                 if(0 != scoreInfo.status) return;
+
+                 updateScoreInfo(scoreInfo);
+             }
+         });
+     }
+
+     return false;
+ });
+
+ /* type: 0:有效优惠券, 1:已使用优惠券, 2:过期优惠券, 同时也是tabIndex */
+ function getCouponList(type){
+     if(type != 0 && type != 1 && type != 2){
+         alert("Type error!");
+         return;
+     }
+
+     var tabIndex = type;
+     var url = buildRequestUrl(API_URL_GET_COUPON_LIST, "type=" + type + "&page=" + currentPage[type]);
+     var liTemplate = '\
+        <li class="list-group-item">' + (type == 0 ? '<a href="coupondetail.html?code={sn}&text={encodename}&date={expired_date}" style="color: black; text-decoration: none;">' : "") + '<div class="row clearfix">\
+            <div class="col-xs-8">{name}<br />有效期至:{expired_date}</div>\
+            <div class="col-xs-4">{sn}</div>\
+        </div>' + (type == 0 ? '</a>' : "") + '</li>\
+';
+     $.ajax({
+         url:url,
+         type:"get",
+         success:function(data){
+             var couponListData = JSON.parse(data);
+             if (0 != couponListData.status) return;
+
+             var element = $(tabUls[tabIndex]);
+
+             /* update data */
+             for(var i = 0; i < couponListData.data.coupon_list.length; i++){
+                 var context = couponListData.data.coupon_list[i];
+                 context.encodename = encodeURI(encodeURIComponent(context.name));
+                 var li = render(liTemplate, context);
+                 element.append(li);
+             }
+
+             currentPage[type] ++;
+             console.log(currentPage);
+         }
+     });
+ }
+
+ $(function(){
+     /* Get user wechat info */
+     $.ajax({
+         url:buildRequestUrl(API_URL_GET_WECHAT_INFO, ""),
+         type:"get",
+         success:function(data){
+             var userInfo = JSON.parse(data);
+             if (0 != userInfo.status) return;
+
+             /* Update data */
+             console.log(userInfo);
+             $("#imgUserAvatar").attr("src", userInfo.data.avatar);
+             $("#pUserName").html(userInfo.data.nickname);
+         }
+     });
+
+     /* get score info */
+     $.ajax({
+         url:buildRequestUrl(API_URL_GET_SCORE_INFO, ""),
+         type:"get",
+         success:function(data){
+             var scoreInfo = JSON.parse(data);
+             if (0 != scoreInfo.status) return;
+
+             /* Update score data */
+             updateScoreInfo(scoreInfo);
+         }
+     });
+
+     /* Load initial coupon list */
+     for(var i = 0; i < tabs.length; i ++){
+         var type = i;
+         getCouponList(type);
+     }
+ });
+
+ /* load more */
+ $("#loadMore").click(function(){
+     var type = currentTabIndex;
+     getCouponList(type);
+
+     return false;
+ });
+
+
+ /* nav tab */
+ $(function(){
+     /* hide all tabs except current tab */
+     var i;
+     for(i = 0; i < tabs.length; i++){
+         if(i != currentTabIndex) $(tabDivs[i]).hide();
+     }
+
+     tabs.forEach(function(val, index, arr){
+         $(val).click(function(){
+             for(i = 0; i < tabs.length; i++){
+                 $(tabs[i]).removeClass("active");
+                 $(tabDivs[i]).hide();
+                 if (val == arr[i]) currentTabIndex = i;
+             }
+             $(val).addClass("active");
+             $(tabDivs[currentTabIndex]).show();
+
+             return false;
+         });
+     });
+ });
+</script>
+</html>

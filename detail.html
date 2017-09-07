@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>坂田生活通</title>
+    <meta name="description" content="商城" />
+    <meta name="keywords" content="商城"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <link rel="stylesheet" href="static/css/bstyle.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+<div data-include="banner"></div>
+
+<!-- <div class="row" style="background-image: linear-gradient(90deg, #4F364C, #FFFFFF);" >
+     <div class="col-xs-4"><img id="imgShopLogo" style="max-width:100px; max-height:100%; object-fit:contain;" /></div>
+     <div class="col-xs-4"><p id="pShopName" style="margin-top:10px; font-size:18px; font-weight:bold;"></p><span class="stars" id="shopStar"></span></div>
+     <div class="col-xs-4"><p class="text-right"><a href="#" id="favorite">关注</a><br />共<span id="favoriteUsers"></span>人关注</p></div>
+     </div> -->
+
+<div class="row" style="background-image: linear-gradient(90deg, #4F364C, #FFFFFF);" >
+    <div class="col-md-12 text-center" style="margin:auto;"><img class="img-circle" id="imgShopLogo" style="max-width:100px; max-height:100%; object-fit:contain;" /></div>
+    <div class="col-md-12 text-center"><p id="pShopName" style="margin-top:10px; font-size:18px; font-weight:bold;"></p></div>
+    <div class="col-md-12 text-center"><div class="row clearfix">
+        <div class="col-xs-6 text-right"><a href="#" id="favorite" style="color:black;">关注</a>&nbsp;<span id="favoriteUsers"></span></div>
+        <div class="col-xs-6 text-left">评价&nbsp;<span class="stars" id="shopStar"></span></div>
+    </div></div>
+</div>
+
+<br />
+
+<div class="row clearfix">
+    <div class="col-xs-10 column">地理位置：<a href="#" id="aAddress"><span id="address"></span></a></div>
+    <div class="col-xs-2 column"><a href="#" id="aTel"><img src="static/images/phone-icon.png" style="width:30px; max-width:90%; object-fit:contain;" /></a></div>
+</div>
+
+<h4>简要介绍</h4>
+<div class="row clearfix"><div class="col-md-12 column" id="introText">
+    
+</div></div>
+<div class="row clearfix"><div class="col-md-12 column" id="introImages">
+    <!-- <img src="static/images/p.png" style="width:100%; margin-bottom:10px;" /> -->
+</div></div>
+
+<div class="row clearfix">
+    <div class="col-xs-6 column" style="background-color:#DC143C;"><a href="#" id="aBottomTel"><p class="text-center" style="font-size:18px; font-weight:bold; margin-top:10px;">电话</p></a></div>
+    <div class="col-xs-6 column" style="background-color:#483D8B;"><a href="#" id="aBottomReward"><p class="text-center" style="font-size:18px; font-weight:bold; color:white; margin-top:10px;">抽奖</p></a></div>
+</div>
+
+<div data-include="footer"></div>
+
+</div><!-- container -->
+</body>
+<script type="text/javascript" src="static/js/common.js"></script>
+<script type="text/javascript">
+ includeAllHtmlFile();
+ $(function(){
+     $.ajax({
+         /* url:buildRequestUrl("api/v1/getShopList", ""),*/
+         url:buildRequestUrl("api/v1/getShopDetail", "shopid=" + getQueryString('shopid')),
+         type:"get",
+         success:function(data){
+             var shopDetailData = JSON.parse(data);
+             if (0 != shopDetailData.status) return;
+
+             /* Update data */
+             console.log(data);
+             $("#imgShopLogo").attr("src", shopDetailData.data.logo);
+             $("#pShopName").html(shopDetailData.data.name);
+             $("#shopStar").html(shopDetailData.data.star_level);
+             $("#favoriteUsers").html(shopDetailData.data.favorite_users);
+             $("#address").html(shopDetailData.data.address);
+             $("#aAddress").attr("href", "map.html?" + sessionParameterString + "&longitude=" + shopDetailData.data.longitude +
+                                         "&latitude=" + shopDetailData.data.latitude);
+
+             var hrefTel = "tel:" + shopDetailData.data.tel;
+             $("#aTel").attr("href", hrefTel);
+             $("#aBottomTel").attr("href", hrefTel);
+
+             $("#aBottomReward").attr("href", "reward.html?" + sessionParameterString + "&shopid=" + getQueryString("shopid"));
+
+             $("#introText").html(shopDetailData.data.intro);
+             
+             var htmlRecommends = "";
+             shopDetailData.data.recommends.forEach(function(val, index, arr){
+                 htmlRecommends += '<img src="' + val + '" style="width:100%; margin-bottom:10px;" />';
+             });
+             $("#introImages").html(htmlRecommends);
+
+
+             //update stars
+             $.fn.stars = function() {
+                 return $(this).each(function() {
+                     // Get the value
+                     var val = parseFloat($(this).html());
+                     if (isNaN(val)) return;
+                     // Make sure that the value is in 0 - 5 range, multiply to get width
+                     var size = Math.max(0, (Math.min(5, val))) * 16;
+                     // Create stars holder
+                     var span = $('<span />').width(size);
+                     // Replace the numerical value with stars
+                     $(this).html(span);
+                 });
+             }
+
+             $('.stars').stars();
+         }
+     });
+
+     $("#favorite").click(function(){
+         $.ajax({
+             url:buildRequestUrl("api/v1/favorite", "shopid=" + getQueryString('shopid')),
+             type:"get",
+             success:function(data){
+                 var favoriteData = JSON.parse(data);
+                 if (0 != favoriteData.status) return;
+
+                 if(favoriteData.data.favorite == 1){
+                     $("#favorite").html("已关注");
+                     $("#favoriteUsers").html(favoriteData.data.favorite_users);
+                 }
+             }
+         });
+
+         return false;
+     });
+ });
+</script>
+</html>

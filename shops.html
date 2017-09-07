@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>坂田生活通</title>
+    <meta name="description" content="商城" />
+    <meta name="keywords" content="商城"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <link rel="stylesheet" href="static/css/bstyle.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+<div data-include="banner"></div>
+<div data-include="nav"></div>
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h4><p class="text-center">店铺列表</p></h4>
+    </div>
+</div>
+
+<!-- Categories -->
+<!-- <ul class="nav nav-pills nav-justified">
+     <li id="navEat" class="active"><a href="#">吃喝</a></li>
+     <li id="navPlay"><a href="#">玩乐</a></li>
+     </ul>
+   -->
+
+<div class="row clearfix vertical-align" style="display:flex; align-items:center">
+    <div class="col-md-12 column">
+        <div id="divEat">
+            <ul id="ulEat" class="list-group">
+                <!-- <li class="list-group-item">
+                     <div class="row clearfix">
+                     <div class="col-xs-6">
+                     <a href="detail.html?shopid=99999"><img src="static/images/p2.png" class="img-thumbnail" /></a>
+                     </div>
+                     <div class="col-xs-6" style="margin-left:-20px">
+                     <h4>永和大王</h4>
+                     <img src="static/images/star.png" style="width:20%; object-fit:contain" />￥50/人
+                     <p><small>美食 | 快餐，距离: 400m</small></p>
+                     <p class="text-right"><a href="#" class="reward" shopid="99999">点击抽奖</a></p>
+                     </div>
+                     </div>
+                     </li> -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row clearfix vertical-align" style="display:flex; align-items:center">
+     <div class="col-md-12 column">
+     <div id="divPlay">
+     <ul id="ulPlay" class="list-group">
+     </ul>
+     </div>
+     </div>
+     </div>
+   -->
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h5><p class="text-center" id="loadMore"><a href="#">加载更多</a></p></h5>
+    </div>
+</div>
+
+<div data-include="footer"></div>
+
+</body>
+<script type="text/javascript" src="static/js/common.js"></script>
+<script type="text/javascript">
+ var currentPage = 0;
+ includeAllHtmlFile();
+ /* var currentTab = "divEat";*/
+ $(function(){
+
+     requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divEat"), true);
+     /* requestRecommendationList("api/v1/getShopListPlay", $("#divPlay"), true);*/
+
+     function requestRecommendationList(url, element, isFirstLoad){
+         $.ajax({
+             /* url:buildRequestUrl("api/v1/getShopList", ""),*/
+             url:buildRequestUrl(url, "page=" + currentPage),
+             type:"get",
+             success:function(data){
+                 var shopListData = JSON.parse(data);
+                 if (0 != shopListData.status) return;
+                 
+                 var liTemplate='\
+                <li class="list-group-item">\
+                    <div class="row clearfix">\
+                        <div class="col-xs-6">\
+                            <a href="detail.html?{session}&shopid={shopid}"><img src="{logo}" class="img-thumbnail" style="width:100%; object-fit:contain;" /></a>\
+                        </div>\
+                        <div class="col-xs-6" style="margin-left:-20px">\
+                            <h4>{name}</h4>\
+                            <span class="stars">{star_level}</span> {star_level}分 ￥{average_cost}/人\
+                            <p><small>{tags}，距离: {distance}</small></p>\
+                            <p class="text-right"><a href="#" class="reward" shopid="{shopid}">点击抽奖</a></p>\
+                        </div>\
+                    </div>\
+                </li>';
+                 for(var i = 0; i < shopListData.data.shop_list.length; i++){
+                     var context = shopListData.data.shop_list[i];
+                     context.distance = formatDistance(context.distance);
+                     context.tags = context.tags.join(" | ");
+                     context.session = sessionParameterString;
+                     var li = render(liTemplate, context);
+                     /* $("#ulEat").append(li);*/
+                     element.append(li);
+                 }
+
+                 currentPage ++;
+
+                 //update stars
+                 $.fn.stars = function() {
+                     return $(this).each(function() {
+                         // Get the value
+                         var val = parseFloat($(this).html());
+                         if (isNaN(val)) return;
+                         // Make sure that the value is in 0 - 5 range, multiply to get width
+                         var size = Math.max(0, (Math.min(5, val))) * 16;
+                         // Create stars holder
+                         var span = $('<span />').width(size);
+                         // Replace the numerical value with stars
+                         $(this).html(span);
+                     });
+                 }
+
+                 $('.stars').stars();
+
+                 if (isFirstLoad){
+                     $("#divEat").show();
+	             $("#divPlay").hide();
+                 }
+             }
+         });
+     }
+     
+     /* request for recommendation list */
+
+     /* click event */
+     $("#loadMore").click(function(){
+         requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divEat"), false);
+         return false;
+     });
+
+     $("#navbar_categories").on("click", ".nav_a", function(event){
+         alert("type=" + $(this).attr('type'));
+         return false;
+     });
+
+     /* bind click for for dynamic generated elements */
+     $("#divEat,#divPlay").on("click", ".reward", function(event){
+         //alert("shopid=" + $(this).attr('shopid'));
+         location.href = "reward.html?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
+         return false;
+     });
+
+ });
+</script>
+</html>

@@ -1,0 +1,19 @@
+{
+    "status":0,
+    "data":{
+        "logo":"static/images/header.png",
+        "name":"米萝咖啡",
+        "shopid":21421,
+        "star_level":2.3,
+        "average_cost":75,
+        "tags":["美食"],
+        "latitude":22.633942,
+        "longitude":114.078079,
+        "address":"深圳坂田街道布龙路520号(坂田地铁站C出口)",
+        "intro":"欧索米萝咖啡是迪欧餐饮集团旗下著名餐饮连锁品牌之一，主要从事中西餐饮、咖啡产品的生产与连锁经营。",
+        "favorite":0,
+        "favorite_users":8230,
+        "recommends":["static/images/p.png","static/images/p.png"],
+        "tel":"0755-82831345"
+    }
+}

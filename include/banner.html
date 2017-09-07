@@ -1,0 +1,56 @@
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <!-- AD banner -->
+        <div id="headerBanner" class="carousel slide row" data-ride="carousel" data-interval="5000" >
+            <ol id="headerBannerIndicators" class="carousel-indicators">
+                <!-- <li data-target="#headerBanner" data-slide-to="0" class="active"></li>
+                     <li data-target="#headerBanner" data-slide-to="1"></li> -->
+            </ol>
+            <div id="headerBannerInner" class="carousel-inner">
+                <!-- <div class="item active">
+                     <img src="static/images/banner3.png" width="100%" alt="First slide">
+                     </div>
+                     <div class="item">
+                     <img src="static/images/banner4.png" width="100%" alt="Second slide">
+                     </div> -->
+            </div>
+            <a class="carousel-control left" href="#headerBanner"
+               data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#headerBanner"
+               data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+ $(function(){
+     /* request banner */
+     $.ajax({
+         url:buildRequestUrl(API_URL_GET_BANNER_LIST,""),
+         type:"get",
+         success:function(data){
+             var banner = JSON.parse(data);
+             if (0 == banner.status){
+                 var bannerList = banner.data.banner_list;
+                 var indicatorsHtml = "";
+                 var bannerInnerHtml = "";
+                 if (0 < bannerList.length){
+                     indicatorsHtml = '<li data-target="#headerBanner" data-slide-to="0" class="active"></li>';
+                     bannerInnerHtml = '<div class="item active"><img src="' + bannerList[0].url + '" width="100%" alt="First slide"></div>';
+                     for(var i = 1; i < bannerList.length; i++){
+                         indicatorsHtml += '<li data-target="#headerBanner" data-slide-to="' + i + '"></li>';
+                         bannerInnerHtml += '<div class="item"><img src="' + bannerList[i].url + '" width="100%" alt="Second slide"></div>';
+                     }
+                 }
+                 $('#headerBannerIndicators').html(indicatorsHtml);
+                 $('#headerBannerInner').html(bannerInnerHtml);
+                 /* alert(indicatorsHtml);*/
+             }else{
+                 /* ERROR! */
+             }
+         }
+     });
+
+     $('.carousel').carousel();
+ });
+</script>

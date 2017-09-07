@@ -1,0 +1,20 @@
+{
+    "status":0,
+    "data":{
+        "id":322423,
+        "participants":8762,
+        "prize_list":[
+            {"prize":"缪氏川菜霸王餐","weight":20},
+            {"prize":"稻香直减50","weight":30},
+            {"prize":"上岛咖啡霸王拿铁","weight":50}
+        ],
+        "winner_list":[
+            {"nickname":"Amy", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
+            {"nickname":"Bob", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
+            {"nickname":"Caroline", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
+            {"nickname":"Duke", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
+            {"nickname":"Emma", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
+            {"nickname":"Finn", "avatar":"static/images/header.png","prize":"永和大王霸王餐"}
+        ]
+    }
+}

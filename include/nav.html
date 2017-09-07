@@ -1,0 +1,47 @@
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <!-- Navigation -->
+        <div>
+            <ul class="nav navbar-nav" id="ulNavCategory">
+                <li class="active"><a href="#" class="ulNavCategoryA" type="0"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>美食推荐</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" type="1"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>饮品咖啡</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" type="2"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>教育培训</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" type="3"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>休闲娱乐</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" type="4"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>蔬菜粮油</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" type="5"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>家政搬家</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" type="6"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>冷门服务</p></a></li>
+                <li><a href="#" class="ulNavCategoryA" type="7"><img src="static/images/nav.png" style="width:80%; object-fit:contain;" /><p>物业便民</p></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+ $(function(){
+     /* bind click event */
+     $("#ulNavCategory").on("click", ".ulNavCategoryA", function(event){
+         var url = "#";
+         var type = $(this).attr('type');
+         switch(type){
+             case '0':
+             case '1':
+             case '2':
+             case '3':
+             case '4':
+             case '5':
+             case '6':
+             case '7':
+                 url = "shops.html?" + sessionParameterString + "&type=" + type;
+                 break;
+
+             default:
+                 break;
+         }
+
+         location.href = url;
+
+         return false;
+     });
+ });
+</script>

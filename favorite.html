@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>个人中心</title>
+    <meta name="description" content="商城" />
+    <meta name="keywords" content="商城"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <link rel="stylesheet" href="static/css/bstyle.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+<div class="row" style="background-image: linear-gradient(90deg, #4F364C, #FFFFFF);" >
+    <div class="col-xs-4"><img class="img-circle" id="imgUserAvatar" style="max-width:100px; max-height:100%; object-fit:contain;" /></div>
+    <div class="col-xs-4"><p id="pUserName" style="margin-top:10px; font-size:18px; font-weight:bold;"></p>积分:<span id="score"></span></div>
+    <div class="col-xs-4"><p class="text-right"><a href="#" id="aSignIn">签到</a><br />已连续签到<span id="continuousSignIns"></span>天</p></div>
+</div>
+
+<br />
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h4><p class="text-center">我关注的店铺</p></h4>
+    </div>
+</div>
+
+<div class="row clearfix vertical-align" style="display:flex; align-items:center">
+    <div class="col-md-12 column">
+        <div id="divShops">
+            <ul id="ulShops" class="list-group">
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h5><p class="text-center" id="loadMore"><a href="#">点击或向上滑动加载更多</a></p></h5>
+    </div>
+</div>
+
+<div data-include="footer"></div>
+
+</div><!-- container -->
+</body>
+<script type="text/javascript" src="static/js/common.js"></script>
+<script type="text/javascript">
+ var tabs = ["#navCouponValid", "#navCouponUsed", "#navCouponExpired"];
+ var tabDivs = ["#divCouponValid", "#divCouponUsed", "#divCouponExpired"];
+ var tabUls =  ["#ulCouponValid", "#ulCouponUsed", "#ulCouponExpired"];
+ var currentTabIndex = 0;
+ var crrentPage = 0;
+ includeAllHtmlFile();
+
+ var noMoreData = false;
+
+ var isSignIn = false;
+ function updateSignIn(){
+     if(isSignIn){
+         $("#aSignIn").html("已签到");
+     }
+ }
+
+ function updateScoreInfo(scoreInfo){
+     console.log(scoreInfo);
+     $("#score").html(scoreInfo.data.score);
+     $("#continuousSignIns").html(scoreInfo.data.continuous_signins);
+
+     if(scoreInfo.data.sign_in_status != 0){
+         isSignIn = true;
+         updateSignIn();
+     }
+ }
+
+ /* sign in */
+ $("#aSignIn").click(function(){
+     if(! isSignIn){
+         $.ajax({
+             url:buildRequestUrl(API_URL_SIGN_IN, ""),
+             type:"get",
+             success:function(data){
+                 var scoreInfo = JSON.parse(data);
+                 if(0 != scoreInfo.status) return;
+
+                 updateScoreInfo(scoreInfo);
+             }
+         });
+     }
+
+     return false;
+ });
+
+ $(function(){
+     /* Get user wechat info */
+     $.ajax({
+         url:buildRequestUrl(API_URL_GET_WECHAT_INFO, ""),
+         type:"get",
+         success:function(data){
+             var userInfo = JSON.parse(data);
+             if (0 != userInfo.status) return;
+
+             /* Update data */
+             console.log(userInfo);
+             $("#imgUserAvatar").attr("src", userInfo.data.avatar);
+             $("#pUserName").html(userInfo.data.nickname);
+         }
+     });
+
+     /* get score info */
+     $.ajax({
+         url:buildRequestUrl(API_URL_GET_SCORE_INFO, ""),
+         type:"get",
+         success:function(data){
+             var scoreInfo = JSON.parse(data);
+             if (0 != scoreInfo.status) return;
+
+             /* Update score data */
+             updateScoreInfo(scoreInfo);
+         }
+     });
+
+ });
+
+ /* click load more */
+ $("#loadMore").click(function(){
+     requestFavoriteShopList(API_URL_GET_FAVORITE_SHOP_LIST, $("#ulShops"), false);
+     return false;
+ });
+
+ /* scroll to load more */
+ $(window).scroll(function(){
+     if(noMoreData) return;
+
+     if($(this).scrollTop() + $(this).height() == $(document).height()){
+         requestFavoriteShopList(API_URL_GET_FAVORITE_SHOP_LIST, $("#ulShops"), false);
+     }
+ });
+
+
+ $(function(){
+     requestFavoriteShopList(API_URL_GET_FAVORITE_SHOP_LIST, $("#ulShops"), true);
+
+     /* bind click for for dynamic generated elements */
+     $("#divShops").on("click", ".reward", function(event){
+         //alert("shopid=" + $(this).attr('shopid'));
+         location.href = "reward.html?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
+         return false;
+     });
+
+     $("#divShops").on("click", ".liShopsA", function(event){
+         //alert("shopid=" + $(this).attr('shopid'));
+         if(confirm("确定要取消关注" + $(this).attr('name') + "吗？") == true){
+             var element = $(this).parent().parent().parent().parent().parent();
+             console.log(element);
+             $.ajax({
+                 url:buildRequestUrl(API_URL_FAVORITE, "unfavorite=1&shopid=" + $(this).attr('shopid')),
+                 type:"get",
+                 success:function(data){
+                     var favoriteData = JSON.parse(data);
+                     if (0 != favoriteData.status) return;
+
+                     element.remove();
+                 }
+             });
+         }
+         return false;
+     });
+
+ });
+
+ function requestFavoriteShopList(url, element, isFirstLoad){
+     $.ajax({
+         /* url:buildRequestUrl("api/v1/getShopList", ""),*/
+         url:buildRequestUrl(url, "page=" + currentPage),
+         type:"get",
+         success:function(data){
+             console.log(data);
+             var shopListData = JSON.parse(data);
+             if (0 != shopListData.status) {
+                 // TODO: no more data should have a specific status code
+                 noMoreData = true;
+                 return;
+             }
+             
+             var liTemplate='\
+                <li class="list-group-item">\
+                    <div class="row clearfix">\
+                        <div class="col-xs-6">\
+                            <a href="detail.html?{session}&shopid={shopid}"><img src="{logo}" class="img-thumbnail" style="width:100%; object-fit:contain;" /></a>\
+                        </div>\
+                        <div class="col-xs-6" style="margin-left:-20px">\
+                            <h4>{name}&nbsp;<small><a class="liShopsA" href="#" shopid="{shopid}" name="{name}">取消关注</a></small></h4>\
+                            <span class="stars">{star_level}</span> {star_level}分 ￥{average_cost}/人\
+                            <p><small>{tags}，距离: {distance}</small></p>\
+                            <p class="text-right"><a href="#" class="reward" shopid="{shopid}">点击抽奖</a></p>\
+                        </div>\
+                    </div>\
+                </li>';
+             for(var i = 0; i < shopListData.data.shop_list.length; i++){
+                 var context = shopListData.data.shop_list[i];
+                 context.distance = formatDistance(context.distance);
+                 context.tags = context.tags.join(" | ");
+                 context.session = sessionParameterString;
+                 var li = render(liTemplate, context);
+                 /* $("#ulEat").append(li);*/
+                 element.append(li);
+             }
+
+             currentPage ++;
+
+             //update stars
+             $.fn.stars = function() {
+                 return $(this).each(function() {
+                     // Get the value
+                     var val = parseFloat($(this).html());
+                     if (isNaN(val)) return;
+                     // Make sure that the value is in 0 - 5 range, multiply to get width
+                     var size = Math.max(0, (Math.min(5, val))) * 16;
+                     // Create stars holder
+                     var span = $('<span />').width(size);
+                     // Replace the numerical value with stars
+                     $(this).html(span);
+                 });
+             }
+
+             $('.stars').stars();
+         }
+     });
+ }
+
+
+</script>
+</html>

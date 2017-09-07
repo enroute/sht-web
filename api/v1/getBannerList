@@ -1,0 +1,11 @@
+{
+    "status":0,
+    "data":{
+        "banner_list":[
+            {"url":"static/images/banner3.png",
+             "target":"http://www.baidu.com"},
+            {"url":"static/images/banner4.png",
+             "target":"http://www.sina.cn"}
+        ]
+    }
+}
