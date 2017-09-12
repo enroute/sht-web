@@ -141,17 +141,19 @@ function includeAllHtmlFile() {
     jQuery.each(includes, function() {
         var file = 'include/' + $(this).data('include') + '.html';
         console.log($(this).data('include'));
-        if ($(this).data('include') == 'footer'){
-            file += "?active=" + FOOTER_ACTIVE_INDEX; // javascript could not retrieve this parameter?
-            console.log(file);
+        // POST XHR http://mobile.shequshenghuotong.com/include/footer.html not allowed in nginx
+        // if ($(this).data('include') == 'footer'){
+        //     file += "?active=" + FOOTER_ACTIVE_INDEX; // javascript could not retrieve this parameter?
+        //     console.log(file);
 
-            // So I have to do it this way
-            $(this).load(file, {}, function(response, status, request){
+        //     // So I have to do it this way
+        //     $(this).load(file, {}, function(response, status, request){
                 
-            });
-        }else{
-            $(this).load(file);
-        }
+        //     });
+        // }else{
+        //     $(this).load(file);
+        // }
+        $(this).load(file);
     });
 }
 
