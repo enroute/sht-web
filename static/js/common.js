@@ -14,6 +14,63 @@ var API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList";
 var API_URL_GET_WECHAT_INFO        = API_PREFIX + "getWechatInfo";
 var API_URL_SIGN_IN                = API_PREFIX + "signIn";
 
+var IMG = {
+    "footer":[
+        {//home
+            "normal":"home_icon_hp",
+            "focus":"home_icon_hpc"
+        },
+        {//favorite
+            "normal":"home_icon_att",
+            "focus":"home_icon_attc"
+        },
+        {//myself
+            "normal":"home_icon_cen",
+            "focus":"home_icon_cenc"
+        }
+    ],
+
+    "nav":[
+        "home_icon_food",
+        "home_icon_drink",
+        "home_icon_edu",
+        "home_icon_sing",
+        "home_icon_fruits",
+        "home_icon_play",
+        "home_icon_bea",
+        "home_icon_move"
+    ],
+
+    "couponBackground":[
+        "mycenter_img_yhq",     // valid
+        "mycenter_img_yhq31",   // used
+        "mycenter_img_yhq31"    // expired
+    ]
+};
+
+var NAV_INDEX_FOOD = 0;
+var NAV_INDEX_DRINK = 1;
+var NAV_INDEX_EDUCATION = 2;
+var NAV_INDEX_SING = 3;
+var NAV_INDEX_FRUIT = 4;
+var NAV_INDEX_PLAY = 5;
+var NAV_INDEX_BEAUTY = 6;
+var NAV_INDEX_LOGISTICS = 7;
+
+
+var FOOTER_INDEX_HOME = 0;
+var FOOTER_INDEX_FAVORITE = 1;
+var FOOTER_INDEX_MYSELF = 2;
+var FOOTER_ACTIVE_INDEX = -1;
+function setActiveFooterIndex(index){
+    FOOTER_ACTIVE_INDEX = index;
+}
+
+function getImage(file){
+    var url = "static/images/3x/" + file + ".png";
+    return url;
+}
+
 function getRequestParameterString(){
     var indexOfQuestionMark = window.location.href.indexOf('?');
     return indexOfQuestionMark == -1 ? "" : window.location.href.substring(indexOfQuestionMark);
@@ -83,6 +140,22 @@ function includeAllHtmlFile() {
     var includes = $('[data-include]');
     jQuery.each(includes, function() {
         var file = 'include/' + $(this).data('include') + '.html';
-        $(this).load(file);
+        console.log($(this).data('include'));
+        if ($(this).data('include') == 'footer'){
+            file += "?active=" + FOOTER_ACTIVE_INDEX; // javascript could not retrieve this parameter?
+            console.log(file);
+
+            // So I have to do it this way
+            $(this).load(file, {}, function(response, status, request){
+                
+            });
+        }else{
+            $(this).load(file);
+        }
     });
 }
+
+function isNull(a){
+    return a == undefined || a == null || typeof(a) == 'undefined';
+}
+

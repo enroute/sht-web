@@ -69,6 +69,7 @@
  var tabUls =  ["#ulCouponValid", "#ulCouponUsed", "#ulCouponExpired"];
  var currentPage = [0, 0, 0];
  var currentTabIndex = 0;
+ setActiveFooterIndex(FOOTER_INDEX_MYSELF);
  includeAllHtmlFile();
 
  var isSignIn = false;
@@ -116,12 +117,17 @@
 
      var tabIndex = type;
      var url = buildRequestUrl(API_URL_GET_COUPON_LIST, "type=" + type + "&page=" + currentPage[type]);
-     var liTemplate = '\
-        <li class="list-group-item">' + (type == 0 ? '<a href="coupondetail.html?code={sn}&text={encodename}&date={expired_date}" style="color: black; text-decoration: none;">' : "") + '<div class="row clearfix">\
-            <div class="col-xs-8">{name}<br />有效期至:{expired_date}</div>\
-            <div class="col-xs-4">{sn}</div>\
-        </div>' + (type == 0 ? '</a>' : "") + '</li>\
-';
+     var liTemplate = '<li class="list-group-item" style="border-style:none !important;">'
+                    + (type == 0 ? '<a href="coupondetail.html?code={sn}&text={encodename}&date={expired_date}" style="color: black; text-decoration: none;">' : "")
+                    + '<div class="row clearfix" style="height:10rem;; background:transparent url({background}) no-repeat center center; background-size:100% 100%; display:flex; align-items:center;">'
+                    //+ '<div class="col-xs-8">{name}<br />有效期至:{expired_date}</div>'
+                    //+ '<div class="col-xs-4">{sn}</div>'
+                    + '<div style="position:absolute; top:2rem; left:2rem;"><p style="font-size:1.5em;">{name}</p></div>'
+                    + '<div style="position:absolute; bottom:1.2rem; left:2rem;">{expired_date}到期</div>'
+                    + '<div style="position:absolute; right:1.2rem;"><p class="checkCoupon">查看券码</p></div>'
+                    + '</div>'
+                    + (type == 0 ? '</a>' : "")
+                    + '</li>';
      $.ajax({
          url:url,
          type:"get",
@@ -135,6 +141,7 @@
              for(var i = 0; i < couponListData.data.coupon_list.length; i++){
                  var context = couponListData.data.coupon_list[i];
                  context.encodename = encodeURI(encodeURIComponent(context.name));
+                 context.background = getImage(IMG.couponBackground[type]);
                  var li = render(liTemplate, context);
                  element.append(li);
              }

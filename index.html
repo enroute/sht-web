@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/common.js"></script>
 </head>
 
 <body>
@@ -78,8 +79,8 @@
 
 </div><!-- container -->
 </body>
-<script type="text/javascript" src="static/js/common.js"></script>
 <script type="text/javascript">
+ setActiveFooterIndex(FOOTER_INDEX_HOME);
  includeAllHtmlFile();
 
  var currentTab = "divEat";
@@ -88,7 +89,6 @@
  var tagPlay = 2;
 
  $(function(){
-
      requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divEat"), tagEat, true);
      requestRecommendationList(API_URL_GET_SHOP_LIST, $("#divPlay"), tagPlay, true);
 

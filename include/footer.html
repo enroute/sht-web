@@ -3,18 +3,17 @@
 <nav class="navbar navbar-default navbar-fixed-bottom nav-justified">
     <div class="container" align="center" id="divFooterNav">
         <style>
-         .nav-tabs { text-align: center; height: 48px; line-height: 40px; }
-         a { color: gray; text-decoration: none; }
+         .nav-tabs { text-align: center; height: 52px; line-height: 40px; }
         </style>
         <ul class="nav nav-tabs nav-tabs-justified">
             <div class="col-md-3 col-sm-3 col-xs-3" style="border-right:1px solid #CCCCCC;"><a href="#" class="footerA" type="home">
-                <p style="font-size:16px;"><span class="glyphicon glyphicon-home">主页</span></p>
+                <img class="footerImage" id="footerImgHome" /><p class="footerP" id="footerPHome">主页</p>
             </a></div>
             <div class="col-md-5 col-sm-5 col-xs-5" style="border-right:1px solid #CCCCCC;"><a href="#" class="footerA" type="favorite">
-                <p style="font-size:16px;"><span class="glyphicon glyphicon-heart">我的关注</p>
+                <img class="footerImage" id="footerImgFavorite" /><p class="footerP" id="footerPFavorite">我的关注</p>
             </a></div>
             <div class="col-md-4 col-sm-4 col-xs-4"><a href="#" class="footerA" type="myself">
-                <p style="font-size:16px;"><span class="glyphicon glyphicon-user">个人中心</p>
+                <img class="footerImage" id="footerImgMyself" /><p class="footerP" id="footerPMyself">个人中心</p>
             </a></div>
         </ul>
     </div>
@@ -27,6 +26,36 @@
      </div> -->
 
 <script type="text/javascript">
+ /* $("#footerImgHome").attr('src', getImage(IMG.footer.home.normal));
+  * $("#footerImgFavorite").attr('src', getImage(IMG.footer.favorite.normal));
+  * $("#footerImgMyself").attr('src', getImage(IMG.footer.myself.normal));*/
+
+ var footerPItems = ["#footerPHome", "#footerPFavorite", "#footerPMyself"];
+ var footerImgItems = ["#footerImgHome", "#footerImgFavorite", "#footerImgMyself"];
+ for(var i = 0; i < footerImgItems.length; i++){
+     $(footerImgItems[i]).attr('src', getImage(IMG.footer[i].normal));
+ }
+
+ function removeFooterActive(index){
+     $(footerImgItems[index]).attr('src', getImage(IMG.footer[index].normal));
+     $(footerPItems[index]).removeClass("footerPActive");
+ }
+
+ function setActiveFooterItem(index){
+     $(footerImgItems[index]).attr('src', getImage(IMG.footer[index].focus));
+     $(footerPItems[index]).addClass("footerPActive");
+ }
+
+ /* console.log("getReqgetRequestParameterString:" + getRequestParameterString());
+  * var activeIndex = getQueryString('active');
+  * if (! isNull(activeIndex)){
+  *     setActiveFooterItem(activeIndex);
+  * }*/
+ console.log("FOOTER_ACTIVE_INDEX = " + FOOTER_ACTIVE_INDEX);
+ if (FOOTER_ACTIVE_INDEX != -1){
+     setActiveFooterItem(FOOTER_ACTIVE_INDEX);
+ }
+
  $(function(){
      /* bind click event */
      $("#divFooterNav").on("click", ".footerA", function(event){
