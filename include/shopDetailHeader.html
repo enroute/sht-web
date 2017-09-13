@@ -1,0 +1,50 @@
+<style type="text/css">
+ .divCenterH { margin:0 auto; display: table; }
+ .imgAvatar { width:7.125rem; height:7.125rem; object-fit:contain; margin-top:2.5rem;
+     border: 2px solid; border-radius: 3.5625rem; border-color:rgb(255,255,255); border-color:rgba(255,255,255,0.5);
+     box-shadow: 0 0 0 0.5rem rgba(255,255,255,0.1);
+ }
+ .pMyselfHeaderName { color:rgb(243,94,62); font-size:2rem; margin: 0 0 0 0;}
+ .divFavorite { width: 8rem; border-radius:6px; background:rgb(243,94,62); font-size:1.5rem;}
+ .divFans { position:relative; bottom: 2.5rem; left:9rem; color: white; }
+ .divCenterHV { 
+     /* position:absolute;
+        left:0; right:0; top:0; bottom:0;
+        margin:auto; */
+ }
+ a#favorite { color:white !important;}
+ p#pFavoriteText { margin: 5px 0 5px 0; /* top right bottom left */ }
+</style>
+
+<div style="height:5px;"></div>
+
+<div class="row" style="height:20rem; background: url('static/images/3x/dianpu_img_bg.png') no-repeat center center; background-size: 100% 100%;" >
+    <div class="divCenterH"><img class="img-circle imgAvatar" id="imgShopLogo" /></div>
+    <div class="divCenterH" style="margin-top:1rem"><p id="pShopName" class="pMyselfHeaderName"></p></div>
+    <div class="divCenterH"><div class="divCenterHV"><span class="stars" id="shopStar"></span></div></div>
+    <div class="divCenterH divFavorite"><div class="divCenterHV"><a href="#" id="favorite"><p class="text-center" id="pFavoriteText">+&nbsp;关注</p></a></div></div>
+    <div class="divCenterH divFans">粉丝</a>&nbsp;<span id="favoriteUsers"></div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+     $("#favorite").on("click", function(event){
+         //$("#favorite").click(function(){
+         $.ajax({
+             url:buildRequestUrl("api/v1/favorite", "shopid=" + getQueryString('shopid')),
+             type:"get",
+             success:function(data){
+                 var favoriteData = JSON.parse(data);
+                 if (0 != favoriteData.status) return;
+
+                 if(favoriteData.data.favorite == 1){
+                     $("#pFavoriteText").html("已关注");
+                     $("#favoriteUsers").html(favoriteData.data.favorite_users);
+                 }
+             }
+         });
+
+         return false;
+     });
+});
+</script>

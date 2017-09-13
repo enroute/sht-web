@@ -1,3 +1,24 @@
+/** default 16px 
++ -------------------+
+| px | rem           |
++ -------------------+
+| 12 | 12/16 = .75   |
+| 14 | 14/16 = .875  |
+| 16 | 16/16 = 1     |
+| 18 | 18/16 = 1.125 |
+| 20 | 20/16 = 1.25  |
+| 24 | 24/16 = 1.5   |
+| 30 | 30/16 = 1.875 |
+| 36 | 36/16 = 2.25  |
+| 42 | 42/16 = 2.625 |
+| 48 | 48/16 = 3     |
++ -------------------+
+*/
+
+html {
+    font-size: 16px;
+}
+
 .nav{ overflow: hidden; background: #fafafa; padding: 0px;}
 .nav li{ float: left; width: 25%; text-align: center; padding:0px;}
 .nav li a{ color: #666; text-decoration: none;}

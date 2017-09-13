@@ -12,16 +12,13 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
 <div class="container">
 
-<div class="row" style="background-image: linear-gradient(90deg, #4F364C, #FFFFFF);" >
-    <div class="col-xs-4"><img class="img-circle" id="imgUserAvatar" style="max-width:100px; max-height:100%; object-fit:contain;" /></div>
-    <div class="col-xs-4"><p id="pUserName" style="margin-top:10px; font-size:18px; font-weight:bold;"></p>积分:<span id="score"></span></div>
-    <div class="col-xs-4"><p class="text-right"><a href="#" id="aSignIn">签到</a><br />已连续签到<span id="continuousSignIns"></span>天</p></div>
-</div>
+<div data-include="myselfHeader"></div>
 
 <br />
 
@@ -71,42 +68,6 @@
  var currentTabIndex = 0;
  setActiveFooterIndex(FOOTER_INDEX_MYSELF);
  includeAllHtmlFile();
-
- var isSignIn = false;
- function updateSignIn(){
-     if(isSignIn){
-         $("#aSignIn").html("已签到");
-     }
- }
-
- function updateScoreInfo(scoreInfo){
-     console.log(scoreInfo);
-     $("#score").html(scoreInfo.data.score);
-     $("#continuousSignIns").html(scoreInfo.data.continuous_signins);
-
-     if(scoreInfo.data.sign_in_status != 0){
-         isSignIn = true;
-         updateSignIn();
-     }
- }
-
- /* sign in */
- $("#aSignIn").click(function(){
-     if(! isSignIn){
-         $.ajax({
-             url:buildRequestUrl(API_URL_SIGN_IN, ""),
-             type:"get",
-             success:function(data){
-                 var scoreInfo = JSON.parse(data);
-                 if(0 != scoreInfo.status) return;
-
-                 updateScoreInfo(scoreInfo);
-             }
-         });
-     }
-
-     return false;
- });
 
  /* type: 0:有效优惠券, 1:已使用优惠券, 2:过期优惠券, 同时也是tabIndex */
  function getCouponList(type){

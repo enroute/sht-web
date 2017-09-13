@@ -1,0 +1,64 @@
+<style type="text/css">
+ .divCenterH { margin:0 auto; display: table; }
+ .imgAvatar { width:7.125rem; height:7.125rem; object-fit:contain; margin-top:2.5rem;
+     border: 2px solid; border-radius: 3.5625rem; border-color:rgb(255,255,255); border-color:rgba(255,255,255,0.5);
+     box-shadow: 0 0 0 0.5rem rgba(255,255,255,0.1);
+ }
+ .pMyselfHeaderName { color:rgb(243,94,62); font-size:2rem; margin: 0 0 0 0;}
+ .divSignIn { width: 8rem; border-radius:6px; background:rgb(13,33,70); font-size:1.5rem; }
+ .divCenterHV { 
+     /* position:absolute;
+        left:0; right:0; top:0; bottom:0;
+        margin:auto; */
+ }
+ a#aSignIn { color:white !important; }
+ p#pSignInText { margin: 5px 0 5px 0; /* top right bottom left */ }
+</style>
+
+<div class="row" style="height:20rem; background: url('static/images/3x/mycontent_img_bg.png') no-repeat center center; background-size: 100% 100%;" >
+    <div class="divCenterH"><img class="img-circle imgAvatar" id="imgUserAvatar" /></div>
+    <div class="divCenterH" style="margin-top:1rem"><p id="pUserName" class="pMyselfHeaderName"></p></div>
+    <div class="divCenterH divSignIn"><div class="divCenterHV"><a href="#" id="aSignIn"><p class="text-center" id="pSignInText">签到</p></a></div></div>
+    <div><p class="text-right" style="color:white;">积分:<span id="score"></span>，已连续签到<span id="continuousSignIns"></span>天</p></div>
+</div>
+
+<script type="text/javascript">
+ var isSignIn = false;
+ function updateSignIn(){
+     if(isSignIn){
+         $("#pSignInText").html("已签到");
+     }
+ }
+
+ function updateScoreInfo(scoreInfo){
+     console.log(scoreInfo);
+     $("#score").html(scoreInfo.data.score);
+     $("#continuousSignIns").html(scoreInfo.data.continuous_signins);
+
+     if(scoreInfo.data.sign_in_status != 0){
+         isSignIn = true;
+         updateSignIn();
+     }
+ }
+
+ /* sign in */
+ /* bind click for for dynamic generated elements */
+ $("#aSignIn").on("click", function(event){
+ //$("#aSignIn").click(function(){
+     if(! isSignIn){
+         $.ajax({
+             url:buildRequestUrl(API_URL_SIGN_IN, ""),
+             type:"get",
+             success:function(data){
+                 var scoreInfo = JSON.parse(data);
+                 if(0 != scoreInfo.status) return;
+
+                 updateScoreInfo(scoreInfo);
+             }
+         });
+     }
+
+     return false;
+ });
+
+</script>

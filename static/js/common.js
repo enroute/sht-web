@@ -45,7 +45,12 @@ var IMG = {
         "mycenter_img_yhq",     // valid
         "mycenter_img_yhq31",   // used
         "mycenter_img_yhq31"    // expired
-    ]
+    ],
+
+    "myself":{
+        "headerBackground":"mycontent_img_bg"
+    }
+
 };
 
 var NAV_INDEX_FOOD = 0;
