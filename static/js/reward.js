@@ -9,7 +9,8 @@ var turnplate={
     bRotate:false               //false:停止;ture:旋转
 };
 
-turnplate.colors = ["#FFFFFF","#C4C400", "#0080FF", "#C4C400","#A6A6D2", "#6C3365", "#64A600" ];
+//turnplate.colors = ["#FFFFFF","#C4C400", "#0080FF", "#C4C400","#A6A6D2", "#6C3365", "#64A600" ];
+turnplate.colors = ["#f46747", "#ffe9a6", "#f46747", "#ffe9a6", "#f46747", "#ffe9a6", "#f46747", "#ffe9a6"];
 
 var readyToDraw = false;
 var luckyDrawInfo;
@@ -40,6 +41,13 @@ $(function(){
 
             for(var i = 0; i < luckyDrawInfo.data.prize_list.length; i++){
                 turnplate.restaraunts.push(luckyDrawInfo.data.prize_list[i].prize);
+            }
+
+            if(3 == luckyDrawInfo.data.prize_list.length){
+                //do it again
+                for(var i = 0; i < luckyDrawInfo.data.prize_list.length; i++){
+                    turnplate.restaraunts.push(luckyDrawInfo.data.prize_list[i].prize);
+                }
             }
 
             readyToDraw = true;
@@ -166,9 +174,11 @@ function drawRouletteWheel() {
             //改变画布文字颜色
             var b = i+2;
             if(b%2){
-                ctx.fillStyle = "#FFFFFF";
+                //ctx.fillStyle = "#FFFFFF";
+                ctx.fillStyle = "#f46747";
             }else{
-                ctx.fillStyle = "#E5302F";
+                //ctx.fillStyle = "#E5302F";
+                ctx.fillStyle = "#FFFFFF";
             };
             
             //----绘制奖品开始----
@@ -183,7 +193,7 @@ function drawRouletteWheel() {
             //rotate方法旋转当前的绘图
             ctx.rotate(angle + arc / 2 + Math.PI / 2);
 
-            ctx.translate(0, 30);
+            // ctx.translate(0, 30);
             
             /** 下面代码根据奖品类型、奖品名称长度渲染不同效果，如字体、颜色、图片效果。(具体根据实际情况改变) **/
             /** if(text.indexOf("盘")>0){//判断字符进行换行
@@ -212,65 +222,74 @@ function drawRouletteWheel() {
             }
             
             //添加对应图标
+            {
+                var img = document.getElementById("coupon-img" + i);
+                var x = -50;
+                var y = 20;
+                img.onload = function(){
+                    ctx.drawImage(img, x, y);
+                };
+                ctx.drawImage(img, x, y);
+            }
+            /*
+            if(text.indexOf(turnplate.restaraunts[0])>=0){
+                var img= document.getElementById("diy1-img");
+                img.onload=function(){  
+                    ctx.drawImage(img,-35,20);      
+                };  
+                ctx.drawImage(img,-35,20);  
+            };
+            if(text.indexOf(turnplate.restaraunts[1])>=0){
+                var img= document.getElementById("shan-img");
+                img.onload=function(){  
+                    ctx.drawImage(img,-35,20);      
+                }; 
+                ctx.drawImage(img,-35,20);  
+            };
+            if(text.indexOf(turnplate.restaraunts[2])>=0){
+                var img= document.getElementById("diy5-img");                   
+                img.onload=function(){  
+                    ctx.drawImage(img,-25,35);      
+                };  
+                ctx.drawImage(img,-30,35);  
+            };
+            if(text.indexOf(turnplate.restaraunts[3])>=0){
+                var img= document.getElementById("shan-img");
+                img.onload=function(){  
+                    ctx.drawImage(img,-35,20);      
+                };  
+                ctx.drawImage(img,-35,20);  
+            };
+            if(text.indexOf(turnplate.restaraunts[4])>=0){
+                var img= document.getElementById("diy3-img");
+                img.onload=function(){  
+                    ctx.drawImage(img,-30,20);      
+                };  
+                ctx.drawImage(img,-30,20);  
+            };
+            if(text.indexOf(turnplate.restaraunts[5])>=0){
+                var img= document.getElementById("shan-img");
+                img.onload=function(){  
+                    ctx.drawImage(img,-35,20);      
+                };  
+                ctx.drawImage(img,-35,20);  
+            };
+            if(text.indexOf(turnplate.restaraunts[6])>=0){
+                var img= document.getElementById("diy2-img");                     
+                img.onload=function(){  
+                    ctx.drawImage(img,-30,20);      
+                };  
+                ctx.drawImage(img,-30,20);  
+            };
             
-            /* if(text.indexOf(turnplate.restaraunts[0])>=0){
-             *     var img= document.getElementById("diy1-img");
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-35,20);      
-             *     };  
-             *     ctx.drawImage(img,-35,20);  
-             * };
-             * if(text.indexOf(turnplate.restaraunts[1])>=0){
-             *     var img= document.getElementById("shan-img");
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-35,20);      
-             *     }; 
-             *     ctx.drawImage(img,-35,20);  
-             * };
-             * if(text.indexOf(turnplate.restaraunts[2])>=0){
-             *     var img= document.getElementById("diy5-img");                   
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-25,35);      
-             *     };  
-             *     ctx.drawImage(img,-30,35);  
-             * };
-             * if(text.indexOf(turnplate.restaraunts[3])>=0){
-             *     var img= document.getElementById("shan-img");
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-35,20);      
-             *     };  
-             *     ctx.drawImage(img,-35,20);  
-             * };
-             * if(text.indexOf(turnplate.restaraunts[4])>=0){
-             *     var img= document.getElementById("diy3-img");
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-30,20);      
-             *     };  
-             *     ctx.drawImage(img,-30,20);  
-             * };
-             * if(text.indexOf(turnplate.restaraunts[5])>=0){
-             *     var img= document.getElementById("shan-img");
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-35,20);      
-             *     };  
-             *     ctx.drawImage(img,-35,20);  
-             * };
-             * if(text.indexOf(turnplate.restaraunts[6])>=0){
-             *     var img= document.getElementById("diy2-img");                     
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-30,20);      
-             *     };  
-             *     ctx.drawImage(img,-30,20);  
-             * };
-             * 
-             * if(text.indexOf(turnplate.restaraunts[7])>=0){
-             *     var img= document.getElementById("shan-img");
-             *     img.onload=function(){  
-             *         ctx.drawImage(img,-35,20);      
-             *     };  
-             *     ctx.drawImage(img,-35,20);  
-             * };*/
-            
+            if(text.indexOf(turnplate.restaraunts[7])>=0){
+                var img= document.getElementById("shan-img");
+                img.onload=function(){  
+                    ctx.drawImage(img,-35,20);      
+                };  
+                ctx.drawImage(img,-35,20);  
+            };
+            */
             
             //把当前画布返回（调整）到上一个save()状态之前 
             ctx.restore();
