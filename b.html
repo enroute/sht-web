@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+
+    <title>{title}</title>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/jquery/jquery-barcode.js"></script>
+    <script type="text/javascript" src="static/js/common.js"></script>
+
+    <style>
+     body {
+         background-color:#e4e8e9;
+         height:100vh;
+     }
+
+     div.contentTopMargin {
+         height:0.533333333333333rem;
+     }
+
+     div.content {
+         border:solid white;
+         border-radius:15px;
+         background-color:white;
+         height:200px;
+         margin-left:0.4rem;
+         margin-right:0.4rem;
+     }
+
+     div.logo {
+         float:left;
+         margin-left:1.68rem;
+         margin-top:0.666666666666667rem;
+         padding-right:0.266666666666667rem;
+         width:0.813333333333333rem;
+     }
+
+     div.detail {
+         float:left;
+         margin-right:0.666666666666667rem;
+     }
+
+     img.logo {
+         object-fit:contain;
+         width:100%;
+         height:100%;
+     }
+
+     div.title {
+         float:left;
+     }
+
+     div.titleLarge {
+         margin-top:0.666666666666667rem;
+         font-size:0.480000rem;
+     }
+
+     div.titleSmall {
+         font-size:0.293333rem;
+     }
+
+    </style>
+
+</head>
+<body>
+<div class="contentTopMargin"></div>
+<div class="content">
+    <div class="logo"><img class="logo" src="static/images/2x/mycenter_icon_free.png" /></div>
+    <div>
+        <div class="titleLarge">{titleLarge}</div>
+        <div class="titleSmall">{titleSmall}</div>
+    </div>
+    <div class="detail">&lt;</div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+ $(function(){
+     alert($("html").attr('data-dpr'));
+ });
+</script>
+
+</html>

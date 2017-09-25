@@ -1,0 +1,132 @@
+.p2r(@name, @px){
+    @{name}: @px / 75 * 1rem;
+}
+
+html, body {
+    height:100vh;
+    background-color:#e4e8e9;
+    margin:0;
+    padding:0;
+    font-family:PingFangSC-Medium, Microsoft YaHei, sans-serif;
+}
+
+headerTopSpacer {
+    .p2r(height, 40);
+}
+
+.header {
+    .p2r(margin-top,40);
+    .p2r(margin-left,30);
+    .p2r(margin-right,30);
+    .p2r(border-radius,20);
+    background-color:#ffffff;
+    //.p2r(height, 150);
+    .p2r(height, 100);// 100 + 50 padding-top
+    .p2r(padding-top, 50);
+}
+
+.logo {
+    display:inline-block;
+    vertical-align:middle;
+    .p2r(margin-left,98);
+    .p2r(margin-right,20);
+    .p2r(width,61);
+}
+
+.logoImg {
+    width:100%;
+    object-fit:contain;
+}
+
+.textWrapper {
+    display:inline-block;
+    vertical-align:middle;
+    flex-grow:1;
+}
+
+.textLarge {
+    .p2r(font-size,28);
+    color:#666666;
+}
+
+.textLarge .largeTextSpacer {
+    .p2r(width, 30);
+    display:inline-block;
+}
+
+.textSmall {
+    .p2r(font-size,22);
+    color:#999999;
+    font-family:PingFangSC-Regular, PingFangSC-Medium, Microsoft YaHei, sans-serif;
+}
+
+.arrowRight {
+    display:inline-block;
+    .p2r(margin-right,40);
+    vertical-align:middle;
+    .p2r(height, 50);
+    .p2r(line-height, 50);
+    float:right;;
+}
+
+.couponPicture {
+    .p2r(height,340);
+    .p2r(margin-left,30);
+    .p2r(margin-right,30);
+}
+
+.couponImage {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+
+.couponImg {
+    object-fit:contain;
+    width:100%;
+}
+
+.couponSNText {
+    .p2r(margin-top,50);
+    text-align:center;
+    .p2r(font-size,32);
+    color:#333333;
+}
+
+.couponQRCode {
+    margin:auto;
+    .p2r(margin-top,40);
+    .p2r(margin-bottom,30);
+    .p2r(width,210);
+    .p2r(height,210);
+}
+
+.note1 {
+    text-align:center;
+    .p2r(font-size,22);
+    color:#666666;
+}
+
+.note2 {
+    text-align:center;
+    .p2r(font-size,24);
+    color:#3333;
+    .p2r(margin-top,40);
+}
+
+.note3 {
+    text-align:center;
+    .p2r(font-size,20);
+    color:#666666;
+    .p2r(margin-top,22);
+}
+
+.note3 p {
+    .p2r(margin-top,10);
+}

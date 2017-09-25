@@ -1,0 +1,80 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="static/css/coupondetail.css">
+
+    <script
+       src="http://code.jquery.com/jquery-3.2.1.min.js"
+       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+       crossorigin="anonymous">
+    </script>
+    <script src="static/js/plugin/qrcodejs/qrcode.min.js"></script>
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+  </head>
+
+  <body>
+    <!-- <div class="headerTopSpacer"></div> -->
+
+    <div class="content">
+      <script type="text/html" id="tpl">
+
+    <div class="header">
+      <div class="logo"><img class="logoImg" src="static/images/mycenter_icon_free@2x.png" /></div>
+      <div class="textWrapper">
+	<div class="textLarge">{{shopName}}<span class="largeTextSpacer"></span>{{couponText}}</div>
+	<div class="textSmall">有效期: {{expiredDateFrom}}-{{expiredDateTo}}</div>
+      </div>
+      <div class="arrowRight"><img src="static/images/mycenter_icon_arrow@3x.png" ></div>
+    </div>
+
+    <div class="couponPicture">
+        <img class="couponImg" src="{{couponImage}}" />
+    </div>
+
+    <div class="couponSNText">兑换码: {{sn}}</div>
+    <div class="couponQRCode"><div id="qrcode"></div></div>
+
+    <div class="note1">请向店家出示二维码进行兑奖</div>
+    <div class="note2">使用说明</div>
+    <div class="note3"><p>1.仅限一人使用</p><p>2.周末、节假日不可使用</p></div>      
+
+    </script>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+   $(function(){
+       var data = {
+           shopId:"001234",
+           shopName:"米萝咖啡",
+           couponText:"满100减20",
+           expiredDateFrom:"2017-09-10",
+           expiredDateTo:"2017-10-10",
+           sn:"520881992838",    
+           couponImage:"static/images/mycenter_img_p1@2x.png"
+       };
+
+       var renderData = data;
+       var snOriginal = data.sn;
+       renderData.sn = renderData.sn.replace(/\s/g,'').replace(/(.{4})/g,"$1 ");
+       //var tpl = document.getElementById('tpl').innerHTML.trim();
+       //Mustache.parse(tpl);
+       //var html2Render = Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData);
+       $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData));
+       
+       data.sn = snOriginal;
+       var qrcode = new QRCode(document.getElementById("qrcode"), {
+           text:data.sn,
+           width:$("#qrcode").parent().width(),
+           height:$("#qrcode").parent().height(),
+           colorDark : '#000000',
+           colorLight : '#ffffff',
+           correctLevel : QRCode.CorrectLevel.H
+       });
+
+       //new QRCode(document.getElementById('qrcode'), "your content");
+   });
+  </script>
+</html>

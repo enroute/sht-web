@@ -18,7 +18,6 @@ var luckyDrawInfo;
 function updateWinnerList(){
     var liHtml = "";
 
-    console.log("KKKKKK");
     console.log(luckyDrawInfo);
 
     luckyDrawInfo.data.winner_list.forEach(function(val, index, arr){
@@ -224,12 +223,14 @@ function drawRouletteWheel() {
             //添加对应图标
             {
                 var img = document.getElementById("coupon-img" + i);
-                var x = -50;
-                var y = 20;
+                var x = -42;
+                var y = 15;
+                var width = canvas.width * 0.2;
+                var height = width * 0.4;
                 img.onload = function(){
-                    ctx.drawImage(img, x, y);
+                    ctx.drawImage(img, x, y, width, height);
                 };
-                ctx.drawImage(img, x, y);
+                ctx.drawImage(img, x, y, width, height);
             }
             /*
             if(text.indexOf(turnplate.restaraunts[0])>=0){

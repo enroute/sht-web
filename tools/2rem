@@ -1,0 +1,18 @@
+#!/usr/bin/perl -w
+use strict;
+use warnings;
+
+sub rem {
+  my ($px) = @_;
+  return $px / 75.0;
+}
+
+while(<>){
+  # $_ =~ s/\brem\((.*?)\)\b/print rem($1)/ge;
+  s/(\b|:)rem\((.*?)\)(\b|;)/$1 . rem($2) . "rem$3"/gei;
+
+  # if (/(\b|:)rem\((.*?)\)(\b|;)/i) {
+  #   print "kkk $2\n";
+  # }
+  print $_;
+}
