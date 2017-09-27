@@ -2,6 +2,10 @@
     @{name}: @px / 75 * 1rem;
 }
 
+a, a:link, a:hover {
+    text-decoration:none !important;
+}
+
 html, body {
     height:100vh;
     background-color:#e4e8e9;
@@ -21,13 +25,14 @@ headerTopSpacer {
     .p2r(border-radius,20);
     background-color:#ffffff;
     //.p2r(height, 150);
-    .p2r(height, 100);// 100 + 50 padding-top
-    .p2r(padding-top, 50);
+    .p2r(height, 150);// 100 + 50 padding-top
+    /* .p2r(padding-top, 50); */
+    display:flex;
+    display:-webkit-flex;       /* Safari */
+    align-items:center;
 }
 
 .logo {
-    display:inline-block;
-    vertical-align:middle;
     .p2r(margin-left,98);
     .p2r(margin-right,20);
     .p2r(width,61);
@@ -39,8 +44,6 @@ headerTopSpacer {
 }
 
 .textWrapper {
-    display:inline-block;
-    vertical-align:middle;
     flex-grow:1;
 }
 
@@ -57,20 +60,15 @@ headerTopSpacer {
 .textSmall {
     .p2r(font-size,22);
     color:#999999;
-    font-family:PingFangSC-Regular, PingFangSC-Medium, Microsoft YaHei, sans-serif;
+    font-family:PingFangSC-Regular;
 }
 
 .arrowRight {
-    display:inline-block;
     .p2r(margin-right,40);
-    vertical-align:middle;
-    .p2r(height, 50);
-    .p2r(line-height, 50);
-    float:right;;
 }
 
 .couponPicture {
-    .p2r(height,340);
+    /* .p2r(height,340); */
     .p2r(margin-left,30);
     .p2r(margin-right,30);
 }

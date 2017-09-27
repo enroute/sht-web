@@ -1,3 +1,8 @@
+a,
+a:link,
+a:hover {
+  text-decoration: none !important;
+}
 html,
 body {
   height: 100vh;
@@ -15,12 +20,14 @@ headerTopSpacer {
   margin-right: 0.4rem;
   border-radius: 0.26666667rem;
   background-color: #ffffff;
-  height: 1.33333333rem;
-  padding-top: 0.66666667rem;
+  height: 2rem;
+  /* .p2r(padding-top, 50); */
+  display: flex;
+  display: -webkit-flex;
+  /* Safari */
+  align-items: center;
 }
 .logo {
-  display: inline-block;
-  vertical-align: middle;
   margin-left: 1.30666667rem;
   margin-right: 0.26666667rem;
   width: 0.81333333rem;
@@ -30,8 +37,6 @@ headerTopSpacer {
   object-fit: contain;
 }
 .textWrapper {
-  display: inline-block;
-  vertical-align: middle;
   flex-grow: 1;
 }
 .textLarge {
@@ -45,18 +50,13 @@ headerTopSpacer {
 .textSmall {
   font-size: 0.29333333rem;
   color: #999999;
-  font-family: PingFangSC-Regular, PingFangSC-Medium, Microsoft YaHei, sans-serif;
+  font-family: PingFangSC-Regular;
 }
 .arrowRight {
-  display: inline-block;
   margin-right: 0.53333333rem;
-  vertical-align: middle;
-  height: 0.66666667rem;
-  line-height: 0.66666667rem;
-  float: right;
 }
 .couponPicture {
-  height: 4.53333333rem;
+  /* .p2r(height,340); */
   margin-left: 0.4rem;
   margin-right: 0.4rem;
 }

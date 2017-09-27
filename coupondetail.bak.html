@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>优惠券</title>
+
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="static/js/jquery/jquery-barcode.js"></script>
+        <script type="text/javascript" src="static/js/common.js"></script>
+    </head>
+    <body style="background-color:lightblue;">
+        <div id="bcTarget" style="width:90%; object-fit:contain; margin:auto;"></div>
+        <div id="text" style="width:90%; object-fit:contain; margin:auto;"><h4 style="text-align:center;" id="couponText"></h4></div>
+        <div id="date" style="width:90%; object-fit:contain; margin:auto;"><h4 style="text-align:center;"><small>有效日期：<span id="validDate"></span><small></div>
+    </body>
+</html>
+
+<script type="text/javascript">
+ var code = getQueryString("code");
+ var type = "code128"; // ean
+ var text = decodeURI(getQueryString("text"));
+ var date = getQueryString("date");
+ $(function(){
+     $("#bcTarget").barcode(code, type, {barWidth:3, barHeight:100, fontSize:18});
+     $("#couponText").html(text);
+     $("#validDate").html(date);
+ });
+</script>

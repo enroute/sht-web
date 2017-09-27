@@ -1,0 +1,12 @@
+{
+    "status":0,
+    "data":{
+        "shopId":"001234",
+        "shopName":"米萝咖啡",
+        "name":"满100减20",
+        "expiredDateFrom":"2017-09-10",
+        "expiredDateTo":"2017-10-10",
+        "sn":"520881992838",    
+        "couponImage":"static/images/mycenter_img_p1@2x.png"
+    }
+}
