@@ -1,35 +1,57 @@
 <div id="footerSpacer" ></div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom nav-justified" id="footer">
-    <div class="container" align="center" id="divFooterNav">
-        <style>
-         .nav-tabs { text-align: center; height: 52px; line-height: 40px; }
-        </style>
-        <ul class="nav nav-tabs nav-tabs-justified">
-            <div class="col-md-3 col-sm-3 col-xs-3"><a href="#" class="footerA" type="home">
-                <img class="footerImage" id="footerImgHome" /><p class="footerP" id="footerPHome">主页</p>
-            </a></div>
-            <div class="col-md-5 col-sm-5 col-xs-5"><a href="#" class="footerA" type="favorite">
-                <img class="footerImage" id="footerImgFavorite" /><p class="footerP" id="footerPFavorite">我的关注</p>
-            </a></div>
-            <div class="col-md-4 col-sm-4 col-xs-4"><a href="#" class="footerA" type="myself">
-                <img class="footerImage" id="footerImgMyself" /><p class="footerP" id="footerPMyself">个人中心</p>
-            </a></div>
-        </ul>
-    </div>
-</nav>
+<style type="text/css">
+#footer {
+  position: fixed;
+  bottom: 0;
+  height: 1.33333333rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #f6f6f6;
+  color: #999999;
+}
+.footerItem {
+  padding-top: 0.2rem;
+  text-align: center;
+}
+.footerItemImage {
+  height: 0.53333333rem;
+}
+.footerItemImage > img {
+  object-fit: contain;
+  height: 100%;
+}
+.footerItemPActive {
+  color: #f35e3e;
+}
+</style>
 
-<!-- <div class="row clearfix" id="divFooterNav" style="position:fixed; bottom:0px; width:100%; object-fit:contain;">
-     <div class="col-xs-4"><p class="text-center"><a href="#" class="footerA" type="home">主页</a></p></div>
-     <div class="col-xs-4"><p class="text-center"><a href="#" class="footerA" type="favorite">我的关注</a></p></div>
-     <div class="col-xs-4"><p class="text-center"><a href="#" class="footerA" type="myself">个人中心</a></p></div>
-     </div> -->
+<div id="footer" style="position:fixed-bottom;">
+    <div class="footerItem">
+        <a href="#" type="home">
+            <div class="footerItemImage"><img id="footerImgHome" /></div>
+            <div class="footerItemText" id="footerPHome">主页</div>
+        </a>
+    </div>
+
+    <div class="footerItem">
+        <a href="#" type="favorite">
+            <div class="footerItemImage"><img id="footerImgFavorite" /></div>
+            <div class="footerItemText" id="footerPFavorite">我的关注</div>
+        </a>
+    </div>
+
+    <div class="footerItem">
+        <a href="#" type="myself">
+            <div class="footerItemImage"><img id="footerImgMyself" /></div>
+            <div class="footerItemText" id="footerPMyself">个人中心</div>
+        </a>
+    </div>
+</div>
 
 <script type="text/javascript">
- /* $("#footerImgHome").attr('src', getImage(IMG.footer.home.normal));
-  * $("#footerImgFavorite").attr('src', getImage(IMG.footer.favorite.normal));
-  * $("#footerImgMyself").attr('src', getImage(IMG.footer.myself.normal));*/
-
  var footerPItems = ["#footerPHome", "#footerPFavorite", "#footerPMyself"];
  var footerImgItems = ["#footerImgHome", "#footerImgFavorite", "#footerImgMyself"];
  for(var i = 0; i < footerImgItems.length; i++){
@@ -38,19 +60,14 @@
 
  function removeFooterActive(index){
      $(footerImgItems[index]).attr('src', getImage(IMG.footer[index].normal));
-     $(footerPItems[index]).removeClass("footerPActive");
+     $(footerPItems[index]).removeClass("footerItemPActive");
  }
 
  function setActiveFooterItem(index){
      $(footerImgItems[index]).attr('src', getImage(IMG.footer[index].focus));
-     $(footerPItems[index]).addClass("footerPActive");
+     $(footerPItems[index]).addClass("footerItemPActive");
  }
 
- /* console.log("getReqgetRequestParameterString:" + getRequestParameterString());
-  * var activeIndex = getQueryString('active');
-  * if (! isNull(activeIndex)){
-  *     setActiveFooterItem(activeIndex);
-  * }*/
  console.log("FOOTER_ACTIVE_INDEX = " + FOOTER_ACTIVE_INDEX);
  if (FOOTER_ACTIVE_INDEX != -1){
      setActiveFooterItem(FOOTER_ACTIVE_INDEX);
@@ -58,7 +75,7 @@
 
  $(function(){
      /* bind click event */
-     $("#divFooterNav").on("click", ".footerA", function(event){
+     $(".footerItem").on("click", "a", function(event){
          var url = "#";
 
          switch($(this).attr('type')){
@@ -80,6 +97,16 @@
          return false;
      });
 
+     //might not get the right space, may be to soon?
+     //$("#footerSpacer").height($("#footer").height());
+
+     //This should work most of the time, but there's delay
+     /* setTimeout(function(){
+      *     $("#footerSpacer").height($("#footer").height());
+      * }, 1000);*/
+ });
+
+ $(window).on("load",function(){
      $("#footerSpacer").height($("#footer").height());
  });
 </script>
