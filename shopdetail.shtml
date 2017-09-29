@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link type="image/x-icon" href="favicon.png" rel="icon" />
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/shopdetail.css">
+    <script type="text/javascript" src="static/js/common.js"></script>
+</head>
+
+<body>
+
+<!--#include virtual="include/banner.html" -->
+
+<div class="content">
+    <script type="text/html" id="tpl">
+      <div class="header">
+          <div id="header1Wrapper">
+              <div class="header1">
+                  <div class="avatar"><img class="avatarImg" src="{{avatar}}" /></div>
+                  <div class="name">{{name}}</div>
+              </div>
+          </div>
+          <div id="favoriteWrapper">
+              <!-- <div class="phantom">粉丝：{{favoriteUsers}}</div> -->
+              <div class="favorite"><a href="#" id="favoriteBtn" shopid="{{shopid}}">{{favoriteActionText}}</a></div>
+              <div class="favoriteUsers">粉丝：<span id="favoriteUsers">{{favoriteUsers}}</span></div>
+          </div>
+      </div>
+
+      <div class="shopInfoBorderWrapper">
+          <div class="shopInfoWrapper">
+              <div class="shopInfoTitle">商家信息</div>
+              <!-- <div class="hSplitter"></div> -->
+              <hr />
+
+              <div class="contact">
+                  <div class="addressWrapper">
+                      <div class="addressImage"><img class="locLogo" src="static/images/dianpu_icon_website@3x.png" /></div>
+                      <div class="addressText">
+                          <a href="map.html?session={{session}}&longitude={{longitude}}&latitude={{latitude}}">{{address}}</a>
+                      </div>
+                  </div>
+                  <div class="tel"><img src="static/images/dianpu_icon_tel@3x.png" /></div>
+              </div>
+          </div>
+      </div>
+
+      <div class="shopIntroTitle">店铺介绍</div>
+      <div class="intro">{{introText}}</div>
+
+      <div class="shopIntroTitle">店长推荐</div>
+      <div class="intro">{{recommend}}</div>
+
+      <div class="shopIntroTitle">店铺照片</div>
+      <div class="introImageWrapper"><img src="{{introImage}}" class="introImage" /></div>
+
+      <a href="reward.html?session={{session}}&shopid={{shopid}}"><div class="reward">抽奖</div></a>
+
+    </script>
+</div>
+
+<!--#include virtual="include/footer.html" -->
+</body>
+
+<script type="text/javascript">
+ function getFavoriteActionText(favorite){
+     if(favorite){
+         return "取消关注";
+     }else{
+         return " + 关 注";
+     }
+ }
+
+ $(function(){
+     var data = {
+         shopid:001283,
+         avatar:"static/images/mycontent_img_touxiang@3x.png",
+         name:"太平洋烧烤",
+         favorite:0,
+         favoriteUsers:3137,
+         address:"龙岗坂田街道五和大道和成世纪名园2栋B座102",
+         longitude:114.078079,
+         latitude:22.633942,
+         tel:["0755-88886666","13800138000"],
+         introText:"拥有专业的法式烘焙技术，从多年前品牌创立之初就湖心研究符合亚洲人品味的美食",
+         recommend:"剁椒鱼头 酸辣杂 炸腐竹 山木耳 酸辣土豆丝 烟笋腊肉 广式春卷 炒油麦菜 油麦菜 巴口香猪...",
+         introImage:["static/images/dianpu_img_p1@3x.png", "static/images/dianpu_img_p1@3x.png"]         
+     };
+
+     // use the first image only
+     data.introImage = data.introImage[0];
+     data.favoriteActionText = getFavoriteActionText(data.favorite);
+     $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), data));
+
+     $("#favoriteBtn").on("click", function(event){
+         var url;
+         if($("#favoriteBtn").html() == "取消关注"){
+             url = buildRequestUrl(API_URL_UNFAVORITE, "shopid=" + $(this).attr('shopid'));
+         }else{
+             url = buildRequestUrl(API_URL_FAVORITE, "shopid=" + $(this).attr('shopid'));
+         }
+         $.ajax({
+             url:url,
+             type:"get",
+             dataType: "json",
+             success:function(res){
+                 if (0 != res.status) return;
+                 $("#favoriteBtn").html(getFavoriteActionText(res.data.favorite));
+                 $("#favoriteUsers").html(res.data.favorite_users);
+             }
+         });
+
+         //return false to avoid go to top
+         return false;
+     });     
+ });
+</script>
+</html>

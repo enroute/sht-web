@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/shopdetail.css">
+  </head>
+
+  <body>
+    <!-- <div class="headerTopSpacer"></div> -->
+
+<div class="content">
+    <!-- <div data-include="banner"></div> -->
+    <!--#include virtual="include/banner.html" --> 
+
+    <script type="text/html" id="tpl">
+
+    </script>
+</div>
+  </body>
+
+  <script type="text/javascript">
+   $(function(){
+       var data = {
+           shopId:"001234",
+           shopName:"米萝咖啡",
+           name:"满100减20",
+           expiredDateFrom:"2017-09-10",
+           expiredDateTo:"2017-10-10",
+           sn:"520881992838",    
+           couponImage:"static/images/mycenter_img_p1@2x.png"
+       };
+
+       data.session = "0012345";
+       data.expiredDateFrom = data.expiredDateFrom.replace(/\-/g,'.');
+       data.expiredDateTo = data.expiredDateTo.replace(/\-/g,'.');
+
+       var renderData = data;
+       var snOriginal = data.sn;
+       renderData.sn = renderData.sn.replace(/\s/g,'').replace(/(.{4})/g,"$1 ");
+       //var tpl = document.getElementById('tpl').innerHTML.trim();
+       //Mustache.parse(tpl);
+       //var html2Render = Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData);
+       $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData));
+       
+   });
+  </script>
+</html>

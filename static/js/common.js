@@ -1,7 +1,8 @@
 var API_VERSION = "1";
 var API_PREFIX = "api/v" + API_VERSION + "/";
 var API_URL_FAVORITE               = API_PREFIX + "favorite";
-var API_URL_                       = API_PREFIX + "favorite";
+var API_URL_UNFAVORITE             = API_PREFIX + "unfavorite";
+//var API_URL_UNFAVORITE             = API_PREFIX + "favorite?unfavorite=1";
 var API_URL_GET_BANNER_LIST        = API_PREFIX + "getBannerList";
 var API_URL_GET_COUPON_LIST        = API_PREFIX + "getCouponList";
 var API_URL_GET_FAVORITE_SHOP_LIST = API_PREFIX + "getFavoriteShopList";
@@ -72,7 +73,7 @@ function setActiveFooterIndex(index){
 }
 
 function getImage(file){
-    var url = "static/images/3x/" + file + ".png";
+    var url = "static/images/" + file + "@3x.png";
     return url;
 }
 

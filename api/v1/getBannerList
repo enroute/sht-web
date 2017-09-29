@@ -2,9 +2,9 @@
     "status":0,
     "data":{
         "banner_list":[
-            {"url":"static/images/banner3.png",
+            {"url":"static/images/dianpu_img_banner@3x.png",
              "target":"http://www.baidu.com"},
-            {"url":"static/images/banner4.png",
+            {"url":"static/images/dianpu_img_banner@3x.png",
              "target":"http://www.sina.cn"}
         ]
     }

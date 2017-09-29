@@ -1,7 +1,7 @@
-<div class="row clearfix" style="padding:0; margin:0;">
-    <div class="col-md-12 column" style="padding:0; margin:0;">
+<div class="row clearfix">
+    <div class="col-md-12 column">
         <!-- AD banner -->
-        <div id="headerBanner" class="carousel slide row" data-ride="carousel" data-interval="5000" style="padding:0; margin:0;">
+        <div id="headerBanner" class="carousel slide row" data-ride="carousel" data-interval="5000" >
             <ol id="headerBannerIndicators" class="carousel-indicators">
                 <!-- <li data-target="#headerBanner" data-slide-to="0" class="active"></li>
                      <li data-target="#headerBanner" data-slide-to="1"></li> -->
@@ -47,7 +47,6 @@
                  /* alert(indicatorsHtml);*/
              }else{
                  /* ERROR! */
-                 console.log("ERROR");
              }
          }
      });
