@@ -186,3 +186,40 @@ html, body {
     align-items:center;
     justify-content:center;
 }
+
+#call {
+    display:none;
+
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%) translateY(-50%);
+
+    text-align:center;
+
+    width:80%;
+    background:white;
+    border-radius: 6px;
+    -webkit-border-radius:6px;
+
+    border:2px solid;
+    border-color:rgb(200,200,200);
+    border-color:rgba(200,200,200,0.5);
+    box-shadow: 0 0 0 4px rgba(200,200,200,0.1)
+}
+
+.callHeader {
+    .p2r(font-size,28);
+    .p2r(padding-top,30);
+    .p2r(padding-bottom,30);
+}
+
+.callCancel {
+    color:#f35e3e;
+    .p2r(margin-top,10);
+    .p2r(margin-bottom,10);
+}
+
+.callItem {
+    .p2r(font-size,28);   
+}
