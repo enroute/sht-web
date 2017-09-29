@@ -67,6 +67,8 @@
     </script>
 </div>
 
+<div id="dimmerOverlay"></div>
+
 <div id="call">
     <script type="text/html" id="tplCall">
         <div class="callHeader">选择电话</div>
@@ -77,6 +79,7 @@
 </div>
 
 <!--#include virtual="include/footer.html" -->
+
 </body>
 
 <script type="text/javascript">
@@ -95,6 +98,7 @@
          $("body > :not(#call)").css("filter","blur(5px)");
      }
 
+     $("#dimmerOverlay").toggle();
      $("#call").toggle();         
  }
 
