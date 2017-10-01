@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- for UC compatibility -->
+    <meta name="wap-font-scale" content="no">
+
+    <link type="image/x-icon" href="favicon.png" rel="icon" />
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+    <script src="//g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
+    <script type="text/javascript" src="static/js/common.js"></script>
+</head>
+
+<body>
+
+<!--#include virtual="include/banner.html" -->
+
+<div class="categoryNav">
+  <div class="categoryItem" type="0"><img src="static/images/home_icon_food@3x.png"  /><p>美食推荐</p></div>
+  <div class="categoryItem" type="1"><img src="static/images/home_icon_drink@3x.png" /><p>饮品咖啡</p></div>
+  <div class="categoryItem" type="2"><img src="static/images/home_icon_edu@3x.png"   /><p>教育培训</p></div>
+  <div class="categoryItem" type="3"><img src="static/images/home_icon_sing@3x.png"  /><p>K歌休闲</p></div>
+  <div class="categoryItem" type="4"><img src="static/images/home_icon_fruits@3x.png"/><p>水果蔬菜</p></div>
+  <div class="categoryItem" type="5"><img src="static/images/home_icon_food@3x.png"  /><p>运动健身</p></div>
+  <div class="categoryItem" type="6"><img src="static/images/home_icon_bea@3x.png"   /><p>美容美甲</p></div>
+  <div class="categoryItem" type="7"><img src="static/images/home_icon_move@3x.png"  /><p>家政搬家</p></div>
+</div>
+
+<div class="vSpacer20"></div>
+<div class="title1">抽奖专场</div>
+<!-- <div class="title1"><span class="hline30"></span>抽奖专场<span class="hline30"></span></div> -->
+
+<div class="navbarText">
+  <div class="item active" type="8">附 近</div>
+  <div class="item" type="9">优 选</div>
+</div>
+
+<div class="itemList" id="itemType0"></div>
+<div class="itemList" id="itemType1"></div>
+
+<!--#include virtual="include/shopitemtpl.html" -->
+
+
+<script type="text/javascript">
+  var FOOTER_ACTIVE_INDEX=0;
+</script>
+<!--#include virtual="include/footer.html" -->
+
+</body>
+
+<script type="text/javascript">
+</script>
+</html>
