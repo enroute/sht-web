@@ -1,0 +1,147 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link type="image/x-icon" href="favicon.png" rel="icon" />
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    
+    <!-- <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <script src="static/js/jquery-3.2.1.min.js"></script>
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
+    <script type="text/javascript" src="static/js/common.js"></script>
+</head>
+
+<body>
+
+<!-- TEMAPLTE START -->
+
+<ul class="shopItemList" id="shopItemList1">
+    <script type="text/html" id="tplShopItemList">
+        {{#shop_list}}
+        <li class="shopItem">
+            <div class="shopItemLogo"><img class="shopItemLogoImg" src="{{logo}}" /></div>
+            <div>
+                <div class="shopItemTitle">
+                    <div class="shopItemName">{{name}}</div>
+                    <div class="shopItemHot"><img src="static/images/home_icon_fire@3x.png" /></div>
+                </div>                
+                <div class="shopItemStar"><span class="star">{{star_level}}</span> ￥{{average_cost}}</div>
+                <!-- <div class="shopItemAverageCost">￥{{average_cost}}</div> -->
+                <div>
+                    <div class="inline">
+                        <div class="shopItemTag">{{tag}} | {{location}}</div>
+                        <div class="inline">
+                            <div class="shopItemDistance"><img src="static/images/home_icon_website@3x.png" /> <p>{{distance}}</p></div>
+                            <div class="shopItemFree">{{free}}</div>
+                        </div>
+                    </div>
+                    <div class="inline shopItemLuckyBtn">点击抽奖</div>
+                </div>
+            </div>
+        </li>
+        {{/shop_list}}
+    </script>
+</ul>
+
+<script type="text/javascript">
+ $(function(){
+     var data = {
+         shop_list:[
+             {
+                 "logo":"static/images/p1.png",
+                 "name":"米萝咖啡",
+                 "shopid":"00012345",
+                 "star_level":2.2,
+                 "average_cost":75,
+                 "tags":["美食", "西餐"],
+                 "distance":1442,
+                 "location":"坂田",
+                 "free":"免费啤酒"
+             },
+             {
+                 "logo":"static/images/p1.png",
+                 "name":"米萝咖啡",
+                 "shopid":"00012345",
+                 "star_level":2.2,
+                 "average_cost":75,
+                 "tags":["美食", "西餐"],
+                 "distance":1442,
+                 "location":"坂田",
+                 "free":"免费啤酒"
+             }
+         ]};
+     //join tags
+     data.shop_list.forEach(function(element){
+         element.tag = element.tags.join(" ");
+         element.distance = element.distance > 1000 ? "" + (element.distance/1000) + "km" : "" + element.distance + "m";
+     });
+
+     //console.log(data);
+     $("#shopItemList1").html(Mustache.render(document.getElementById('tplShopItemList').innerHTML.trim(), data));
+
+ });
+
+</script>
+
+<!-- TEMPLATE END -->
+
+</body>
+<!-- 
+     geolocation: getCurrentPosition() and watchPosition() no longer work on insecure origins.
+     To use this feature, you should consider switching your application to a secure origin, such as HTTPS.
+
+     腾讯的接口是 ，返回数组 http://fw.qq.com/ipaddress
+     返回值 var IPData = new Array("61.135.152.194","","北京市","");
+     
+     新浪的接口 ： http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js 
+     多地域测试方法：http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip=218.192.3.42
+     返回值 var remote_ip_info = {"ret":1,"start":"218.192.0.0","end":"218.192.7.255","country":"\u4e2d\u56fd","province":"\u5e7f\u4e1c","city":"\u5e7f\u5dde","district":"","isp":"\u6559\u80b2\u7f51","type":"\u5b66\u6821","desc":"\u5e7f\u5dde\u5927\u5b66\u7eba\u7ec7\u670d\u88c5\u5b66\u9662"};腾讯的接口是 ，返回数组 http://fw.qq.com/ipaddress
+     返回值 var IPData = new Array("61.135.152.194","","北京市","");
+     
+   -->
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=eead3b60ace72695a6b5b518c8c1efc8"></script>
+<script type="text/javascript">
+ $(function(){
+     $.ajax({
+         url:"http://fw.qq.com/ipaddress",
+         type:"get",
+         dataType: "json",
+         success:function(res){
+
+ });
+ 
+ function getPositionCallback(pos){
+     var lat = pos.coords.latitude;
+     var lng = pos.coords.longitude;
+
+     var point = new BMap.Point(lng, lat);
+     var myGeo = new BMap.Geocoder();
+     myGeo.getLocation(point, function(result){
+         console.log(result);
+     });
+ }
+
+ function onPositionErrorCallback(error){
+     switch(error.code){
+         case error.PERMISSION_DENIED: 
+             //x.innerHTML = "User denied the request for Geolocation.[用户拒绝请求地理定位]" 
+             break; 
+         case error.POSITION_UNAVAILABLE: 
+             //x.innerHTML = "Location information is unavailable.[位置信息是不可用]" 
+             break; 
+         case error.TIMEOUT: 
+             //x.innerHTML = "The request to get user location timed out.[请求获取用户位置超时]" 
+             break; 
+         case error.UNKNOWN_ERROR: 
+             //x.innerHTML = "An unknown error occurred.[未知错误]" 
+             break;
+     }
+ }
+</script>
+
+</html>
