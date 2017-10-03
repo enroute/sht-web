@@ -1,0 +1,118 @@
+a,
+a:link,
+a:hover {
+  text-decoration: none !important;
+  color: inherit;
+}
+html,
+body {
+  height: 100vh;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  font-family: PingFangSC-Medium, Microsoft YaHei, sans-serif;
+}
+.categoryNav {
+  /* .p2r(margin-left,50); */
+  /* .p2r(margin-right,50); */
+  margin-top: 0.53333333rem;
+  margin-bottom: 0.13333333rem;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.categoryItem {
+  width: 22%;
+  text-align: center;
+  font-size: 0.32rem;
+  color: #666666;
+}
+.categoryItem > img {
+  object-fit: contain;
+  width: 1.28rem;
+  height: 1.28rem;
+  margin-bottom: 0.26666667rem;
+}
+.categoryItem > p {
+  margin-bottom: 0.4rem;
+}
+.vSpacer20 {
+  background-color: #f5f5f5;
+  height: 0.26666667rem;
+}
+.title1 {
+  display: table;
+  margin: 0 auto;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.37333333rem;
+  color: #999999;
+  border-spacing: 10px 0;
+}
+.title1:before,
+.title1:after {
+  display: table-cell;
+  content: '';
+  width: 0.4rem;
+  /* background: #999999; */
+  /* .p2r(height,2); */
+  background: -webkit-linear-gradient(#999999, #999999) repeat-x left center;
+  background: linear-gradient(#999999, #999999) repeat-x left center;
+  background-size: 1px 1px;
+  margin-left: 0.13333333rem;
+  margin-right: 0.13333333rem;
+}
+.hline30 {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.02666667rem;
+  background-color: #999999;
+  margin-left: 0.13333333rem;
+  margin-right: 0.13333333rem;
+}
+.navBarText {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 1.06666667rem;
+  background-color: #f5f5f5;
+}
+.navBarText > .item {
+  font-size: 0.37333333rem;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  flex-grow: 1;
+}
+.navBarText > .active {
+  color: #f35e3e;
+  border-bottom: 4px solid;
+}
+.itemList {
+  display: none;
+}
+.location {
+  font-size: 0.29333333rem;
+  padding-top: 0.26666667rem;
+  padding-bottom: 0.26666667rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  color: #b2b2b2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5f5f5;
+}
+.location > .locationText {
+  background-color: inherit;
+}
+.location > .refreshLocation {
+  background-color: inherit;
+  height: 0.37333333rem;
+}
+.location > .refreshLocation > img {
+  object-fit: contain;
+  height: 100%;
+}

@@ -25,38 +25,35 @@
 
 <!--#include virtual="include/banner.html" -->
 
-<div class="categoryNav">
-  <div class="categoryItem" type="0"><img src="static/images/home_icon_food@3x.png"  /><p>美食推荐</p></div>
-  <div class="categoryItem" type="1"><img src="static/images/home_icon_drink@3x.png" /><p>饮品咖啡</p></div>
-  <div class="categoryItem" type="2"><img src="static/images/home_icon_edu@3x.png"   /><p>教育培训</p></div>
-  <div class="categoryItem" type="3"><img src="static/images/home_icon_sing@3x.png"  /><p>K歌休闲</p></div>
-  <div class="categoryItem" type="4"><img src="static/images/home_icon_fruits@3x.png"/><p>水果蔬菜</p></div>
-  <div class="categoryItem" type="5"><img src="static/images/home_icon_food@3x.png"  /><p>运动健身</p></div>
-  <div class="categoryItem" type="6"><img src="static/images/home_icon_bea@3x.png"   /><p>美容美甲</p></div>
-  <div class="categoryItem" type="7"><img src="static/images/home_icon_move@3x.png"  /><p>家政搬家</p></div>
-</div>
+<div class="vSpacer20"></div>
 
 <div class="vSpacer20"></div>
-<div class="title1">抽奖专场</div>
-<!-- <div class="title1"><span class="hline30"></span>抽奖专场<span class="hline30"></span></div> -->
 
-<div class="navbarText">
-  <div class="item active" id="navbarItem0" type="8">附 近</a></div>
-  <div class="item" id="navbarItem1" type="9">优 选</a></div>
+<div class="navbarText" style="background:white">
+  <div class="item active" id="navbarItem0" type="20">离我最近</a></div>
+  <div class="item" id="navbarItem1" type="21">好评优先</a></div>
+  <div class="item" id="navbarItem2" type="22">人气最高</a></div>
+</div>
+
+<div class="location">
+  <div class="locationText">当前:&nbsp;&nbsp;&nbsp;<span id="currentLocation">龙岗区坂田索云里智能园</span></div>
+  <div class="refreshLocation"><img src="static/images/home_icon_refresh@3x.png" /></div>
 </div>
 
 <div class="itemList" id="itemType0"></div>
 <div class="itemList" id="itemType1"></div>
+<div class="itemList" id="itemType2"></div>
 
 <!--#include virtual="include/shopitemtpl.html" -->
 
 
 <script type="text/javascript">
-  var FOOTER_ACTIVE_INDEX=0;
+  var FOOTER_ACTIVE_INDEX=-1;
   var currentActiveTab = 0;
   var tabs = [
-      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url":"api/v1/getShopList2", "type":"8", "noMore":false},
-      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url":"api/v1/getShopList3", "type":"9", "noMore":false}
+      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url":"api/v1/getShopList2", "type":"20", "noMore":false},
+      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url":"api/v1/getShopList3", "type":"21", "noMore":false},
+      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url":"api/v1/getShopList2", "type":"22", "noMore":false}
   ];
 </script>
 <!--#include virtual="include/footer.html" -->
@@ -80,11 +77,6 @@ function setActive(index){
 }
 
 $(function(){
-    $(".categoryItem").on("click", function(){
-	var type=$(this).attr("type");
-	location.href = "category.shtml?" + sessionParameterString + "&type=" + $(this).attr("type");	
-    });
-
     $(".navbarText .item").on("click", function(){
         for(var i = 0; i < tabs.length; i++){
             if (tabs[i].type == $(this).attr("type")) {

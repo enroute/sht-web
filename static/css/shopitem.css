@@ -18,14 +18,16 @@ body {
 /* li */
 .shopItem {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   margin-top: 0rem;
   margin-bottom: 0rem;
   padding-top: 0.26666667rem;
   padding-bottom: 0.26666667rem;
 }
 .shopItem + .shopItem {
-  border-top: 1px solid;
+  /* border-top: 1px solid; */
+  border-top: 0.0133333333333333rem solid;
 }
 .shopItemLogo {
   margin-right: 0.4rem;
@@ -36,6 +38,9 @@ body {
   width: 100%;
   border-radius: 8px;
   -webkit-border-radius: 8px;
+}
+.shopItemTextContents {
+  flex-grow: 1;
 }
 .shopItemName {
   font-size: 0.42666667rem;
@@ -50,6 +55,11 @@ body {
   height: 0.42666667rem;
   width: 0.42666667rem;
 }
+.shopItemStar {
+  margin-top: 0.26666667rem;
+  margin-right: 0.26666667rem;
+  margin-bottom: 0.26666667rem;
+}
 .shopItemHot > img {
   object-fit: contain;
   height: 100%;
@@ -63,7 +73,40 @@ body {
 }
 .shopItemDistance > p {
   margin: 0;
+  margin-left: 0.06666667rem;
+  margin-right: 0.13333333rem;
+}
+.shopItemDistance > img {
+  object-fit: contain;
+  height: 0.42666667rem;
 }
 .inline {
   display: inline-block;
+}
+.shopItemFree {
+  padding-left: 0.18666667rem;
+  padding-right: 0.18666667rem;
+  padding-top: 0.13333333rem;
+  padding-bottom: 0.13333333rem;
+  color: #ffffff;
+  background-color: #f35e3e;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+.shopItemLuckyBtn {
+  width: 2.05333333rem;
+  height: 0.72rem;
+  line-height: 0.72rem;
+  font-size: 0.37333333rem;
+  color: #f35e3e;
+  border: 2px solid;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  text-align: center;
+  align-self: flex-end;
+}
+.lr {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }

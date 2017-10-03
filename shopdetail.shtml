@@ -107,7 +107,8 @@
  }
 
  $(function(){
-     alert(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
+     //alert(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
+     console.log(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
      
      var data = {
          shopid:001283,

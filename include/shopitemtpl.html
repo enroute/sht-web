@@ -1,0 +1,111 @@
+<ul class="shopItemList">
+    <script type="text/html" id="tplShopItemList">
+        {{#shop_list}}
+        <li class="shopItem">
+            <div class="shopItemLogo"><img class="shopItemLogoImg" src="{{logo}}" shopid="{{shopid}}" /></div>
+            <div class="shopItemTextContents">
+                <div class="shopItemTitle">
+                    <div class="shopItemName">{{name}}</div>
+                    <div class="shopItemHot"><img src="static/images/home_icon_fire@3x.png" /></div>
+                </div>                
+                <div class="shopItemStar"><span class="star">{{star_level}}</span> ￥{{average_cost}}</div>
+                <!-- <div class="shopItemAverageCost">￥{{average_cost}}</div> -->
+                <div class="lr">
+                    <div class="inline">
+                        <div class="shopItemTag">{{tag}} | {{location}}</div>
+                        <div class="inline">
+                            <div class="shopItemDistance"><img src="static/images/home_icon_website@3x.png" /> <p>{{distance}}</p></div>
+                            <div class="shopItemFree">{{free}}</div>
+                        </div>
+                    </div>
+                    <div class="inline shopItemLuckyBtn" shopid="{{shopid}}">点击抽奖</div>
+                </div>
+            </div>
+        </li>
+        {{/shop_list}}
+    </script>
+</ul>
+
+<script type="text/javascript">
+  function getShopListHtml(selector, url) {
+      console.log(url);
+      var records = 0;
+      $.ajax({
+          url:url,
+          type:"get",
+          dataType: "json",
+          success:function(res){
+	      //join tags
+	      console.log(res);
+	      records = res.data.shop_list.length;
+	      res.data.shop_list.forEach(function(element){
+		  element.tag = element.tags.join(" ");
+		  element.distance = element.distance > 1000 ? "" + (element.distance/1000) + "km" : "" + element.distance + "m";
+	      });
+
+	      //console.log(data);
+	      var html = Mustache.render(document.getElementById('tplShopItemList').innerHTML.trim(), res.data);
+	      if($(selector).html() == ""){
+		  $(selector).html("<ul class='shopItemList'></ul>");
+	      }
+	      
+              $(selector).children(".shopItemList").append(html);
+
+	      $(".shopItemLogoImg").on("click", function(){
+		  console.log($(this).attr("shopid"));
+		  location.href = "shopdetail.shtml?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
+	      });
+
+	      $(".shopItemLuckyBtn").on("click", function(){
+		  location.href = "reward.html?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
+	      });
+	  },
+	  error: function (XMLHttpRequest, textStatus, errorThrown) {
+	      //              $("#p_test").innerHTML = "there is something wrong!";
+	                      console.log(XMLHttpRequest.status);
+	                      console.log(XMLHttpRequest.readyState);
+	                      console.log(textStatus);
+	  }
+      });
+
+      return records;
+  }
+//  
+// $(function(){
+//     var data = {
+//         shop_list:[
+//             {
+//                 "logo":"static/images/p1.png",
+//                 "name":"米萝咖啡",
+//                 "shopid":"00012345",
+//                 "star_level":2.2,
+//                 "average_cost":75,
+//                 "tags":["美食", "西餐"],
+//                 "distance":1442,
+//                 "location":"坂田",
+//                 "free":"免费啤酒"
+//             },
+//             {
+//                 "logo":"static/images/p1.png",
+//                 "name":"米萝咖啡",
+//                 "shopid":"00012345",
+//                 "star_level":2.2,
+//                 "average_cost":75,
+//                 "tags":["美食", "西餐"],
+//                 "distance":1442,
+//                 "location":"坂田",
+//                 "free":"免费啤酒"
+//             }
+//         ]};
+//     //join tags
+//     data.shop_list.forEach(function(element){
+//         element.tag = element.tags.join(" ");
+//         element.distance = element.distance > 1000 ? "" + (element.distance/1000) + "km" : "" + element.distance + "m";
+//     });
+//
+//     //console.log(data);
+//     $("#shopItemList1").html(Mustache.render(document.getElementById('tplShopItemList').innerHTML.trim(), data));
+//
+// });
+//
+</script>
