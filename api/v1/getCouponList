@@ -3,11 +3,13 @@
     "data":{
         "coupon_list":[
             {
-                "name":"米萝咖啡满100减30",
+	        "shopName":"米萝咖啡",
+                "name":"满100减30",
                 "expired_date":"2017-09-30",
                 "sn":"10010001"
             },
             {
+	        "shopName":"米萝咖啡",
                 "name":"面点王霸王餐",
                 "expired_date":"2017-09-30",
                 "sn":"10010002"

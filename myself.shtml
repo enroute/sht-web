@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- for UC compatibility -->
+    <meta name="wap-font-scale" content="no">
+
+    <link type="image/x-icon" href="favicon.png" rel="icon" />
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/myself.css">
+    <script type="text/javascript" src="static/js/common.js"></script>
+</head>
+
+<body>
+
+<!--#include virtual="include/myselfHeader.html" -->
+
+<div class="vSpacer20"></div>
+<div class="myCouponTitle">我的优惠券</div>
+<div class="vSpacer20"></div>
+
+<div class="navbarText" style="background:white">
+  <div class="item active" id="navbarItem0" type="0">有效优惠券</a></div>
+  <div class="item" id="navbarItem1" type="1">已过期</a></div>
+  <div class="item" id="navbarItem2" type="2">已使用</a></div>
+</div>
+
+<div class="couponList" id="itemType0"></div>
+<div class="couponListInactive" id="itemType1"></div>
+<div class="couponListInactive" id="itemType2"></div>
+
+<!--#include virtual="include/couponitemtpl.html" -->
+
+<script type="text/javascript">
+  var FOOTER_ACTIVE_INDEX=2;
+  var currentActiveTab = 0;
+  var tabs = [
+      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url":"api/v1/getCouponList?type=0", "type":"0",
+       "bg":"static/images/mycenter_img_yhq@3x.png","noMore":false},
+      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url":"api/v1/getCouponList?type=1", "type":"1",
+       "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false},
+      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url":"api/v1/getCouponList?type=2", "type":"2",
+       "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false}
+  ];
+</script>
+<!--#include virtual="include/footer.html" -->
+
+</body>
+
+<script type="text/javascript">
+function setActive(index){
+    if (0 <= index && index < tabs.length){
+        for(var i = 0; i < tabs.length; i++){
+            if (index != i){
+                $(tabs[i].selector).hide();
+                $(tabs[i].tabSelector).removeClass("active");
+            }
+        }
+
+	currentActiveTab = index;
+        $(tabs[index].selector).show();
+        $(tabs[index].tabSelector).addClass("active");
+    }
+}
+
+$(function(){
+    $(".navbarText .item").on("click", function(){
+        for(var i = 0; i < tabs.length; i++){
+            if (tabs[i].type == $(this).attr("type")) {
+                setActive(i);
+            }
+        }       
+
+        return false;
+    });
+
+    for(var i = 0; i < tabs.length; i++){
+        getCouponListHtml(tabs[i].selector, tabs[i].url, tabs[i].bg);
+    }
+    console.log("currentActiveTab=" + currentActiveTab);
+    $(tabs[currentActiveTab].selector).show();
+
+    $(window).scroll(function(){
+	if(tabs[currentActiveTab].noMore) return;
+
+	if($(this).scrollTop() + $(this).height() == $(document).height()){
+	    getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab].url, tabs[currentActiveTab].bg);
+	}
+    });
+});
+</script>
+</html>

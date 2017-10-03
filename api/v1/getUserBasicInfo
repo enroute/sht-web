@@ -1,0 +1,11 @@
+{
+    "status":0,
+    "data":{
+	"nickname":"天涯路",
+	"wxopenid":"wx8901237191799ad",
+	"avatar":"static/images/p.png",
+	"sign_in_status":1,
+	"score":132,
+	"continuous_signins":18
+    }
+}

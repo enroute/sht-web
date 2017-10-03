@@ -1,0 +1,248 @@
+.p2r(@name, @px){
+    @{name}: @px / 75 * 1rem;
+}
+
+a, a:link, a:hover {
+    text-decoration:none !important;
+    color:inherit;
+}
+
+html, body {
+    height:100vh;
+    margin:0;
+    padding:0;
+    font-family:PingFangSC-Medium, Microsoft YaHei, sans-serif;
+    background:#c5e1e5;
+    text-align:center;
+}
+
+.vSpacer20 {
+    background-color:#f5f5f5;
+    .p2r(height,20);
+}
+
+#conDialog {
+    position:fixed;
+    .p2r(width,444);
+    .p2r(height,525);
+    left:50%;
+    top:50%;
+    transform:translateX(-50%) translateY(-50%);
+    background-color:white;
+    border:1px solid #eeeeee;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+
+    text-align:center;
+
+    .p2r(font-size,20);
+    display:none;
+}
+
+#closeImg {
+    .p2r(width, 53);
+    position:absolute;
+    .p2r(right,40);
+}
+
+#leftBorderDecor {
+    .p2r(width,65);
+    position:absolute;
+    .p2r(bottom,25);
+    left:0;
+}
+
+#rightBorderDecor {
+    .p2r(width,66);
+    position:absolute;
+    .p2r(top,30);
+    right:0;
+}
+
+
+#conTitle {
+    .p2r(font-size,38);
+    .p2r(margin-top,100);
+    .p2r(margin-bottom,40);
+    color:rgb(255,98,98);
+}
+
+#rewardName {
+    color:rgb(240,125,11);
+}
+
+#claimWay {
+    .p2r(margin-top,45);
+    .p2r(margin-bottom,102);
+    color:rgb(212,212,212);
+}
+
+#checkBtn {
+    .p2r(margin-bottom,30);
+    background-color:rgb(240,125,11);
+    .p2r(padding-left,20);
+    .p2r(padding-right,20);
+    .p2r(padding-top,10);
+    .p2r(padding-bottom,10);
+    border-radius:2px;
+    -webkit-border-radius:2px;
+    display:inline-block;
+}
+
+#tip {
+    color:rgb(153,153,153);
+}
+
+
+/* roulette */
+#headerText {
+    .p2r(height,60);
+    background-color:#f2786e;
+    .p2r(font-size,20);
+    color:white;
+    text-align:center;
+    vertical-align:middle;
+    .p2r(line-height,60);
+}
+
+.conCouponName {
+    display:inline-block;
+    .p2r(margin-left,20);
+    color:fff32f;
+}
+
+#roulette {
+    .p2r(height, 676);
+    background:#c5e1e5 url("../images/choujiang_img_bg@3x.png") no-repeat;
+    background-position:0 100%;
+    background-size:100% auto;
+    position:relative;
+}
+
+#canvasHolder {
+    .p2r(width,602);
+    .p2r(height,602);
+    transform:translateX(-50%) translateY(-50%);
+}
+
+#wheelcanvas{
+    width:100%;
+    height:100%;
+}
+
+#canvasHolder, #roulettebg, #rouletteptr, #roulettetxt {
+    position:absolute;
+    left:50%;
+    top:50%;
+}
+
+#roulettebg {
+    .p2r(width,602);
+    .p2r(height,602);
+    transform:translateX(-50%) translateY(-50%);
+    display:none;
+}
+
+#rouletteptr {
+    .p2r(width,188);
+    .p2r(height,228);
+    transform:translateX(-50%) translateY(-50%) translateY(-0.266666666666667rem);
+}
+
+#roulettebg img, #rouletteptr img {
+    width:100%;
+    height:100%;
+    object-fit:fill;
+}
+
+#roulettetxt {
+    transform:translateX(-50%) translateY(-50%);
+    .p2r(font-size,32);
+    color:white;
+    font-family:PingFangSC-Bold;
+}
+
+#participant {
+    .p2r(margin-top,40);
+    .p2r(padding-left,40);
+    .p2r(padding-right,40);
+    .p2r(height,62);
+    .p2r(line-height,62);
+    .p2r(font-size,28);
+    color:white;
+    background:#f35e3e;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    display:inline-block;
+    text-align:center;
+    vertical-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#couponListTitle {
+    .p2r(padding-top,50);
+    .p2r(font-size,28);
+    color:#333333;
+    font-family:PingFangSC-Bold;
+}
+
+#couponList {
+    border-bottom:2px white dashed;
+    border-top:2px white dashed;
+    .p2r(margin-left,35);
+    .p2r(margin-right,35);
+    .p2r(margin-top,20);
+    .p2r(margin-bottom,20);
+    .p2r(padding-top,40);
+    .p2r(padding-bottom,40);
+
+    .p2r(height,304);
+    display:flex;
+    overflow-x:scroll;
+}
+
+.couponItem {
+    .p2r(width, 243);
+    .p2r(height,304);
+    .p2r(margin-right,30);
+    background:url("../images/choujiang_img_yhq@3x.png") no-repeat;
+    background-position:0 0;
+    background-size:100% auto;
+}
+
+.couponItemLogo {
+    .p2r(width,243);
+    .p2r(height,125);
+}
+
+.couponItemLogoImg {
+    object-fit:fill;
+    .p2r(width,243);
+    .p2r(height,125);
+}
+
+.couponItemName {
+    .p2r(padding-top,22);
+    .p2r(padding-bottom,22);
+    .p2r(height,28);
+    .p2r(line-height,28);
+    .p2r(font-size,28);
+    font-family:PingFangSC-Bold;
+    color:#333;
+}
+
+.couponItemShop {
+    .p2r(padding-top,30);
+    .p2r(width,200);
+    margin-left:auto;
+    margin-right:auto;
+    border-top:1px dashed;
+    color:#999;
+    .p2r(font-size,20);
+}
+
+.couponItemDate {
+    color:#999;
+    .p2r(font-size,20);
+}

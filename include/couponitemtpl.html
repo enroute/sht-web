@@ -1,0 +1,71 @@
+<ul class="couponItemList">
+  <script type="text/html" id="tplCouponItemList">
+    {{#coupon_list}}
+    <li class="couponItem">
+      <img src="{{backgroundImage}}" />
+      <div class="couponItemText">
+	<div class="couponItemName">{{name}}</div>
+	<div class="couponItemShop">{{shopName}}专用券</div>
+      </div>
+      <div class="couponItemDate">{{expired_date}} 到期</div>
+      <div class="couponItemViewSn" sn="{{sn}}">查看券码</div>
+    </li>
+    {{/coupon_list}}
+  </script>
+</ul>
+
+<script type="text/javascript">
+//      "data":{
+//        "coupon_list":[
+//            {
+//	        "shopName":"米萝咖啡",
+//                "name":"满100减30",
+//                "expired_date":"2017-09-30",
+//                "sn":"10010001"
+//            },
+//            {
+//	        "shopName":"米萝咖啡",
+//                "name":"面点王霸王餐",
+//                "expired_date":"2017-09-30",
+//                "sn":"10010002"
+//            }
+//        ]
+//    }
+
+  function getCouponListHtml(selector, url, backgroundImage) {
+      console.log(url);
+      var records = 0;
+      $.ajax({
+          url:url,
+          type:"get",
+          dataType: "json",
+          success:function(res){
+              console.log(res);
+	      //set background
+	      for(var i = 0; i < res.data.coupon_list.length; i++){
+		  res.data.coupon_list[i].backgroundImage = backgroundImage;
+	      }
+
+	      var html = Mustache.render(document.getElementById('tplCouponItemList').innerHTML.trim(), res.data);
+	      if($(selector).html() == ""){
+		  $(selector).html("<ul class='couponItemList'></ul>");
+	      }
+	      
+              $(selector).children(".couponItemList").append(html);
+
+	      $(".couponItemViewSn").on("click", function(){
+		  console.log($(this).attr("sn"));
+		  location.href = "coupondetail.html?" + sessionParameterString + "&sn=" + $(this).attr("sn");
+	      });
+	  },
+	  error: function (XMLHttpRequest, textStatus, errorThrown) {
+	      //              $("#p_test").innerHTML = "there is something wrong!";
+	                      console.log(XMLHttpRequest.status);
+	                      console.log(XMLHttpRequest.readyState);
+	                      console.log(textStatus);
+	  }
+      });
+
+      return records;
+  }
+</script>

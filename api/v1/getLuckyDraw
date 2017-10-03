@@ -4,17 +4,56 @@
         "id":322423,
         "participants":8762,
         "prize_list":[
-            {"prize":"缪氏川菜霸王餐","weight":20},
-            {"prize":"稻香直减50","weight":30},
-            {"prize":"上岛咖啡霸王拿铁","weight":50}
+            {
+		"prize":"免费蹦床券",
+		"shopName":"悦动蹦床俱乐部",
+		"start_date":"2017-10-01",
+		"expired_date":"2017-10-20",
+		"logo":"static/images/mycenter_img_p1@3x.png"
+	    },
+            {
+		"prize":"免费K歌券",
+		"shopName":"悦动蹦床俱乐部",
+		"start_date":"2017-10-01",
+		"expired_date":"2017-10-20",
+		"logo":"static/images/mycenter_img_p1@3x.png"
+	    },
+            {
+		"prize":"免费蹦床券",
+		"shopName":"悦动蹦床俱乐部",
+		"start_date":"2017-10-01",
+		"expired_date":"2017-10-20",
+		"logo":"static/images/mycenter_img_p1@3x.png"
+	    },
+            {
+		"prize":"免费蹦床券",
+		"shopName":"悦动蹦床俱乐部",
+		"start_date":"2017-10-01",
+		"expired_date":"2017-10-20",
+		"logo":"static/images/mycenter_img_p1@3x.png"
+	    },
+            {
+		"prize":"免费蹦床券",
+		"shopName":"悦动蹦床俱乐部",
+		"start_date":"2017-10-01",
+		"expired_date":"2017-10-20",
+		"logo":"static/images/mycenter_img_p1@3x.png"
+	    },
+            {
+		"prize":"免费蹦床券",
+		"shopName":"悦动蹦床俱乐部",
+		"start_date":"2017-10-01",
+		"expired_date":"2017-10-20",
+		"logo":"static/images/mycenter_img_p1@3x.png"
+	    }
         ],
         "winner_list":[
-            {"nickname":"Amy", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
-            {"nickname":"Bob", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
-            {"nickname":"Caroline", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
-            {"nickname":"Duke", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
-            {"nickname":"Emma", "avatar":"static/images/header.png","prize":"永和大王霸王餐"},
-            {"nickname":"Finn", "avatar":"static/images/header.png","prize":"永和大王霸王餐"}
+            {"nickname":"Amy",  "avatar":"static/images/header.png","shopName":"永和大王", "prize":"霸王餐"},
+            {"nickname":"Bob",  "avatar":"static/images/header.png","shopName":"永和大王", "prize":"霸王餐"},
+            {"nickname":"Caro", "avatar":"static/images/header.png","shopName":"永和大王", "prize":"霸王餐"},
+            {"nickname":"Duke", "avatar":"static/images/header.png","shopName":"永和大王", "prize":"霸王餐"},
+            {"nickname":"Emma", "avatar":"static/images/header.png","shopName":"永和大王", "prize":"霸王餐"},
+            {"nickname":"Finn", "avatar":"static/images/header.png","shopName":"永和大王", "prize":"霸王餐"}
         ]
     }
 }

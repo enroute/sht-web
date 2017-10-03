@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- for UC compatibility -->
+    <meta name="wap-font-scale" content="no">
+
+    <link type="image/x-icon" href="favicon.png" rel="icon" />
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+    <script src="//g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
+    <link rel="stylesheet" type="text/css" href="static/css/myself.css">
+    <script type="text/javascript" src="static/js/common.js"></script>
+
+    <style type="text/css">
+    .shopItemLuckyBtn, .shopItemHot, .star { display:none; }
+    </style>
+</head>
+
+<body>
+
+<!--#include virtual="include/myselfHeader.html" -->
+
+<div class="vSpacer20"></div>
+<div class="title"><img src="static/images/mycontent_icon_heart@3x.png" />&nbsp;&nbsp;我关注的店铺</div>
+<div class="vSpacer20"></div>
+
+<div class="itemList" id="itemType0"></div>
+
+<!--#include virtual="include/shopitemtpl.html" -->
+
+<script type="text/javascript">
+  var FOOTER_ACTIVE_INDEX=1;
+  var currentActiveTab = 0;
+  var tabs = [
+      {"tabSelector":"", "selector":"#itemType0", "url":"api/v1/getShopList2", "type":"", "noMore":false}
+  ];
+</script>
+<!--#include virtual="include/footer.html" -->
+
+</body>
+
+<script type="text/javascript">
+function setActive(index){
+    if (0 <= index && index < tabs.length){
+        for(var i = 0; i < tabs.length; i++){
+            if (index != i){
+                $(tabs[i].selector).hide();
+                $(tabs[i].tabSelector).removeClass("active");
+            }
+        }
+
+	currentActiveTab = index;
+        $(tabs[index].selector).show();
+        $(tabs[index].tabSelector).addClass("active");
+    }
+}
+
+$(function(){
+    for(var i = 0; i < tabs.length; i++){
+        getShopListHtml(tabs[i].selector, tabs[i].url);
+    }
+    $(tabs[currentActiveTab].selector).show();
+
+    $(window).scroll(function(){
+	if(tabs[currentActiveTab].noMore) return;
+
+	if($(this).scrollTop() + $(this).height() == $(document).height()){
+	    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab].url);
+	}
+    });
+});
+</script>
+</html>

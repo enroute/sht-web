@@ -1,0 +1,202 @@
+.p2r(@name, @px){
+    @{name}: @px / 75 * 1rem;
+}
+
+a, a:link, a:hover {
+    text-decoration:none !important;
+    color:inherit;
+}
+
+html, body {
+    height:100vh;
+    margin:0;
+    padding:0;
+    font-family:PingFangSC-Medium, Microsoft YaHei, sans-serif;
+}
+
+.vSpacer20 {
+    background-color:#f5f5f5;
+    .p2r(height,20);
+}
+
+#myselfHeader {
+    width:100%;
+    background:url("../images/mycontent_img_bg@3x.png") no-repeat center center;
+    background-size:100% 100%;
+    .p2r(height,320);
+    /* display:flex; */
+    /* display:-webkit-flex; */
+    /* align-items:center; */
+    position:relative;
+}
+
+.myselfHeaderCenter {
+    display:flex;
+    display:-webkit-flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.myselfHeaderLogo {
+    .p2r(margin-top, 40);
+    .p2r(width, 114);
+}
+
+.myselfHeaderLogo > img {
+    width:100%;
+    border-radius: 100%;
+    -webkit-border-radius:100%;
+    object-fit:contain;
+    border:5px solid;
+    border-color:rgb(255,255,255);
+    border-color:rgba(255,255,255,0.5);
+    box-shadow: 0 0 0 10px rgba(255,255,255,0.1)
+}
+
+.myselfHeaderName {
+    color:#f35e3e;
+    .p2r(margin-top,20);
+    .p2r(margin-bottom,30);
+    .p2r(font-size,28);
+}
+
+.myselfHeaderSignIn {
+    .p2r(width,130);
+    .p2r(height,40);
+    .p2r(font-size,28);
+    text-align:center;
+
+    color:#eeeeee;
+    background:rgb(13,33,70);
+    border-radius: 6px;
+    -webkit-border-radius:6px;
+}
+
+.myselfHeaderContinuousSignIn {
+    position:absolute;
+    .p2r(right,30);
+    .p2r(bottom,30);
+    color:#eeeeee;
+    .p2r(font-size,24);
+}
+
+.myCouponTitle {
+    .p2r(height,80);
+    .p2r(line-height,80);
+    text-align:center;
+    .p2r(font-size,32);
+}
+
+/* TODO: isolate all navBarText to single css file */
+.navBarText {
+    display:flex;
+    text-align:center;
+    align-items:center;
+    .p2r(height,80);
+    background-color:#f5f5f5;
+}
+
+.navBarText > .item {
+    .p2r(font-size,28);
+    .p2r(height,80);
+    .p2r(line-height,80);
+    flex-grow:1;
+}
+
+.navBarText > .active {
+    color:#f35e3e;
+    border-bottom:4px solid;
+}
+
+.couponList {
+    display:none;
+}
+
+.couponListInactive {
+    display:none;
+}
+
+/* coupon item list */
+.couponItemList {
+    .p2r(margin-top,6);
+    .p2r(margin-left,35);
+    .p2r(margin-right,35);
+    color:white;
+}
+
+.couponList .couponItem {
+    position:relative;
+    width:100%;
+    /* background-size:100% 100%; */
+    /* background:url("../images/mycenter_img_yhq@2x.png") no-repeat center center; */
+    .p2r(height,243);
+    .p2r(margin-top,24);
+}
+
+.couponList img, .couponListInactive img {
+    object-fit:fill;
+    width:100%;
+    height:100%;
+}
+
+/* .couponListInactive img { */
+/*     filter:gray;		  /\* IE6-9 *\/ */
+/*     -webkit-filter: grayscale(1); /\* Google Chrome, Safari 6+ & Opera 15+ *\/ */
+/*     filter: grayscale(1);	  /\* Microsoft Edge and Firefox 35+ *\/ */
+/* } */
+
+.couponListInactive .couponItem {
+    position:relative;
+    width:100%;
+    /* background-size:100% 100%; */
+    /* background:url("../images/mycenter_img_yhq31@2x.png") no-repeat center center; */
+    .p2r(height,240);
+    .p2r(margin-top,24);
+}
+
+.couponListInactive .couponItemViewSn {
+    display:none;
+}
+
+.couponItemText {
+    position:absolute;
+    .p2r(left,35);
+    .p2r(top,50);
+}
+
+.couponItemName {
+    font-family:PingFangSC-Bold;
+    .p2r(font-size,34);
+}
+
+.couponItemShop {
+    font-family:PingFangSC-Regular;
+    .p2r(font-size,22);
+    .p2r(margin-top,10);
+}
+
+.couponItemViewSn {
+    .p2r(font-size,28);
+    position:absolute;
+    .p2r(right,24);
+    .p2r(top,56);
+    border:1px solid white;
+    border-radius:6px;
+    -webkit-border-radius:6px;
+
+    .p2r(padding-left,20);
+    .p2r(padding-right,20);
+    .p2r(padding-top,5);
+    .p2r(padding-bottom,5);
+}
+
+.couponItemDate {
+    position:absolute;
+    .p2r(left,35);
+    .p2r(bottom,20);
+    color:rgb(102,102,102);
+    .p2r(font-size,22);
+    font-family:PingFangSC-Regular;
+}
+

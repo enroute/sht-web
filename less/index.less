@@ -51,7 +51,7 @@ html, body {
     .p2r(height,20);
 }
 
-.title1 {
+.title {
     display:table;
     margin:0 auto;
     .p2r(height,80);
@@ -61,6 +61,15 @@ html, body {
     .p2r(font-size,28);
     color:#999999;
     border-spacing:10px 0;
+}
+
+.title > img {
+    object-fit:contain;
+    .p2r(height,32);
+}
+
+.title1 {
+    .title();
 }
 
 .title1:before,

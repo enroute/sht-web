@@ -1,0 +1,173 @@
+a,
+a:link,
+a:hover {
+  text-decoration: none !important;
+  color: inherit;
+}
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: PingFangSC-Medium, Microsoft YaHei, sans-serif;
+}
+.vSpacer20 {
+  background-color: #f5f5f5;
+  height: 0.26666667rem;
+}
+#myselfHeader {
+  width: 100%;
+  background: url("../images/mycontent_img_bg@3x.png") no-repeat center center;
+  background-size: 100% 100%;
+  height: 4.26666667rem;
+  /* display:flex; */
+  /* display:-webkit-flex; */
+  /* align-items:center; */
+  position: relative;
+}
+.myselfHeaderCenter {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.myselfHeaderLogo {
+  margin-top: 0.53333333rem;
+  width: 1.52rem;
+}
+.myselfHeaderLogo > img {
+  width: 100%;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  object-fit: contain;
+  border: 5px solid;
+  border-color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);
+}
+.myselfHeaderName {
+  color: #f35e3e;
+  margin-top: 0.26666667rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.37333333rem;
+}
+.myselfHeaderSignIn {
+  width: 1.73333333rem;
+  height: 0.53333333rem;
+  font-size: 0.37333333rem;
+  text-align: center;
+  color: #eeeeee;
+  background: #0d2146;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+.myselfHeaderContinuousSignIn {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.4rem;
+  color: #eeeeee;
+  font-size: 0.32rem;
+}
+.myCouponTitle {
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  font-size: 0.42666667rem;
+}
+/* TODO: isolate all navBarText to single css file */
+.navBarText {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 1.06666667rem;
+  background-color: #f5f5f5;
+}
+.navBarText > .item {
+  font-size: 0.37333333rem;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  flex-grow: 1;
+}
+.navBarText > .active {
+  color: #f35e3e;
+  border-bottom: 4px solid;
+}
+.couponList {
+  display: none;
+}
+.couponListInactive {
+  display: none;
+}
+/* coupon item list */
+.couponItemList {
+  margin-top: 0.08rem;
+  margin-left: 0.46666667rem;
+  margin-right: 0.46666667rem;
+  color: white;
+}
+.couponList .couponItem {
+  position: relative;
+  width: 100%;
+  /* background-size:100% 100%; */
+  /* background:url("../images/mycenter_img_yhq@2x.png") no-repeat center center; */
+  height: 3.24rem;
+  margin-top: 0.32rem;
+}
+.couponList img,
+.couponListInactive img {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+/* .couponListInactive img { */
+/*     filter:gray;		  /\* IE6-9 *\/ */
+/*     -webkit-filter: grayscale(1); /\* Google Chrome, Safari 6+ & Opera 15+ *\/ */
+/*     filter: grayscale(1);	  /\* Microsoft Edge and Firefox 35+ *\/ */
+/* } */
+.couponListInactive .couponItem {
+  position: relative;
+  width: 100%;
+  /* background-size:100% 100%; */
+  /* background:url("../images/mycenter_img_yhq31@2x.png") no-repeat center center; */
+  height: 3.2rem;
+  margin-top: 0.32rem;
+}
+.couponListInactive .couponItemViewSn {
+  display: none;
+}
+.couponItemText {
+  position: absolute;
+  left: 0.46666667rem;
+  top: 0.66666667rem;
+}
+.couponItemName {
+  font-family: PingFangSC-Bold;
+  font-size: 0.45333333rem;
+}
+.couponItemShop {
+  font-family: PingFangSC-Regular;
+  font-size: 0.29333333rem;
+  margin-top: 0.13333333rem;
+}
+.couponItemViewSn {
+  font-size: 0.37333333rem;
+  position: absolute;
+  right: 0.32rem;
+  top: 0.74666667rem;
+  border: 1px solid white;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  padding-left: 0.26666667rem;
+  padding-right: 0.26666667rem;
+  padding-top: 0.06666667rem;
+  padding-bottom: 0.06666667rem;
+}
+.couponItemDate {
+  position: absolute;
+  left: 0.46666667rem;
+  bottom: 0.26666667rem;
+  color: #666666;
+  font-size: 0.29333333rem;
+  font-family: PingFangSC-Regular;
+}

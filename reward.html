@@ -1,74 +1,183 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>微信大转盘抽奖</title>
-        <link rel="stylesheet" href="static/css/reward.css" />
-        <script type="text/javascript" src="static/js/jquery.min.js"></script>
-        <script type="text/javascript" src="static/js/common.js"></script>
-        <script type="text/javascript" src="static/js/awardRotate.js"></script>
-        <script type="text/javascript" src="static/js/reward.js"></script>
-    </head>
-    <body style="background:url(static/images/reward/body_bg3.jpg);background-size:cover;">
-        <img src="static/images/2x/choujiang_img_mfq.png" id="coupon-img0" style="display:none; width:5rem; height:2rem;" />
-        <img src="static/images/2x/choujiang_img_mfq.png" id="coupon-img1" style="display:none;" />    
-        <img src="static/images/2x/choujiang_img_mfq.png" id="coupon-img2" style="display:none;" />
-        <img src="static/images/2x/choujiang_img_mfq.png" id="coupon-img3" style="display:none;" />
-        <img src="static/images/2x/choujiang_img_mfq.png" id="coupon-img4" style="display:none;" />
-        <img src="static/images/2x/choujiang_img_mfq.png" id="coupon-img5" style="display:none;" />
-        <div class="banner" style="margin-top: 15%">
-            <div class="turnplate" style="background-image:url(static/images/reward/cj_bg.png);background-size:100% 100%;">
-                <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
-                <img class="pointer" src="static/images/reward/jt2.png"/>
-            </div>
-        </div>
-        <!-- <div style="margin-left:14.0%">
-             <div class="reward_num_div">
-             <strong>剩余奖品数量 60</strong>
-             </div>
-             <div class="rewarded_num_div">
-             <strong>已经中奖数量 60</strong>
-             </div>
-             </div>
-             <div style="margin-top:5px;margin-left: 14.2%;">
-             <div class="reward_jifen_div">
-             <strong>我的积分: 100</strong>
-             </div>
-             <div class="reward_yhq_div">
-             <strong>优惠券: 800</strong>
-             </div>
-             </div> -->
-        <div class="reward_info">
-            <div class="reward_header_info">
-                中奖信息
-            </div>
-            <br>
-            <div>
-                <ul class="reward_ul" id="ulWinnerList">
-                    <!-- <li style="margin-top:10px;"><img src="static/images/reward/header.png" class="my_header"/><span class="phone">18219351950</span><span class="reward_thing">永和大王代金券1张</span></li> -->
-                </ul>
-            </div>
-            <div class="reward_footer">
-                本活动已有<span id="participants"></span>人参与
-            </div>
-        </div>
-        
-        <a href="#" class="more"></a>
-        <!-- <img src="static/images/reward/9.png" class="cloud">
-             <img src="static/images/reward/10.png" class="cloud2">
-             <img src="static/images/reward/11.png" class="cloud3"> -->
-       
-        <!-- congradulation div -->
-        <div id="congradulation">
-            <div id="closeBtn"><img id="closeImg" src="static/images/choujiang_icon_close@3x.png" /></div>
-            <div id="conTitle">恭喜您，中奖了！</div>
-            <div id="rewardName">{{rewardName}}</div>
-            <div id="claimWay">兑换方法: {{claimWay}}</div>
-            <div id="checkBtn">查看优惠券</div>
-            <div id="tip">提示：可分享转赠</div>
-        </div>
-        
-    </body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- for UC compatibility -->
+    <meta name="wap-font-scale" content="no">
+
+    <link type="image/x-icon" href="favicon.png" rel="icon" />
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+    <script src="//g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/rewardnew.css">
+    <script type="text/javascript" src="static/js/common.js"></script>
+    <script type="text/javascript" src="static/js/awardRotate.js"></script>
+
+    <style type="text/css">
+    .shopItemLuckyBtn, .shopItemHot, .star { display:none; }
+    #imgWheel, #imgFreeCoupon { display:none; }
+    </style>
+</head>
+
+<body>
+
+<img id="imgWheel" src="static/images/choujiang_img_roulette@3x.png" />
+<img id="imgFreeCoupon" src="static/images/choujiang_img_mfq@3x.png" />
+
+<div id="headerText">恭喜 {{nickname}} 用户抽中 {{shopName}} <span class="conCouponName">{{prize}}</span></div>
+
+<div id="roulette">
+  <!-- <div id="roulettebg"><img id="imgWheel" src="static/images/choujiang_img_roulette@3x.png" /></div> -->
+  <div id="canvasHolder">
+    <canvas id="wheelcanvas" width="602" height="602"></canvas>
+  </div>
+  <div id="rouletteptr"><img src="static/images/choujiang_img_cj@3x.png" /></div>
+  <div id="roulettetxt"><p>我要</p><p>抽奖</p></div>
+</div>
+
+<div id="participant">参与人次: {{participants}}</div>
+<div id="couponListTitle">奖券列表</div>
+
+<ul id="couponList">
+  <script type="text/html" id="tpl">
+    {{#prize_list}}
+    <li class="couponItem">
+      <div class="couponItemLogo"><img class="couponItemLogoImg" src="{{logo}}" /></div>
+      <div class="couponItemName">{{prize}}</div>
+      <div class="couponItemShop">适用: {{shopName}}</div>
+      <div class="couponItemDate">{{dateFrom}}-{{dateTo}}</div>
+    </li>
+    {{/prize_list}}
+  </script>
+</ul>
+    
+
+  <div id="conDialog">
+  </div>
+
+  <script type="text/html" id="tplConDialog">
+    <div id="closeBtn"><img id="closeImg" src="static/images/choujiang_icon_close@3x.png" /></div>
+    <div><img id="leftBorderDecor" src="static/images/choujiang_img_lborder.png" /></div>
+    <div><img id="rightBorderDecor" src="static/images/choujiang_img_rborder.png" /></div>
+    <div id="conTitle">恭喜您，中奖了！</div>
+    <div id="rewardName">{{shopName}} {{prize}} 1张</div>
+    <div id="claimWay">兑换方法: {{claimWay}}</div>
+    <div id="checkBtn" sn="{{sn}}">查看优惠券</div>
+    <div id="tip">提示：可分享转赠</div>
+  </script>
+
+</body>
+
+<script type="text/javascript">
+
+function rotateIt(i){
+    $("#wheelcanvas").rotate({
+	angle:0,
+	animateTo:3600 - i * (360 / 6),
+	duration:8000,
+	callback:function (){
+	    console.log("rotateIt finished");
+	    var result = data.data.prize_list[i];
+	    result.sn = "99887766";
+	    result.claimWay = "到店使用";
+	    $("#conDialog").html(Mustache.render(document.getElementById("tplConDialog").innerHTML.trim(), result));
+	    $("#conDialog").show();
+	}
+    });
+}
+
+function drawRoulettePrizes(prizes){
+    var canvas = document.getElementById("wheelcanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("imgFreeCoupon");
+    var arc = Math.PI / (prizes.length/2);
+    var startAngle = 0;
+    for(var i = 0; i < 6; i++){
+	ctx.font = 'bold 24px Microsoft YaHei';
+	ctx.fillStyle = i % 2 ? "#f46747" : "#ffffff";
+	ctx.strokeStyle = "#FFBE04";
+
+	ctx.save();
+	var angle = startAngle + i * arc;
+	ctx.translate(canvas.width/2, canvas.height/2);
+	ctx.rotate(angle);
+
+	ctx.fillText(prizes[i].prize, -ctx.measureText(prizes[i].prize).width/2, -200);
+
+        var width = canvas.width * 0.2;
+        var height = width * 0.4;
+        var x = - width / 2;
+        var y = - height / 2 - 160;
+        img.onload = function(){
+            ctx.drawImage(img, x, y, width, height);
+        };
+        ctx.drawImage(img, x, y, width, height);
+	ctx.restore();
+    }
+}
+
+function drawRoulette(){
+    var canvas = document.getElementById("wheelcanvas");
+    if (! canvas.getContext) {
+	console.log("Error in canvas.getContext");
+	return;
+    }
+
+    var ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
+
+    var imgWheel = document.getElementById("imgWheel");
+    ctx.drawImage(imgWheel, 0, 0, canvas.width, canvas.height);
+}
+
+$(window).on("load",function(){
+    drawRoulette();
+});
+
+$("#conDialog").on("click", "#checkBtn", function(){
+    location.href = "coupondetail.html?" + sessionParameterString + "&sn=" + $(this).attr("sn");
+});
+	  
+$("#conDialog").on("click","#closeImg",function(){
+    $("#conDialog").hide();
+});
+
+$("#roulettetxt").click(function(){
+    // TODO: change it!!
+    rotateIt(1);
+});
+
+var data;			// lucky data
+
+    $(function(){
+	$.ajax({
+            url:buildRequestUrl("api/v1/getLuckyDraw", ""),
+            type:"get",
+            dataType: "json",
+            success:function(res){
+		drawRoulettePrizes(res.data.prize_list);
+		//join tags
+		console.log(res);
+		res.data.prize_list.forEach(function(element){
+		    element.dateFrom = element.start_date.replace(/\-/g,'.');
+		    element.dateTo = element.expired_date.replace(/\-/g,'.');
+		});
+
+		data = res;
+
+		//console.log(data);
+		var html = Mustache.render(document.getElementById("tpl").innerHTML.trim(), res.data);
+		$("#couponList").html(html);
+
+		$("#participant").html(Mustache.render(document.getElementById("participant").innerHTML.trim(), res.data));
+		$("#headerText").html(Mustache.render(document.getElementById("headerText").innerHTML.trim(), res.data.winner_list[0]));
+	    }
+	});
+    });
+</script>
 </html>
