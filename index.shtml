@@ -26,14 +26,14 @@
 <!--#include virtual="include/banner.html" -->
 
 <div class="categoryNav">
-  <div class="categoryItem" type="0"><img src="static/images/home_icon_food@3x.png"  /><p>美食推荐</p></div>
-  <div class="categoryItem" type="1"><img src="static/images/home_icon_drink@3x.png" /><p>饮品咖啡</p></div>
-  <div class="categoryItem" type="2"><img src="static/images/home_icon_edu@3x.png"   /><p>教育培训</p></div>
-  <div class="categoryItem" type="3"><img src="static/images/home_icon_sing@3x.png"  /><p>K歌休闲</p></div>
-  <div class="categoryItem" type="4"><img src="static/images/home_icon_fruits@3x.png"/><p>水果蔬菜</p></div>
-  <div class="categoryItem" type="5"><img src="static/images/home_icon_food@3x.png"  /><p>运动健身</p></div>
-  <div class="categoryItem" type="6"><img src="static/images/home_icon_bea@3x.png"   /><p>美容美甲</p></div>
-  <div class="categoryItem" type="7"><img src="static/images/home_icon_move@3x.png"  /><p>家政搬家</p></div>
+  <div class="categoryItem" category="0"><img src="static/images/home_icon_food@3x.png"  /><p>美食推荐</p></div>
+  <div class="categoryItem" category="1"><img src="static/images/home_icon_drink@3x.png" /><p>饮品咖啡</p></div>
+  <div class="categoryItem" category="2"><img src="static/images/home_icon_edu@3x.png"   /><p>教育培训</p></div>
+  <div class="categoryItem" category="3"><img src="static/images/home_icon_sing@3x.png"  /><p>K歌休闲</p></div>
+  <div class="categoryItem" category="4"><img src="static/images/home_icon_fruits@3x.png"/><p>水果蔬菜</p></div>
+  <div class="categoryItem" category="5"><img src="static/images/home_icon_food@3x.png"  /><p>运动健身</p></div>
+  <div class="categoryItem" category="6"><img src="static/images/home_icon_bea@3x.png"   /><p>美容美甲</p></div>
+  <div class="categoryItem" category="7"><img src="static/images/home_icon_move@3x.png"  /><p>家政搬家</p></div>
 </div>
 
 <div class="vSpacer20"></div>
@@ -81,8 +81,8 @@ function setActive(index){
 
 $(function(){
     $(".categoryItem").on("click", function(){
-	var type=$(this).attr("type");
-	location.href = "category.shtml?" + sessionParameterString + "&type=" + $(this).attr("type");	
+	var type=$(this).attr("category");
+	location.href = "category.shtml?" + sessionParameterString + "&category=" + $(this).attr("category");	
     });
 
     $(".navbarText .item").on("click", function(){
