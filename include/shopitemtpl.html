@@ -8,7 +8,7 @@
                     <div class="shopItemName">{{name}}</div>
                     <div class="shopItemHot"><img src="static/images/home_icon_fire@3x.png" /></div>
                 </div>                
-                <div class="shopItemStar"><span class="star">{{star_level}}</span> ￥{{average_cost}}</div>
+                <div class="shopItemStar"><span class="stars">{{star_level}}</span> ￥{{average_cost}}</div>
                 <!-- <div class="shopItemAverageCost">￥{{average_cost}}</div> -->
                 <div class="lr">
                     <div class="inline">
@@ -59,6 +59,24 @@
 	      $(".shopItemLuckyBtn").on("click", function(){
 		  location.href = "reward.html?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
 	      });
+
+	      // stars
+	      $.fn.stars = function() {
+                  return $(this).each(function() {
+                      // Get the value
+                      var val = parseFloat($(this).html());
+                      if (isNaN(val)) return;
+                      // Make sure that the value is in 0 - 5 range, multiply to get width
+                      var size = Math.max(0, (Math.min(5, val))) * $(".stars").height();
+                      // Create stars holder
+                      var span = $('<span />').width(size);
+                      // Replace the numerical value with stars
+                      $(this).html(span);
+                  });
+              }
+
+              $('.stars').stars();
+
 	  },
 	  error: function (XMLHttpRequest, textStatus, errorThrown) {
 	      //              $("#p_test").innerHTML = "there is something wrong!";

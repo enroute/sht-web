@@ -113,3 +113,23 @@ body {
 .shopItemTag {
   margin-bottom: 0.13333333rem;
 }
+.shopItemStar,
+span.stars,
+span.stars span {
+  height: 0.42666667rem;
+}
+.shopItemStar {
+  display: flex;
+  align-items: center;
+}
+span.stars {
+  display: inline-block;
+  background: url("../images/star_gray.png") 0 0 repeat-x;
+  background-size: auto 100%;
+  width: 2.13333333rem;
+}
+span.stars span {
+  display: inline-block;
+  background: url("../images/star.png") 0 0 repeat-x;
+  background-size: auto 100%;
+}

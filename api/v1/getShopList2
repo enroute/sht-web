@@ -15,9 +15,20 @@
              },
              {
                  "logo":"static/images/home_img_p2@3x.png",
-                 "name":"太平洋烧烤",
+                 "name":"太平洋烧烤坂田店",
                  "shopid":"00012345",
-                 "star_level":2.2,
+                 "star_level":3.8,
+                 "average_cost":75,
+                 "tags":["美食", "西餐"],
+                 "distance":1442,
+                 "location":"坂田",
+                 "free":"免费啤酒"
+             },
+             {
+                 "logo":"static/images/home_img_p2@3x.png",
+                 "name":"太平洋烧烤东门店",
+                 "shopid":"00012345",
+                 "star_level":1.5,
                  "average_cost":75,
                  "tags":["美食", "西餐"],
                  "distance":1442,
