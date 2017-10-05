@@ -73,6 +73,10 @@
 </body>
 
 <script type="text/javascript">
+var isDataReady = false;
+var isRolling = false;
+var result;
+var data;
 
 function rotateIt(i){
     $("#wheelcanvas").rotate({
@@ -81,11 +85,12 @@ function rotateIt(i){
 	duration:8000,
 	callback:function (){
 	    console.log("rotateIt finished");
-	    var result = data.data.prize_list[i];
-	    result.sn = "99887766";
-	    result.claimWay = "到店使用";
-	    $("#conDialog").html(Mustache.render(document.getElementById("tplConDialog").innerHTML.trim(), result));
+	    var r = data.data.prize_list[i];
+	    r.sn = result.data.prize.sn;
+	    r.claimWay = "到店使用";
+	    $("#conDialog").html(Mustache.render(document.getElementById("tplConDialog").innerHTML.trim(), r));
 	    $("#conDialog").show();
+	    isRolling = false;
 	}
     });
 }
@@ -148,11 +153,31 @@ $("#conDialog").on("click","#closeImg",function(){
 });
 
 $("#roulettetxt").click(function(){
-    // TODO: change it!!
-    rotateIt(1);
-});
+    if (!isDataReady) return;
 
-var data;			// lucky data
+    // TODO: change it!!
+    //rotateIt(1);
+    if (isRolling) {
+	console.log("rolling, wait");
+	return;
+    }else{
+	console.log("ELSE: isRolling = " + isRolling);
+    }
+
+    isRolling = true;
+    var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW_RESULT, "id=" + data.id);
+    console.log(url);
+    $.ajax({
+	url:url,
+	type:"get",
+	dataType: "json",
+        success:function(res){
+	    if(res.status != 0) return;
+	    result = res; // save it for further usage
+	    rotateIt(result.data.prize.index);
+	}
+    });
+});
 
     $(function(){
 	var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW, "shopid=" + getQueryString("shopid"));
@@ -178,6 +203,7 @@ var data;			// lucky data
 
 		$("#participant").html(Mustache.render(document.getElementById("participant").innerHTML.trim(), res.data));
 		$("#headerText").html(Mustache.render(document.getElementById("headerText").innerHTML.trim(), res.data.winner_list[0]));
+		isDataReady = true;
 	    }
 	});
     });
