@@ -12,6 +12,7 @@
     </script>
     <script src="static/js/plugin/qrcodejs/qrcode.min.js"></script>
     <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
+    <script src="static/js/common.js"></script>
   </head>
 
   <body>
@@ -47,36 +48,52 @@
 
   <script type="text/javascript">
    $(function(){
-       var data = {
-           shopId:"001234",
-           shopName:"米萝咖啡",
-           name:"满100减20",
-           expiredDateFrom:"2017-09-10",
-           expiredDateTo:"2017-10-10",
-           sn:"520881992838",    
-           couponImage:"static/images/mycenter_img_p1@2x.png"
-       };
+       // var data = {
+       //     shopId:"001234",
+       //     shopName:"米萝咖啡",
+       //     name:"满100减20",
+       //     expiredDateFrom:"2017-09-10",
+       //     expiredDateTo:"2017-10-10",
+       //     sn:"520881992838",    
+       //     couponImage:"static/images/mycenter_img_p1@2x.png"
+       // };
+       var url = buildRequestUrl(API_URL_GET_COUPON_DETAIL, "sn=" + getQueryString("sn"));
+       console.log(url);
+       $.ajax({
+           url:url,
+           type:"get",
+           dataType: "json",
+	   error: function (XMLHttpRequest, textStatus, errorThrown) {
+	       console.log(XMLHttpRequest.status);
+	       console.log(XMLHttpRequest.readyState);
+	       console.log(textStatus);
+	       console.log(errorThrown);
+	   },
+           success:function(res){
+	       var data = res.data;
+	       data.session = getQueryString("session");
 
-       data.session = "0012345";
-       data.expiredDateFrom = data.expiredDateFrom.replace(/\-/g,'.');
-       data.expiredDateTo = data.expiredDateTo.replace(/\-/g,'.');
+	       data.expiredDateFrom = data.expiredDateFrom.replace(/\-/g,'.');
+	       data.expiredDateTo = data.expiredDateTo.replace(/\-/g,'.');
 
-       var renderData = data;
-       var snOriginal = data.sn;
-       renderData.sn = renderData.sn.replace(/\s/g,'').replace(/(.{4})/g,"$1 ");
-       //var tpl = document.getElementById('tpl').innerHTML.trim();
-       //Mustache.parse(tpl);
-       //var html2Render = Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData);
-       $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData));
-       
-       data.sn = snOriginal;
-       var qrcode = new QRCode(document.getElementById("qrcode"), {
-           text:data.sn,
-           width:$("#qrcode").parent().width(),
-           height:$("#qrcode").parent().height(),
-           colorDark : '#000000',
-           colorLight : '#ffffff',
-           correctLevel : QRCode.CorrectLevel.H
+	       var renderData = data;
+	       var snOriginal = data.sn;
+	       renderData.sn = renderData.sn.replace(/\s/g,'').replace(/(.{4})/g,"$1 ");
+	       //var tpl = document.getElementById('tpl').innerHTML.trim();
+	       //Mustache.parse(tpl);
+	       //var html2Render = Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData);
+	       $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData));
+	       
+	       data.sn = snOriginal;
+	       var qrcode = new QRCode(document.getElementById("qrcode"), {
+		   text:data.sn,
+		   width:$("#qrcode").parent().width(),
+		   height:$("#qrcode").parent().height(),
+		   colorDark : '#000000',
+		   colorLight : '#ffffff',
+		   correctLevel : QRCode.CorrectLevel.H
+	       });
+	   }
        });
 
        //new QRCode(document.getElementById('qrcode'), "your content");

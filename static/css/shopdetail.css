@@ -117,11 +117,19 @@ body {
 }
 .addressImage {
   padding-right: 0.13333333rem;
+  /* .p2r(height,28); */
 }
+/* .addressImage img { */
+/*     object-fit:contain; */
+/* } */
 .tel {
   padding-right: 0.13333333rem;
   padding-left: 0.66666667rem;
+  /* .p2r(height,28); */
 }
+/* .tel img { */
+/*     object-fit:contain; */
+/* } */
 .shopIntroTitle {
   font-family: PingFangSC-Regular;
   font-size: 0.37333333rem;

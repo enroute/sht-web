@@ -110,49 +110,71 @@
      //alert(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
      console.log(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
      
-     var data = {
-         shopid:001283,
-         avatar:"static/images/mycontent_img_touxiang@3x.png",
-         name:"太平洋烧烤",
-         favorite:0,
-         favoriteUsers:3137,
-         address:"龙岗坂田街道五和大道和成世纪名园2栋B座102",
-         longitude:114.078079,
-         latitude:22.633942,
-         tel:["0755-88886666","13800138000"],
-         introText:"拥有专业的法式烘焙技术，从多年前品牌创立之初就湖心研究符合亚洲人品味的美食",
-         recommend:"剁椒鱼头 酸辣杂 炸腐竹 山木耳 酸辣土豆丝 烟笋腊肉 广式春卷 炒油麦菜 油麦菜 巴口香猪...",
-         introImage:["static/images/dianpu_img_p1@3x.png", "static/images/dianpu_img_p1@3x.png"]         
-     };
+     // var data = {
+     //     shopid:001283,
+     //     avatar:"static/images/mycontent_img_touxiang@3x.png",
+     //     name:"太平洋烧烤",
+     //     favorite:0,
+     //     favoriteUsers:3137,
+     //     address:"龙岗坂田街道五和大道和成世纪名园2栋B座102",
+     //     longitude:114.078079,
+     //     latitude:22.633942,
+     //     tel:["0755-88886666","13800138000"],
+     //     introText:"拥有专业的法式烘焙技术，从多年前品牌创立之初就湖心研究符合亚洲人品味的美食",
+     //     recommend:"剁椒鱼头 酸辣杂 炸腐竹 山木耳 酸辣土豆丝 烟笋腊肉 广式春卷 炒油麦菜 油麦菜 巴口香猪...",
+     //     introImage:["static/images/dianpu_img_p1@3x.png", "static/images/dianpu_img_p1@3x.png"]         
+     // };
 
-     // use the first image only
-     data.introImage = data.introImage[0];
-     data.favoriteActionText = getFavoriteActionText(data.favorite);
-     $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), data));
+     var url = buildRequestUrl(API_URL_GET_SHOP_DETAIL, "shopid=" + getQueryString("shopid"));
+     console.log(url);
+     $.ajax({
+         url:url,
+         type:"get",
+         dataType: "json",
+	 error: function (XMLHttpRequest, textStatus, errorThrown) {
+	     console.log(XMLHttpRequest.status);
+	     console.log(XMLHttpRequest.readyState);
+	     console.log(textStatus);
+	     console.log(errorThrown);
+	 },
+         success:function(res){
+	     console.log(res);
+             if (0 != res.status) return;
 
-     $("#call").html(Mustache.render(document.getElementById('tplCall').innerHTML.trim(), data));
+	     var data = res.data;
 
-     $("#favoriteBtn").on("click", function(event){
-         var url;
-         if($("#favoriteBtn").html() == "取消关注"){
-             url = buildRequestUrl(API_URL_UNFAVORITE, "shopid=" + $(this).attr('shopid'));
-         }else{
-             url = buildRequestUrl(API_URL_FAVORITE, "shopid=" + $(this).attr('shopid'));
-         }
-         $.ajax({
-             url:url,
-             type:"get",
-             dataType: "json",
-             success:function(res){
-                 if (0 != res.status) return;
-                 $("#favoriteBtn").html(getFavoriteActionText(res.data.favorite));
-                 $("#favoriteUsers").html(res.data.favorite_users);
-             }
-         });
+	     // use the first image only
+	     data.introImage = data.introImage[0];
+	     data.favoriteActionText = getFavoriteActionText(data.favorite);
+	     $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), data));
 
-         //return false to avoid go to top
-         return false;
-     });     
+	     $("#call").html(Mustache.render(document.getElementById('tplCall').innerHTML.trim(), data));
+
+	     $("#favoriteBtn").on("click", function(event){
+		 var url;
+		 if($("#favoriteBtn").html() == "取消关注"){
+		     url = buildRequestUrl(API_URL_UNFAVORITE, "shopid=" + $(this).attr('shopid'));
+		 }else{
+		     url = buildRequestUrl(API_URL_FAVORITE, "shopid=" + $(this).attr('shopid'));
+		 }
+		 $.ajax({
+		     url:url,
+		     type:"get",
+		     dataType: "json",
+		     success:function(res){
+			 if (0 != res.status) return;
+			 $("#favoriteBtn").html(getFavoriteActionText(res.data.favorite));
+			 $("#favoriteUsers").html(res.data.favorite_users);
+		     }
+		 });
+
+		 //return false to avoid go to top
+		 return false;
+	     });
+	 }
+     });
+
+
  });
 </script>
 </html>

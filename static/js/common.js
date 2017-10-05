@@ -3,16 +3,40 @@ var API_PREFIX = "api/v" + API_VERSION + "/";
 var API_URL_FAVORITE               = API_PREFIX + "favorite";
 var API_URL_UNFAVORITE             = API_PREFIX + "unfavorite";
 //var API_URL_UNFAVORITE             = API_PREFIX + "favorite?unfavorite=1";
+
+var API_URL_GET_BANNER_LIST_HOME   = API_PREFIX + "getBannerList1";
+var API_URL_GET_BANNER_LIST_CATE   = API_PREFIX + "getBannerList2";
 var API_URL_GET_BANNER_LIST        = API_PREFIX + "getBannerList";
+
+var API_URL_GET_COUPON_DETAIL      = API_PREFIX + "getCouponDetail";
+
 var API_URL_GET_COUPON_LIST        = API_PREFIX + "getCouponList";
+var API_URL_GET_COUPON_LIST_VALID  = API_PREFIX + "getCouponList?type=0";
+var API_URL_GET_COUPON_LIST_EXPIRED= API_PREFIX + "getCouponList?type=1";
+var API_URL_GET_COUPON_LIST_USED   = API_PREFIX + "getCouponList?type=2";
+
+
 var API_URL_GET_FAVORITE_SHOP_LIST = API_PREFIX + "getFavoriteShopList";
 var API_URL_GET_LUCKY_DRAW         = API_PREFIX + "getLuckyDraw";
 var API_URL_GET_LUCKY_DRAW_RESULT  = API_PREFIX + "getLuckyDrawResult";
 var API_URL_GET_SCORE_INFO         = API_PREFIX + "getScoreInfo";
 var API_URL_GET_SHOP_DETAIL        = API_PREFIX + "getShopDetail";
+
 var API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList";
+var API_URL_GET_SHOP_LIST_NEAREST  = API_PREFIX + "getShopList2";
+var API_URL_GET_SHOP_LIST_RATING   = API_PREFIX + "getShopList3";
+var API_URL_GET_SHOP_LIST_HOTTEST  = API_PREFIX + "getShopList2";
+var API_URL_GET_SHOP_LIST_FAVORITE = API_PREFIX + "getShopList2";
+
+ // index
+var API_URL_GET_SHOP_LIST_NEARBY = API_PREFIX + "getShopList2";
+var API_URL_GET_SHOP_LIST_PREFER = API_PREFIX + "getShopList3";
+
+
 // var API_URL_GET_SHOP_LIST_PLAY     = API_PREFIX + "getShopList?type=1";
 var API_URL_GET_WECHAT_INFO        = API_PREFIX + "getWechatInfo";
+var API_URL_GET_USER_BASIC_INFO    = API_PREFIX + "getUserBasicInfo";
+
 var API_URL_SIGN_IN                = API_PREFIX + "signIn";
 
 var IMG = {
@@ -164,7 +188,7 @@ function includeAllHtmlFile() {
 }
 
 function isNull(a){
-    return a == undefined || a == null || typeof(a) == 'undefined';
+    return typeof a == 'undefined' || a == undefined || a == null;
 }
 
 

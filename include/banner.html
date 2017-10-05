@@ -23,10 +23,16 @@
 </div>
 
 <script type="text/javascript">
+ var bannerUrl;
+ if (typeof BANNER_URL == "undefined" || isNull(BANNER_URL)) {
+     bannerUrl = buildRequestUrl(API_URL_GET_BANNER_LIST,"");
+ }else{
+     bannerUrl = BANNER_URL;
+ }
  $(function(){
      /* request banner */
      $.ajax({
-         url:buildRequestUrl(API_URL_GET_BANNER_LIST,""),
+         url:bannerUrl,
          type:"get",
          success:function(data){
              var banner = JSON.parse(data);

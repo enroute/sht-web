@@ -29,7 +29,7 @@
 	// };
 
 	$.ajax({
-	    url:buildRequestUrl("api/v1/getUserBasicInfo", ""),
+	    url:buildRequestUrl(API_URL_GET_USER_BASIC_INFO, ""),
             type:"get",
             dataType: "json",
             success:function(res){

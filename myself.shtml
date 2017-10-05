@@ -43,11 +43,11 @@
   var FOOTER_ACTIVE_INDEX=2;
   var currentActiveTab = 0;
   var tabs = [
-      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url":"api/v1/getCouponList?type=0", "type":"0",
+      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_COUPON_LIST_VALID,   "type":"0",
        "bg":"static/images/mycenter_img_yhq@3x.png","noMore":false},
-      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url":"api/v1/getCouponList?type=1", "type":"1",
+      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_COUPON_LIST_EXPIRED, "type":"1",
        "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false},
-      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url":"api/v1/getCouponList?type=2", "type":"2",
+      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url": API_URL_GET_COUPON_LIST_USED,    "type":"2",
        "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false}
   ];
 </script>

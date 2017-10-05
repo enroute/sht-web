@@ -155,8 +155,10 @@ $("#roulettetxt").click(function(){
 var data;			// lucky data
 
     $(function(){
+	var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW, "shopid=" + getQueryString("shopid"));
+	console.log(url);
 	$.ajax({
-            url:buildRequestUrl("api/v1/getLuckyDraw", ""),
+            url:url,
             type:"get",
             dataType: "json",
             success:function(res){

@@ -23,6 +23,9 @@
 
 <body>
 
+<script type="text/javascript">
+  var BANNER_URL = API_URL_GET_BANNER_LIST_HOME;
+</script>
 <!--#include virtual="include/banner.html" -->
 
 <div class="categoryNav">
@@ -55,8 +58,8 @@
   var FOOTER_ACTIVE_INDEX=0;
   var currentActiveTab = 0;
   var tabs = [
-      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url":"api/v1/getShopList2", "type":"8", "noMore":false},
-      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url":"api/v1/getShopList3", "type":"9", "noMore":false}
+      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_SHOP_LIST_NEARBY, "type":"8", "noMore":false},
+      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_SHOP_LIST_PREFER, "type":"9", "noMore":false}
   ];
 </script>
 <!--#include virtual="include/footer.html" -->
