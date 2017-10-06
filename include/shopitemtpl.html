@@ -27,7 +27,8 @@
 </ul>
 
 <script type="text/javascript">
-  function getShopListHtml(selector, url) {
+  function getShopListHtml(selector, config) {
+      var url = buildRequestUrl(config.url, "page=" + config.page);
       console.log(url);
       var records = 0;
       $.ajax({
@@ -35,8 +36,16 @@
           type:"get",
           dataType: "json",
           success:function(res){
-	      //join tags
 	      console.log(res);
+
+	      if (res.status != 0) {
+		  // TODO: no more data should have a specific status code
+		  config.noMore = true;
+		  return;
+	      }
+
+	      config.page ++;
+
 	      records = res.data.shop_list.length;
 	      res.data.shop_list.forEach(function(element){
 		  element.tag = element.tags.join(" ");

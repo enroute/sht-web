@@ -54,9 +54,9 @@
   var FOOTER_ACTIVE_INDEX=-1;
   var currentActiveTab = 0;
   var tabs = [
-      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_SHOP_LIST_NEAREST, "type":"20", "noMore":false},
-      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_SHOP_LIST_RATING , "type":"21", "noMore":false},
-      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url": API_URL_GET_SHOP_LIST_HOTTEST, "type":"22", "noMore":false}
+      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_SHOP_LIST_NEAREST, "type":"20", "noMore":false, "page":0},
+      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_SHOP_LIST_RATING , "type":"21", "noMore":false, "page":0},
+      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url": API_URL_GET_SHOP_LIST_HOTTEST, "type":"22", "noMore":false, "page":0}
   ];
 </script>
 <!--#include virtual="include/footer.html" -->
@@ -91,7 +91,7 @@ $(function(){
     });
 
     for(var i = 0; i < tabs.length; i++){
-        getShopListHtml(tabs[i].selector, tabs[i].url);
+        getShopListHtml(tabs[i].selector, tabs[i]);
     }
     $(tabs[currentActiveTab].selector).show();
 
@@ -99,7 +99,7 @@ $(function(){
 	if(tabs[currentActiveTab].noMore) return;
 
 	if($(this).scrollTop() + $(this).height() == $(document).height()){
-	    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab].url);
+	    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
 	}
     });
 });
