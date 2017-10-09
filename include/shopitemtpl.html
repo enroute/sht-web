@@ -8,7 +8,7 @@
                     <div class="shopItemName">{{name}}</div>
                     <div class="shopItemHot"><img src="static/images/home_icon_fire@3x.png" /></div>
                 </div>                
-                <div class="shopItemStar"><span class="stars">{{star_level}}</span> ￥{{average_cost}}</div>
+    <div class="shopItemStar"><span class="stars">{{star_level}}</span> ￥{{average_cost}}</div>
                 <!-- <div class="shopItemAverageCost">￥{{average_cost}}</div> -->
                 <div class="lr">
                     <div class="inline">
@@ -76,7 +76,23 @@
                       var val = parseFloat($(this).html());
                       if (isNaN(val)) return;
                       // Make sure that the value is in 0 - 5 range, multiply to get width
-                      var size = Math.max(0, (Math.min(5, val))) * $(".stars").height();
+		      //console.log("height=" + $(".stars").height());
+		      //FIXME: width=58.36 is wrongly shown, while width=58.3 shows correct stars
+                      //var size = Math.max(0, (Math.min(5, val))) * $(".stars").height();
+		      var height = $(".stars").height();
+		      var width = height;
+		      var x = parseInt(val);
+		      var y = val - x;
+		      var size = (x * 200 + (30 + (y) * (170 - 30)));
+		      // var size = x * 200 + 100;
+		      // if (y >= 0.5){
+		      // 	  size += (y - 0.5) * 70;
+		      // }else{
+		      // 	  size -= (0.5 - y) * 70;
+		      // }
+		      size = size * width / 200.0 ;
+		      size = size.toFixed(1);
+		      console.log("x=" + x + ", y=" + y + ", width=" + width + ", size=" + size );
                       // Create stars holder
                       var span = $('<span />').width(size);
                       // Replace the numerical value with stars
