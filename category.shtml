@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
     <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
     <script type="text/javascript" src="static/js/common.js"></script>
+
+    <script type="text/javascript" src="//3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
 </head>
 
 <body>
@@ -80,6 +82,11 @@ function setActive(index){
 }
 
 $(function(){
+    updateLocation();
+    $(".refreshLocation").on("click", "img", function(){
+	updateLocation();
+    });
+
     $(".navbarText .item").on("click", function(){
         for(var i = 0; i < tabs.length; i++){
             if (tabs[i].type == $(this).attr("type")) {
@@ -103,5 +110,27 @@ $(function(){
 	}
     });
 });
+
+var geolocation = new qq.maps.Geolocation("EQIBZ-BOD3S-RQUOM-6H3IT-J3YOK-P6BUS", "mdd");
+var positionNum = 0;
+var options = {timeout: 8000};
+var currentPosition;
+
+function updateLocation(){
+    geolocation.getLocation(showPosition, showErr, options);
+    console.log("positionNum=" + positionNum);
+    console.log(currentPosition);
+}
+function showPosition(position) {
+    positionNum ++;
+    currentPosition = position;
+    console.log("addr=" + currentPosition.addr);
+    $("#currentLocation").html(currentPosition.addr);
+};
+
+function showErr() {
+    positionNum ++;
+    $("#currentLocation").html("定位失败");
+};
 </script>
 </html>
