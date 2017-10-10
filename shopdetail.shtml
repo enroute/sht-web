@@ -147,6 +147,8 @@
 	     data.introImage = data.introImage[0];
 	     data.favoriteActionText = getFavoriteActionText(data.favorite);
 	     $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), data));
+	     // update title
+	     document.title = data.name;
 
 	     $("#call").html(Mustache.render(document.getElementById('tplCall').innerHTML.trim(), data));
 

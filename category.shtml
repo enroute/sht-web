@@ -1,6 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <!-- <title>{{title}}</title> -->
 
     <!-- for UC compatibility -->
     <meta name="wap-font-scale" content="no">
@@ -21,6 +22,9 @@
     <script type="text/javascript" src="static/js/common.js"></script>
 
     <script type="text/javascript" src="//3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script type="text/javascript">
+      document.title = decodeURI(getQueryString("title"));
+    </script>
 </head>
 
 <body>
