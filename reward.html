@@ -56,6 +56,7 @@
   </script>
 </ul>
     
+<div id="dimmerOverlay"></div>
 
   <div id="conDialog">
   </div>
@@ -91,6 +92,7 @@ function rotateIt(i){
 	    r.claimWay = "到店使用";
 	    $("#conDialog").html(Mustache.render(document.getElementById("tplConDialog").innerHTML.trim(), r));
 	    $("#conDialog").show();
+            $("#dimmerOverlay").show();
 	    isRolling = false;
 	}
     });
@@ -151,6 +153,7 @@ $("#conDialog").on("click", "#checkBtn", function(){
 	  
 $("#conDialog").on("click","#closeImg",function(){
     $("#conDialog").hide();
+    $("#dimmerOverlay").hide();
 });
 
 $("#roulettetxt").click(function(){
