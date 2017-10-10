@@ -36,7 +36,7 @@
   <div class="categoryItem" category="2"><img src="static/images/home_icon_edu@3x.png"   /><p>教育培训</p></div>
   <div class="categoryItem" category="3"><img src="static/images/home_icon_sing@3x.png"  /><p>美体健身</p></div>
   <div class="categoryItem" category="4"><img src="static/images/home_icon_fruits@3x.png"/><p>便利超市</p></div>
-  <div class="categoryItem" category="5"><img src="static/images/home_icon_food@3x.png"  /><p>汽车旅游</p></div>
+  <div class="categoryItem" category="5"><img src="static/images/home_icon_play@3x.png"  /><p>汽车旅游</p></div>
   <div class="categoryItem" category="6"><img src="static/images/home_icon_bea@3x.png"   /><p>上门服务</p></div>
   <div class="categoryItem" category="7"><img src="static/images/home_icon_move@3x.png"  /><p>其他服务</p></div>
 </div>
