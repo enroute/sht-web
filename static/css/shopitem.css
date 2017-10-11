@@ -24,6 +24,7 @@ body {
   margin-bottom: 0rem;
   padding-top: 0.26666667rem;
   padding-bottom: 0.26666667rem;
+  border-color: #eeeeee;
 }
 .shopItem + .shopItem {
   /* border-top: 1px solid; */
