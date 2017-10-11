@@ -27,8 +27,8 @@ body {
   border-color: #eeeeee;
 }
 .shopItem + .shopItem {
-  /* border-top: 1px solid; */
-  border-top: 0.0133333333333333rem solid;
+  border-top: 1px solid;
+  /* border-top: 0.0133333333333333rem solid; */
 }
 .shopItemLogo {
   margin-right: 0.4rem;
