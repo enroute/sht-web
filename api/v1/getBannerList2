@@ -5,6 +5,12 @@
             {"url":"static/images/home_img_p1@3x.png",
              "target":"http://www.baidu.com"},
             {"url":"static/images/home_img_p1@3x.png",
+             "target":"http://www.baidu.com"},
+            {"url":"static/images/home_img_p1@3x.png",
+             "target":"http://www.baidu.com"},
+            {"url":"static/images/home_img_p1@3x.png",
+             "target":"http://www.baidu.com"},
+            {"url":"static/images/home_img_p1@3x.png",
              "target":"http://www.sina.cn"}
         ]
     }
