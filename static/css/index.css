@@ -145,6 +145,7 @@ body {
   padding: 0px;
   width: 0.18666667rem;
   height: 0.18666667rem;
+  border-radius: 0.09333333rem;
 }
 .carousel-inner > .item > img {
   width: 100%;
