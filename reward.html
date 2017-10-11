@@ -44,6 +44,7 @@
 <div id="participant">参与人次: {{participants}}</div>
 <div id="couponListTitle">奖券列表</div>
 
+<div id="couponListWrapper">
 <ul id="couponList">
   <script type="text/html" id="tpl">
     {{#prize_list}}
@@ -56,6 +57,7 @@
     {{/prize_list}}
   </script>
 </ul>
+</div>
     
 <div id="dimmerOverlay"></div>
 
@@ -184,6 +186,17 @@ $("#roulettetxt").click(function(){
     });
 });
 
+function autoScroll(obj){
+    var objLi = $(obj).find("li");
+    var width = objLi.width()
+    var marginRight = parseInt(objLi.css("marginRight"));
+    console.log("width=" + width + ", marginRight=" + marginRight);
+    $(obj).animate({marginLeft:- width - marginRight}, 3000, function(){
+	$(this).css({marginLeft:"0px"}).find("li:first").appendTo(this);
+    });
+}
+
+
     $(function(){
 	var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW, "shopid=" + getQueryString("shopid"));
 	console.log(url);
@@ -205,6 +218,9 @@ $("#roulettetxt").click(function(){
 		//console.log(data);
 		var html = Mustache.render(document.getElementById("tpl").innerHTML.trim(), res.data);
 		$("#couponList").html(html);
+
+		// add scroll animation
+		setInterval('autoScroll("#couponList")',1000);
 
 		$("#participant").html(Mustache.render(document.getElementById("participant").innerHTML.trim(), res.data));
 		$("#headerText").html(Mustache.render(document.getElementById("headerText").innerHTML.trim(), res.data.winner_list[0]));

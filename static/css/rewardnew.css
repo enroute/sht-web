@@ -167,11 +167,14 @@ body {
   color: #333333;
   font-family: PingFangSC-Bold;
 }
+#couponListWrapper {
+  margin-left: 0.46666667rem;
+  margin-right: 0.46666667rem;
+  overflow: hidden;
+}
 #couponList {
   border-bottom: 2px white dashed;
   border-top: 2px white dashed;
-  margin-left: 0.46666667rem;
-  margin-right: 0.46666667rem;
   margin-top: 0.26666667rem;
   margin-bottom: 0.26666667rem;
   padding-top: 0.53333333rem;
