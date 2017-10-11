@@ -130,7 +130,8 @@ body {
   transform: translateX(-50%) translateY(-50%) translateY(-0.26666667rem);
 }
 #roulettebg img,
-#rouletteptr img {
+#rouletteptr img,
+#roulettetxt img {
   width: 100%;
   height: 100%;
   object-fit: fill;
@@ -140,6 +141,8 @@ body {
   font-size: 0.42666667rem;
   color: white;
   font-family: PingFangSC-Bold;
+  width: 0.73333333rem;
+  height: 0.8rem;
 }
 #participant {
   margin-top: 0.53333333rem;
