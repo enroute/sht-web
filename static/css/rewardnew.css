@@ -171,14 +171,14 @@ body {
   margin-left: 0.46666667rem;
   margin-right: 0.46666667rem;
   overflow: hidden;
-}
-#couponList {
   border-bottom: 2px white dashed;
   border-top: 2px white dashed;
   margin-top: 0.26666667rem;
   margin-bottom: 0.26666667rem;
   padding-top: 0.53333333rem;
   padding-bottom: 0.53333333rem;
+}
+#couponList {
   height: 4.05333333rem;
   display: flex;
   overflow-x: scroll;
