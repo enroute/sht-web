@@ -69,7 +69,9 @@
  }
 
  console.log("FOOTER_ACTIVE_INDEX = " + FOOTER_ACTIVE_INDEX);
- if (FOOTER_ACTIVE_INDEX >= 0){
+ if (FOOTER_ACTIVE_INDEX == FOOTER_SHOPDETAIL){
+     $("#footer").hide();
+ }else if (FOOTER_ACTIVE_INDEX >= 0){
      setActiveFooterItem(FOOTER_ACTIVE_INDEX);
  }
 
@@ -107,10 +109,13 @@
  });
 
  $(window).on("load",function(){
-     $("#footerSpacer").height($("#footer").height() + $(".reward").height());
      if (FOOTER_ACTIVE_INDEX == FOOTER_SHOPDETAIL){
 	 console.log("setting reward");
-	 $(".reward").css("bottom", $("#footer").height()).css("position","fixed");
+	 //$(".reward").css("bottom", $("#footer").height()).css("position","fixed");
+	 $(".reward").css("position","fixed").css("bottom", "0px");
+	 $("#footerSpacer").height($(".reward").height());
+     }else{
+	 $("#footerSpacer").height($("#footer").height() + $(".reward").height());
      }
  });
 </script>
