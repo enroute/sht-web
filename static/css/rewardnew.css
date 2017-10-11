@@ -22,8 +22,9 @@ body {
   width: 5.92rem;
   height: 7rem;
   left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  top: 2.93333333rem;
+  /* transform:translateX(-50%) translateY(-50%); */
+  transform: translateX(-50%);
   background-color: white;
   border: 1px solid #eeeeee;
   border-radius: 4px;
