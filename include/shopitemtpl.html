@@ -1,7 +1,7 @@
 <ul class="shopItemList">
     <script type="text/html" id="tplShopItemList">
         {{#shop_list}}
-        <li class="shopItem">
+        <li class="shopItem" shopid="{{shopid}}">
             <div class="shopItemLogo"><img class="shopItemLogoImg" src="{{logo}}" shopid="{{shopid}}" /></div>
             <div class="shopItemTextContents">
                 <div class="shopItemTitle">
@@ -61,12 +61,20 @@
 	      
               $(selector).children(".shopItemList").append(html);
 
-	      $(".shopItemLogoImg").on("click", function(){
+	      //$(".shopItemLogoImg").on("click", function(){
+              $(".shopItem").on("click", function(){
 		  console.log($(this).attr("shopid"));
 		  location.href = "shopdetail.shtml?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
 	      });
 
-	      $(".shopItemLuckyBtn").on("click", function(){
+	      $(".shopItemLuckyBtn").on("click", function(e){
+		  e = window.event || e;
+		  if (e.stopPropagation){
+		      e.stopPropagation();
+		  }else{
+		      e.cancelBubble = true; // ie compatibility
+		  }
+
 		  location.href = "reward.html?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
 	      });
 
