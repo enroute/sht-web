@@ -66,10 +66,10 @@
       <div class="shopIntroTitle">店铺照片</div>
       <div class="introImageWrapper"><img src="{{introImage}}" class="introImage" /></div>
 
-      <a href="reward.html?session={{session}}&shopid={{shopid}}"><div class="reward">抽奖</div></a>
-
     </script>
 </div>
+
+<a href="reward.html?session={{session}}&shopid={{shopid}}"><div class="reward">抽奖</div></a>
 
 <div id="dimmerOverlay"></div>
 
@@ -82,6 +82,9 @@
     </script>
 </div>
 
+<script type="text/javascript">
+  var FOOTER_ACTIVE_INDEX = FOOTER_SHOPDETAIL;
+</script>
 <!--#include virtual="include/footer.html" -->
 
 </body>

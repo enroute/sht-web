@@ -92,6 +92,7 @@ var FOOTER_INDEX_HOME = 0;
 var FOOTER_INDEX_FAVORITE = 1;
 var FOOTER_INDEX_MYSELF = 2;
 var FOOTER_ACTIVE_INDEX = -1;
+var FOOTER_SHOPDETAIL = -2;
 function setActiveFooterIndex(index){
     FOOTER_ACTIVE_INDEX = index;
 }

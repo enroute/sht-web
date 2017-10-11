@@ -69,7 +69,7 @@
  }
 
  console.log("FOOTER_ACTIVE_INDEX = " + FOOTER_ACTIVE_INDEX);
- if (FOOTER_ACTIVE_INDEX != -1){
+ if (FOOTER_ACTIVE_INDEX >= 0){
      setActiveFooterItem(FOOTER_ACTIVE_INDEX);
  }
 
@@ -107,6 +107,10 @@
  });
 
  $(window).on("load",function(){
-     $("#footerSpacer").height($("#footer").height());
+     $("#footerSpacer").height($("#footer").height() + $(".reward").height());
+     if (FOOTER_ACTIVE_INDEX == FOOTER_SHOPDETAIL){
+	 console.log("setting reward");
+	 $(".reward").css("bottom", $("#footer").height()).css("position","fixed");
+     }
  });
 </script>

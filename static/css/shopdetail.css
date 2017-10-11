@@ -170,6 +170,7 @@ body {
   /* Safari */
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 #call {
   display: none;
