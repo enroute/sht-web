@@ -50,6 +50,16 @@
                  }
                  $('#headerBannerIndicators').html(indicatorsHtml);
                  $('#headerBannerInner').html(bannerInnerHtml);
+
+		 // swipe to slide
+		 $("#headerBanner").swipe({
+		     swipeLeft:function(event, direction, distance, duration, fingerCount){
+			 $(this).carousel("next");
+		     },
+		     swipeRight:function(event, direction, distance, duration, fingerCount){
+			 $(this).carousel("prev");
+		     },
+		 });
                  /* alert(indicatorsHtml);*/
              }else{
                  /* ERROR! */
