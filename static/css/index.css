@@ -132,7 +132,7 @@ body {
   height: 100%;
 }
 .carousel .item {
-  height: 4.26666667rem;
+  /* .p2r(height, 320); */
 }
 .carousel-indicators {
   bottom: 0.4rem;
@@ -143,12 +143,15 @@ body {
   margin-left: 0.24rem;
   margin-right: 0.24rem;
   padding: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
   width: 0.18666667rem;
   height: 0.18666667rem;
   border-radius: 0.09333333rem;
 }
 .carousel-inner > .item > img {
   width: 100%;
-  height: 100%;
+  /* height:100%; */
+  height: auto;
   object-fit: fill;
 }
