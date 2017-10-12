@@ -191,7 +191,7 @@ function autoScroll(obj){
     var width = objLi.width()
     var marginRight = parseInt(objLi.css("marginRight"));
     console.log("width=" + width + ", marginRight=" + marginRight);
-    $(obj).animate({marginLeft:- width - marginRight}, 3000, function(){
+    $(obj).animate({marginLeft:- width - marginRight}, 500, function(){
 	$(this).css({marginLeft:"0px"}).find("li:first").appendTo(this);
     });
 }
@@ -220,7 +220,7 @@ function autoScroll(obj){
 		$("#couponList").html(html);
 
 		// add scroll animation
-		setInterval('autoScroll("#couponList")',1000);
+		setInterval('autoScroll("#couponList")',3000);
 
 		$("#participant").html(Mustache.render(document.getElementById("participant").innerHTML.trim(), res.data));
 		$("#headerText").html(Mustache.render(document.getElementById("headerText").innerHTML.trim(), res.data.winner_list[0]));
