@@ -98,13 +98,30 @@ html, body {
 
 /* roulette */
 #headerText {
-    .p2r(height,60);
+    .p2r(padding-bottom,15);
+    .p2r(padding-top,15);       /* padding to suppress margin mergin with child ul */
+    .p2r(height,30);            /* 30 + 15 + 15 = 60 */
     background-color:#f2786e;
-    .p2r(font-size,20);
     color:white;
     text-align:center;
     vertical-align:middle;
-    .p2r(line-height,60);
+ 
+    overflow:hidden;
+}
+
+#headerTextUl {
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    overflow-y:scroll;
+}
+
+#headerTextUl li {
+    .p2r(padding-top,5);
+    .p2r(padding-bottom,5);
+    .p2r(line-height,30);
+    .p2r(font-size,20);
+    .p2r(height,30);
 }
 
 .conCouponName {

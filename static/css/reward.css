@@ -82,13 +82,29 @@ body {
 }
 /* roulette */
 #headerText {
-  height: 0.8rem;
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+  /* padding to suppress margin mergin with child ul */
+  height: 0.4rem;
+  /* 30 + 15 + 15 = 60 */
   background-color: #f2786e;
-  font-size: 0.26666667rem;
   color: white;
   text-align: center;
   vertical-align: middle;
-  line-height: 0.8rem;
+  overflow: hidden;
+}
+#headerTextUl {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+#headerTextUl li {
+  padding-top: 0.06666667rem;
+  padding-bottom: 0.06666667rem;
+  line-height: 0.4rem;
+  font-size: 0.26666667rem;
+  height: 0.4rem;
 }
 .conCouponName {
   display: inline-block;

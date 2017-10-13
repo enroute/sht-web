@@ -14,7 +14,7 @@
     <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
     <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="static/css/rewardnew.css">
+    <link rel="stylesheet" type="text/css" href="static/css/reward.css">
     <script type="text/javascript" src="static/js/common.js"></script>
     <script type="text/javascript" src="static/js/awardRotate.js"></script>
 
@@ -29,7 +29,15 @@
 <img id="imgWheel" src="static/images/choujiang_img_roulette@3x.png" />
 <img id="imgFreeCoupon" src="static/images/choujiang_img_mfq@3x.png" />
 
-<div id="headerText">恭喜 {{nickname}} 用户抽中 {{shopName}} <span class="conCouponName">{{prize}}</span></div>
+<div id="headerText">
+<ul id="headerTextUl">
+    {{#winner_list}}
+    <li>
+    恭喜 {{nickname}} 用户抽中 {{shopName}} <span class="conCouponName">{{prize}}</span>
+    {{/winner_list}}
+    </li>
+</ul>
+</div>
 
 <div id="roulette">
   <!-- <div id="roulettebg"><img id="imgWheel" src="static/images/choujiang_img_roulette@3x.png" /></div> -->
@@ -186,7 +194,7 @@ $("#roulettetxt").click(function(){
     });
 });
 
-function autoScroll(obj){
+function autoScrollHorizontal(obj){
     var objLi = $(obj).find("li");
     var width = objLi.width()
     var marginRight = parseInt(objLi.css("marginRight"));
@@ -196,6 +204,21 @@ function autoScroll(obj){
     });
 }
 
+function autoScrollVertical(obj){
+    console.log($(obj));
+    var objLi = $(obj).find("li:first");
+    var height = objLi.height()
+    var marginTop = parseInt(objLi.css("marginTop"));
+    console.log("height=" + height + ", marginTop=" + marginTop);
+     /* $(obj).animate({marginTop:- height - marginTop}, 500, function(){
+	$(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
+      * });*/
+    $(objLi).fadeOut(800, function(){
+        objLi.appendTo($(obj));
+        $(obj).find("li:first").hide().fadeIn(800);
+    });
+
+}
 
     $(function(){
 	var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW, "shopid=" + getQueryString("shopid"));
@@ -220,10 +243,11 @@ function autoScroll(obj){
 		$("#couponList").html(html);
 
 		// add scroll animation
-		setInterval('autoScroll("#couponList")',3000);
+		setInterval('autoScrollHorizontal("#couponList")',3000);
+                setInterval('autoScrollVertical("#headerTextUl")',4000);
 
 		$("#participant").html(Mustache.render(document.getElementById("participant").innerHTML.trim(), res.data));
-		$("#headerText").html(Mustache.render(document.getElementById("headerText").innerHTML.trim(), res.data.winner_list[0]));
+		$("#headerText").html(Mustache.render(document.getElementById("headerText").innerHTML.trim(), res.data));
 		isDataReady = true;
 	    }
 	});
