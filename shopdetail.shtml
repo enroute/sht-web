@@ -70,7 +70,7 @@
     </script>
 </div>
 
-<a href="reward.html?session={{session}}&shopid={{shopid}}"><div class="reward">抽奖</div></a>
+<a id="btnLuckyDraw" href="reward.html?session={{session}}&shopid={{shopid}}"><div class="reward">抽奖</div></a>
 
 <div id="dimmerOverlay"></div>
 
@@ -155,6 +155,7 @@
 	     document.title = data.name;
 
 	     $("#call").html(Mustache.render(document.getElementById('tplCall').innerHTML.trim(), data));
+             $("#btnLuckyDraw").attr("href", Mustache.render($("#btnLuckyDraw").attr("href"), data));
 
 	     $("#favoriteBtn").on("click", function(event){
 		 var url;
