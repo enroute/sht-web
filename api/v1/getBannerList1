@@ -2,15 +2,15 @@
     "status":0,
     "data":{
         "banner_list":[
-            {"url":"static/images/home_img_banner1@3x.png",
+            {"url":"static/images/classic_img_banner@3x.png",
              "target":"http://www.baidu.com"},
-            {"url":"static/images/home_img_banner1@3x.png",
+            {"url":"static/images/classic_img_banner@3x.png",
              "target":"http://www.baidu.com"},
-            {"url":"static/images/home_img_banner1@3x.png",
+            {"url":"static/images/classic_img_banner@3x.png",
              "target":"http://www.baidu.com"},
-            {"url":"static/images/home_img_banner1@3x.png",
+            {"url":"static/images/classic_img_banner@3x.png",
              "target":"http://www.baidu.com"},
-            {"url":"static/images/home_img_banner1@3x.png",
+            {"url":"static/images/classic_img_banner@3x.png",
              "target":"http://www.sina.cn"}
         ]
     }
