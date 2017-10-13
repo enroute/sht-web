@@ -98,6 +98,7 @@ body {
   display: flex;
   flex-direction: column;
   /* overflow-y:scroll; */
+  overflow: hidden;
 }
 #headerTextUl li {
   padding-top: 0.06666667rem;

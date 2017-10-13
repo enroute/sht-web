@@ -31,11 +31,13 @@
 
 <div id="headerText">
 <ul id="headerTextUl">
+    <script type="text/html" id="tplWinnerList">
     {{#winner_list}}
     <li>
     恭喜 {{nickname}} 用户抽中 {{shopName}} <span class="conCouponName">{{prize}}</span>
     {{/winner_list}}
     </li>
+    </script>
 </ul>
 </div>
 
@@ -247,7 +249,7 @@ function autoScrollVertical(obj){
                 setInterval('autoScrollVertical("#headerTextUl")',4000);
 
 		$("#participant").html(Mustache.render(document.getElementById("participant").innerHTML.trim(), res.data));
-		$("#headerText").html(Mustache.render(document.getElementById("headerText").innerHTML.trim(), res.data));
+		$("#headerTextUl").html(Mustache.render(document.getElementById("tplWinnerList").innerHTML.trim(), res.data));
 		isDataReady = true;
 	    }
 	});
