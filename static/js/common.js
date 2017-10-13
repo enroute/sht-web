@@ -204,3 +204,7 @@ function formatTemplate(dta, tmpl){
         return (format && format[m2]) ? format[m2](dta[m2]) : dta[m2];
     });
 }
+
+$(window).on("load", function(){
+    console.log("" + $(this).scrollTop() + ", " + $(this).height() + ", " + $(document).height());
+});

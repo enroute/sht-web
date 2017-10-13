@@ -12,6 +12,24 @@
                 "distance":2722
             },
             {
+                "logo":"static/images/p1.png",
+                "name":"粤潮汇",
+                "shopid":"00012335",
+                "star_level":4.3,
+                "average_cost":75,
+                "tags":["超市"],
+                "distance":2722
+            },
+            {
+                "logo":"static/images/p1.png",
+                "name":"水泊梁山",
+                "shopid":"00012335",
+                "star_level":4.3,
+                "average_cost":75,
+                "tags":["超市"],
+                "distance":2722
+            },
+            {
                 "logo":"static/images/p2.png",
                 "name":"潮牛大王",
                 "shopid":"828",

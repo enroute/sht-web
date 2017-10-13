@@ -57,12 +57,45 @@
 
 		 // swipe to slide
 		 $("#headerBanner").swipe({
-		     swipeLeft:function(event, direction, distance, duration, fingerCount){
-			 $(this).carousel("next");
-		     },
-		     swipeRight:function(event, direction, distance, duration, fingerCount){
-			 $(this).carousel("prev");
-		     },
+		     // swipeLeft:function(event, direction, distance, duration, fingerCount){
+		     //     $(this).carousel("next");
+                     //     event.stopPropagation();
+		     // },
+		     // swipeRight:function(event, direction, distance, duration, fingerCount){
+		     //     $(this).carousel("prev");
+                     //     event.stopPropagation();
+		     // },
+                     swipeStatus:function(event, phase, direction, distance, fingerCount) {
+                         var str;
+                         switch (phase) {
+                         case "start" :
+                             str="Started";
+                             break;
+
+                         case "move" :
+                             str="You have moved " + distance +" pixels, past 200 and the handler will fire";
+                             break;
+
+                         case "end" :
+                             str="Handler fired, you swiped " + direction;
+                             switch(direction){
+                             case "left":
+			         $(this).carousel("next");
+                                 break;
+                             case "right":
+                                 $(this).carousel("prev");
+                                 break;
+                             }
+                             event.stopPropagation();
+                             return false;
+                             break;
+
+                         case "cancel" :
+                             str="cancel handler fired";
+                             break;
+                         }
+                         // stop propegation
+                     }
 		 });
                  /* alert(indicatorsHtml);*/
              }else{
