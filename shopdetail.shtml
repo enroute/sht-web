@@ -100,11 +100,11 @@
  }
 
  function toggleCall(){
-     if($("#call").is(':visible')){
-         $("body > :not(#call)").css("filter","none");
-     }else{
-         $("body > :not(#call)").css("filter","blur(5px)");
-     }
+     /* if($("#call").is(':visible')){
+      *     $("body > :not(#call)").css("filter","none");
+      * }else{
+      *     $("body > :not(#call)").css("filter","blur(5px)");
+      * }*/
 
      $("#dimmerOverlay").toggle();
      $("#call").toggle();         
