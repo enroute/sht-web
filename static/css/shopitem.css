@@ -49,6 +49,7 @@ body {
   vertical-align: middle;
   margin-right: 0.26666667rem;
   line-height: 100%;
+  color: #333;
 }
 .shopItemHot {
   display: inline-block;
@@ -110,6 +111,7 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  color: #999;
 }
 .shopItemTag {
   margin-bottom: 0.13333333rem;
@@ -122,6 +124,7 @@ span.stars span {
 .shopItemStar {
   display: flex;
   align-items: center;
+  color: #999;
 }
 span.stars {
   display: inline-block;
