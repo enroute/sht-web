@@ -146,6 +146,7 @@
              if (0 != res.status) return;
 
 	     var data = res.data;
+	     data.session = getQueryString("session");
 
 	     // use the first image only
 	     data.introImage = data.introImage[0];
