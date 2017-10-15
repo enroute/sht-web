@@ -8,9 +8,9 @@
 
     <link type="image/x-icon" href="favicon.png" rel="icon" />
     <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
-    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script src="//g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
     
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="static/js/jquery-3.2.1.min.js"></script>
     <script src="static/js/plugin/mustachejs/mustache.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
