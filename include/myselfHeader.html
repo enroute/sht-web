@@ -32,6 +32,11 @@
 	    url:buildRequestUrl(API_URL_GET_USER_BASIC_INFO, ""),
             type:"get",
             dataType: "json",
+	    error: function (XMLHttpRequest, textStatus, errorThrown) {
+		console.log(XMLHttpRequest);
+		console.log(textStatus);
+		console.log(errorThrown);
+	    },
             success:function(res){
 		if(res.status != 0) return;
 
