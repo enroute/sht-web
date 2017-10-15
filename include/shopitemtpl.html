@@ -49,7 +49,8 @@
 
 	      records = res.data.shop_list.length;
 	      res.data.shop_list.forEach(function(element){
-		  element.tag = element.tags.join(" ");
+		  //element.tag = element.tags.join(" ");
+		  element.tag = element.tags;
 		  element.distance = element.distance > 1000 ? "" + (element.distance/1000) + "km" : "" + element.distance + "m";
 	      });
 
