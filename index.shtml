@@ -108,13 +108,44 @@ $(function(){
     }
     $(tabs[currentActiveTab].selector).show();
 
-    $(window).scroll(function(){
-	if(tabs[currentActiveTab].noMore) return;
+    // $(window).scroll(function(){
+    //     if(tabs[currentActiveTab].noMore) return;
 
-	if($(this).scrollTop() + $(this).height() == $(document).height()){
-	    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
-	}
+    //     if($(this).scrollTop() + $(this).height() == $(document).height()){
+    //         getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab].url, tabs[currentActiveTab].bg);
+    //     }
+    // });
+    
+    // document.addEventListener("touchstart", touch, false);
+    // document.addEventListener("touchmove", touch, false);
+    // document.addEventListener("touchend", touch, false);
+    swipeDetect(document, function(swipedir){
+        switch(swipedir){
+        case "left": break;
+        case "right": break;
+        case "up":
+            if($(window).scrollTop() + $(window).height() + 10 >= $(document).height()){
+                getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+            }
+            break;
+        case "down": break;
+        }
+        console.log(swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height());
     });
 });
+
+// function touch(e){
+//     var event = e || window.event;
+//     switch(event.type){
+//     case "touchstart":
+//         break;
+//     case "touchmove":
+//         break;
+//     case "touchend":
+//         //alert("touchend, dx=" + event.changedTouches[0].clientX + ", dy=" + event.changedTouches[0].clientY);
+//         alert("touchend: scrollTop=" + $(window).scrollTop());
+//         break;
+//     }
+// }
 </script>
 </html>

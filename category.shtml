@@ -107,12 +107,26 @@ $(function(){
     }
     $(tabs[currentActiveTab].selector).show();
 
-    $(window).scroll(function(){
-	if(tabs[currentActiveTab].noMore) return;
+    // $(window).scroll(function(){
+    //     if(tabs[currentActiveTab].noMore) return;
 
-	if($(this).scrollTop() + $(this).height() == $(document).height()){
-	    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
-	}
+    //     if($(this).scrollTop() + $(this).height() == $(document).height()){
+    //         getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+    //     }
+    // });
+
+    swipeDetect(document, function(swipedir){
+        switch(swipedir){
+        case "left": break;
+        case "right": break;
+        case "up":
+            if($(window).scrollTop() + $(window).height() + 10 >= $(document).height()){
+                getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+            }
+            break;
+        case "down": break;
+        }
+        //alert(swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height());
     });
 });
 
