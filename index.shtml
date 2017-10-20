@@ -22,6 +22,8 @@
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
     <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
     <script type="text/javascript" src="static/js/common.js"></script>
+
+    <script src="//int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
 </head>
 
 <body>
@@ -30,6 +32,10 @@
   var BANNER_URL = API_URL_GET_BANNER_LIST_HOME;
 </script>
 <!--#include virtual="include/banner.html" -->
+
+<div class="location">
+    <img src="static/images/shouye_icon_dw@3x.png" /><span id="locationCity">定位中</span>
+</div>
 
 <div class="categoryNav">
   <div class="categoryItem" category="0"><img src="static/images/home_icon_food@3x.png"  /><p>餐饮美食</p></div>
@@ -85,7 +91,15 @@ function setActive(index){
     }
 }
 
+function updateLocation(){
+    // var remote_ip_info from http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js
+    console.log(remote_ip_info);
+    $("#locationCity").html(remote_ip_info.city);
+}
+
 $(function(){
+    updateLocation();
+
     $(".categoryItem").on("click", function(){
 	var type=$(this).attr("category");
 	//alert($(this).children("p").html());

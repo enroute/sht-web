@@ -246,3 +246,24 @@ body {
 .footerItemPActive {
   color: #f35e3e;
 }
+.location {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  /* .p2r(width,134); */
+  height: 0.66666667rem;
+  border-radius: 0.33333333rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-family: PingFangSC-Medium;
+  /* .p2r(font-size,28); */
+  font-size: 28px;
+  color: #fff;
+  padding-left: 0.32rem;
+  padding-right: 0.32rem;
+}
+.location img {
+  width: 0.30666667rem;
+  height: 0.38666667rem;
+  object-fit: fill;
+  margin-right: 0.13333333rem;
+}
