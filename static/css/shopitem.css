@@ -54,7 +54,9 @@ body {
   color: #333;
 }
 .shopItemHot {
-  display: inline-block;
+  /*display:inline-block;*/
+  display: none;
+  /* hide it*/
   vertical-align: middle;
   height: 0.42666667rem;
   width: 0.42666667rem;
