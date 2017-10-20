@@ -262,7 +262,7 @@ a.carousel-control.left {
   background-color: rgba(0, 0, 0, 0.4);
   font-family: PingFangSC-Medium;
   /* .p2r(font-size,28); */
-  font-size: 28px;
+  font-size: 0.37333333rem;
   color: #fff;
   padding-left: 0.32rem;
   padding-right: 0.32rem;
