@@ -48,3 +48,9 @@
     height:auto;
     object-fit:fill;
 }
+
+a.carousel-control.right,
+a.carousel-control.left {
+    opacity: 0;
+    filter:alpha(opacity=0); /* IE support */
+}
