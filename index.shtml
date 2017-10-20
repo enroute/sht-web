@@ -33,7 +33,7 @@
 </script>
 <!--#include virtual="include/banner.html" -->
 
-<div class="location">
+<div class="bannerLocation">
     <img src="static/images/shouye_icon_dw@3x.png" /><span id="locationCity">定位中</span>
 </div>
 
@@ -51,8 +51,10 @@
 <div class="vSpacer20"></div>
 <div class="title1">抽奖专场</div>
 <!-- <div class="title1"><span class="hline30"></span>抽奖专场<span class="hline30"></span></div> -->
+<div class="vSpacer20"></div>
 
-<div class="navbarText">
+<!-- hide it -->
+<div class="navbarText" style="display:none;">
   <div class="item active" id="navbarItem0" type="8">附 近</a></div>
   <div class="item" id="navbarItem1" type="9">优 选</a></div>
 </div>

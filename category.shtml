@@ -35,18 +35,17 @@
 </script>
 <!--#include virtual="include/banner.html" -->
 
-<div class="vSpacer20"></div>
+<!-- <div class="vSpacer20"></div> -->
+<!-- <div class="vSpacer20"></div> -->
 
-<div class="vSpacer20"></div>
-
-<div class="navbarText" style="background:white">
+<div class="navbarText" style="background:white; display:none;">
   <div class="item active" id="navbarItem0" type="20">离我最近</a></div>
   <div class="item" id="navbarItem1" type="21">好评优先</a></div>
   <div class="item" id="navbarItem2" type="22">人气最高</a></div>
 </div>
 
 <div class="location">
-  <div class="locationText">当前:&nbsp;&nbsp;&nbsp;<span id="currentLocation">龙岗区坂田索云里智能园</span></div>
+  <div class="locationText">当前:&nbsp;&nbsp;&nbsp;<span id="currentLocation">定位中</span></div>
   <div class="refreshLocation"><img src="static/images/home_icon_refresh@3x.png" /></div>
 </div>
 
@@ -144,7 +143,7 @@ function showPosition(position) {
     positionNum ++;
     currentPosition = position;
     console.log("addr=" + currentPosition.addr);
-    $("#currentLocation").html(currentPosition.addr);
+    $("#currentLocation").html(currentPosition.city + currentPosition.addr);
 };
 
 function showErr() {

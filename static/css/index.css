@@ -246,7 +246,7 @@ body {
 .footerItemPActive {
   color: #f35e3e;
 }
-.location {
+.bannerLocation {
   position: absolute;
   top: 0.4rem;
   left: 0.4rem;
@@ -261,7 +261,7 @@ body {
   padding-left: 0.32rem;
   padding-right: 0.32rem;
 }
-.location img {
+.bannerLocation img {
   width: 0.30666667rem;
   height: 0.38666667rem;
   object-fit: fill;
