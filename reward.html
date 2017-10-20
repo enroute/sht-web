@@ -158,6 +158,7 @@ function drawRoulette(){
 
 $(window).on("load",function(){
     drawRoulette();
+    requestLuckyDrawData();
 });
 
 $("#conDialog").on("click", "#checkBtn", function(){
@@ -222,7 +223,7 @@ function autoScrollVertical(obj){
 
 }
 
-    $(function(){
+    function requestLuckyDrawData(){
 	var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW, "shopid=" + getQueryString("shopid"));
 	console.log(url);
 	$.ajax({
@@ -253,6 +254,6 @@ function autoScrollVertical(obj){
 		isDataReady = true;
 	    }
 	});
-    });
+    }
 </script>
 </html>
