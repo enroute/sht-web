@@ -253,6 +253,9 @@ a.carousel-control.left {
   color: #f35e3e;
 }
 .bannerLocation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0.4rem;
   left: 0.4rem;

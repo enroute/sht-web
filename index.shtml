@@ -34,7 +34,7 @@
 <!--#include virtual="include/banner.html" -->
 
 <div class="bannerLocation">
-    <img src="static/images/shouye_icon_dw@3x.png" /><span id="locationCity">定位中</span>
+    <div><img src="static/images/shouye_icon_dw@3x.png" /></div><div><span id="locationCity">定位中</span></div>
 </div>
 
 <div class="categoryNav">
