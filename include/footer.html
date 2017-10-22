@@ -54,15 +54,15 @@
 
          switch($(this).attr('type')){
              case 'home':
-                 url = "index.shtml?" + sessionParameterString;
+                 url = buildRequestUrl("index.shtml");
                  break;
 
              case 'favorite':
-                 url = "favorite.shtml?" + sessionParameterString;
+                 url = buildRequestUrl("favorite.shtml");
                  break;
 
              case 'myself':
-                 url = "myself.shtml?" + sessionParameterString;
+                 url = buildRequestUrl("myself.shtml");
                  break;
          }
 

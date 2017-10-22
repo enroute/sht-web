@@ -106,7 +106,9 @@ $(function(){
 	var type=$(this).attr("category");
 	//alert($(this).children("p").html());
 	var title = encodeURI(encodeURI($(this).children("p").html()));
-	location.href = "category.shtml?" + sessionParameterString + "&category=" + $(this).attr("category") + "&title=" + title;	
+	//location.href = "category.shtml?" + sessionParameterString + "&category=" + $(this).attr("category") + "&title=" + title;	
+	location.href = buildRequestUrl("category.shtml", "category=" + $(this).attr("category") + "&title=" + title);	
+
     });
 
     $(".navbarText .item").on("click", function(){

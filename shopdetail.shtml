@@ -156,7 +156,9 @@
 	     document.title = data.name;
 
 	     $("#call").html(Mustache.render(document.getElementById('tplCall').innerHTML.trim(), data));
-             $("#btnLuckyDraw").attr("href", Mustache.render($("#btnLuckyDraw").attr("href"), data));
+             //$("#btnLuckyDraw").attr("href", Mustache.render($("#btnLuckyDraw").attr("href"), data));
+             $("#btnLuckyDraw").attr("href", buildRequestUrl("reward.html", "shopid=" + data.shopid));
+
 
 	     $("#favoriteBtn").on("click", function(event){
 		 var url;

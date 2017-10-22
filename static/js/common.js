@@ -1,43 +1,97 @@
 var API_VERSION = "1";
-var API_PREFIX = "api/v" + API_VERSION + "/";
-var API_URL_FAVORITE               = API_PREFIX + "favorite";
-var API_URL_UNFAVORITE             = API_PREFIX + "unfavorite";
+var API_PREFIX = "http://api.shequshenghuotong.com/ForCustomer/";
+var API_URL_FAVORITE               = API_PREFIX + "favorite.aspx";
+var API_URL_UNFAVORITE             = API_PREFIX + "favorite.aspx?unfavorite=1";
 //var API_URL_UNFAVORITE             = API_PREFIX + "favorite?unfavorite=1";
 
-var API_URL_GET_BANNER_LIST_HOME   = API_PREFIX + "getBannerList1";
-var API_URL_GET_BANNER_LIST_CATE   = API_PREFIX + "getBannerList2";
-var API_URL_GET_BANNER_LIST        = API_PREFIX + "getBannerList";
+var API_URL_GET_BANNER_LIST_HOME   = API_PREFIX + "getBannerList.aspx?level=1";
+var API_URL_GET_BANNER_LIST_CATE   = API_PREFIX + "getBannerList.aspx?level=2";
+var API_URL_GET_BANNER_LIST        = API_PREFIX + "getBannerList.aspx?level=1";
 
-var API_URL_GET_COUPON_DETAIL      = API_PREFIX + "getCouponDetail";
+var API_URL_GET_COUPON_DETAIL      = API_PREFIX + "getCouponDetail.aspx";
 
-var API_URL_GET_COUPON_LIST        = API_PREFIX + "getCouponList";
-var API_URL_GET_COUPON_LIST_VALID  = API_PREFIX + "getCouponList?type=0";
-var API_URL_GET_COUPON_LIST_EXPIRED= API_PREFIX + "getCouponList?type=1";
-var API_URL_GET_COUPON_LIST_USED   = API_PREFIX + "getCouponList?type=2";
+var API_URL_GET_COUPON_LIST        = API_PREFIX + "getCouponList.aspx";
+var API_URL_GET_COUPON_LIST_VALID  = API_PREFIX + "getCouponList.aspx?type=0";
+var API_URL_GET_COUPON_LIST_EXPIRED= API_PREFIX + "getCouponList.aspx?type=1";
+var API_URL_GET_COUPON_LIST_USED   = API_PREFIX + "getCouponList.aspx?type=2";
 
 
-var API_URL_GET_FAVORITE_SHOP_LIST = API_PREFIX + "getFavoriteShopList";
-var API_URL_GET_LUCKY_DRAW         = API_PREFIX + "getLuckyDraw";
-var API_URL_GET_LUCKY_DRAW_RESULT  = API_PREFIX + "getLuckyDrawResult";
-var API_URL_GET_SCORE_INFO         = API_PREFIX + "getScoreInfo";
-var API_URL_GET_SHOP_DETAIL        = API_PREFIX + "getShopDetail";
+var API_URL_GET_FAVORITE_SHOP_LIST = API_PREFIX + "getFavoriteShopList.aspx";
+var API_URL_GET_LUCKY_DRAW         = API_PREFIX + "getLuckyDraw.aspx";
+var API_URL_GET_LUCKY_DRAW_RESULT  = API_PREFIX + "getLuckyDrawResult.aspx";
+var API_URL_GET_SCORE_INFO         = API_PREFIX + "getScoreInfo.aspx";
+var API_URL_GET_SHOP_DETAIL        = API_PREFIX + "getShopDetail.aspx";
 
-var API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList";
-var API_URL_GET_SHOP_LIST_NEAREST  = API_PREFIX + "getShopList2";
-var API_URL_GET_SHOP_LIST_RATING   = API_PREFIX + "getShopList3";
-var API_URL_GET_SHOP_LIST_HOTTEST  = API_PREFIX + "getShopList2";
-var API_URL_GET_SHOP_LIST_FAVORITE = API_PREFIX + "getShopList2";
+var API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList.aspx";
+var API_URL_GET_SHOP_LIST_NEAREST  = API_PREFIX + "getShopList.aspx?tag=2";
+var API_URL_GET_SHOP_LIST_RATING   = API_PREFIX + "getShopList.aspx?tag=3";
+var API_URL_GET_SHOP_LIST_HOTTEST  = API_PREFIX + "getShopList.aspx?tag=4";
+var API_URL_GET_SHOP_LIST_FAVORITE = API_PREFIX + "getShopList.aspx";
 
  // index
-var API_URL_GET_SHOP_LIST_NEARBY = API_PREFIX + "getShopList2";
-var API_URL_GET_SHOP_LIST_PREFER = API_PREFIX + "getShopList3";
+var API_URL_GET_SHOP_LIST_NEARBY = API_PREFIX + "getShopList.aspx?category=8&tag=0";
+var API_URL_GET_SHOP_LIST_PREFER = API_PREFIX + "getShopList.aspx?category=8&tag=1";
 
 
 // var API_URL_GET_SHOP_LIST_PLAY     = API_PREFIX + "getShopList?type=1";
-var API_URL_GET_WECHAT_INFO        = API_PREFIX + "getWechatInfo";
-var API_URL_GET_USER_BASIC_INFO    = API_PREFIX + "getUserBasicInfo";
+var API_URL_GET_WECHAT_INFO        = API_PREFIX + "getWechatInfo.aspx";
+var API_URL_GET_USER_BASIC_INFO    = API_PREFIX + "getBasicUserInfo.aspx";
 
-var API_URL_SIGN_IN                = API_PREFIX + "signIn";
+var API_URL_SIGN_IN                = API_PREFIX + "signIn.aspx";
+
+
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r!=null) return unescape(r[2]);
+    return null;
+}
+
+var useLocalApi = getQueryString("useLocalApi");
+console.log("useLocalApi=" + useLocalApi);
+
+if(useLocalApi) {
+    API_VERSION = "1";
+    API_PREFIX = "api/v" + API_VERSION + "/";
+    API_URL_FAVORITE               = API_PREFIX + "favorite";
+    API_URL_UNFAVORITE             = API_PREFIX + "unfavorite";
+    // API_URL_UNFAVORITE             = API_PREFIX + "favorite?unfavorite=1";
+
+    API_URL_GET_BANNER_LIST_HOME   = API_PREFIX + "getBannerList1";
+    API_URL_GET_BANNER_LIST_CATE   = API_PREFIX + "getBannerList2";
+    API_URL_GET_BANNER_LIST        = API_PREFIX + "getBannerList";
+
+    API_URL_GET_COUPON_DETAIL      = API_PREFIX + "getCouponDetail";
+
+    API_URL_GET_COUPON_LIST        = API_PREFIX + "getCouponList";
+    API_URL_GET_COUPON_LIST_VALID  = API_PREFIX + "getCouponList?type=0";
+    API_URL_GET_COUPON_LIST_EXPIRED= API_PREFIX + "getCouponList?type=1";
+    API_URL_GET_COUPON_LIST_USED   = API_PREFIX + "getCouponList?type=2";
+
+
+    API_URL_GET_FAVORITE_SHOP_LIST = API_PREFIX + "getFavoriteShopList";
+    API_URL_GET_LUCKY_DRAW         = API_PREFIX + "getLuckyDraw";
+    API_URL_GET_LUCKY_DRAW_RESULT  = API_PREFIX + "getLuckyDrawResult";
+    API_URL_GET_SCORE_INFO         = API_PREFIX + "getScoreInfo";
+    API_URL_GET_SHOP_DETAIL        = API_PREFIX + "getShopDetail";
+
+    API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList";
+    API_URL_GET_SHOP_LIST_NEAREST  = API_PREFIX + "getShopList2";
+    API_URL_GET_SHOP_LIST_RATING   = API_PREFIX + "getShopList3";
+    API_URL_GET_SHOP_LIST_HOTTEST  = API_PREFIX + "getShopList2";
+    API_URL_GET_SHOP_LIST_FAVORITE = API_PREFIX + "getShopList2";
+
+    // index
+    API_URL_GET_SHOP_LIST_NEARBY = API_PREFIX + "getShopList2";
+    API_URL_GET_SHOP_LIST_PREFER = API_PREFIX + "getShopList3";
+
+
+    // API_URL_GET_SHOP_LIST_PLAY     = API_PREFIX + "getShopList?type=1";
+    API_URL_GET_WECHAT_INFO        = API_PREFIX + "getWechatInfo";
+    API_URL_GET_USER_BASIC_INFO    = API_PREFIX + "getUserBasicInfo";
+
+    API_URL_SIGN_IN                = API_PREFIX + "signIn";
+}
 
 var IMG = {
     "footer":[
@@ -107,13 +161,6 @@ function getRequestParameterString(){
     return indexOfQuestionMark == -1 ? "" : window.location.href.substring(indexOfQuestionMark);
 }
 
-function getQueryString(name) {
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if (r!=null) return unescape(r[2]);
-    return null;
-}
-
 var requestParameterString = getRequestParameterString();
 var session = getQueryString('session');
 var sessionParameterString = "session=" + session;
@@ -122,6 +169,10 @@ function buildRequestUrl(url, param) {
     var params = param;
     if(sessionParameterString != ""){
         params += "&" + sessionParameterString;
+    }
+
+    if(useLocalApi){
+	params += "&useLocalApi=" + useLocalApi;
     }
 
     if(url.indexOf("?") == -1){

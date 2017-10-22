@@ -65,7 +65,7 @@
 	      //$(".shopItemLogoImg").on("click", function(){
               $(".shopItem").on("click", function(){
 		  console.log($(this).attr("shopid"));
-		  location.href = "shopdetail.shtml?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
+		  location.href = buildRequestUrl("shopdetail.shtml", "shopid=" + $(this).attr('shopid'));
 	      });
 
 	      $(".shopItemLuckyBtn").on("click", function(e){
@@ -76,7 +76,7 @@
 		      e.cancelBubble = true; // ie compatibility
 		  }
 
-		  location.href = "reward.html?" + sessionParameterString + "&shopid=" + $(this).attr('shopid');
+		  location.href = buildRequestUrl("reward.html", "shopid=" + $(this).attr('shopid'));
 	      });
 
 	      // stars
