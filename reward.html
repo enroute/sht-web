@@ -112,6 +112,16 @@ function rotateIt(i){
 }
 
 function drawRoulettePrizes(prizes){
+    // make it not smaller than 6
+    var len = prizes.length;
+    if (len <= 0) return;
+
+    while(prizes.length < 6){
+	for (var i = 0; i < len; i++){
+	    prizes.push(prizes[i]);
+	}
+    }
+
     var canvas = document.getElementById("wheelcanvas");
     var ctx = canvas.getContext("2d");
     var img = document.getElementById("imgFreeCoupon");
@@ -183,8 +193,8 @@ $("#roulettetxt").click(function(){
     }
 
     isRolling = true;
-    var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW_RESULT, "id=" + data.id);
-    console.log(url);
+    var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW_RESULT, "id=" + data.data.id);
+    console.log(data);
     $.ajax({
 	url:url,
 	type:"get",
@@ -231,6 +241,8 @@ function autoScrollVertical(obj){
             type:"get",
             dataType: "json",
             success:function(res){
+		if (res.status != 0 || res.data.prize_list.length <=0) return;
+
 		drawRoulettePrizes(res.data.prize_list);
 		//join tags
 		console.log(res);
