@@ -301,6 +301,7 @@ function swipeDetect(el, callback){
                 swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
             }
         }
+        // Fixme: sometimes scrollTop is much smaller than expected when called immediately
         handleswipe(swipedir,distX,distY);
         var a = {"distX":distX, "distY":distY, "elapsedTime":elapsedTime, "allowedTime":allowedTime};
         console.log(a);
@@ -309,6 +310,6 @@ function swipeDetect(el, callback){
 }
 
 function isRefresh(dy){
-    return $(window).scrollTop() + $(window).height() + 200 >= $(document).height()
-        && dy < -10;
+    return ($(window).scrollTop() + $(window).height() + 300 >= $(document).height() && dy < -10) ||
+        ($(window).scrollTop() + $(window).height() + 100 >= $(document).height() && dy <= 0);
 }

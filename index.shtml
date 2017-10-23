@@ -132,6 +132,13 @@ $(function(){
         }else{
             var msg = swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height();
             console.log(msg);
+
+            // try again
+            setTimeout(function(){
+                if(isRefresh(dy)){
+                    getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+                }
+            },200);
         }
     });
 });

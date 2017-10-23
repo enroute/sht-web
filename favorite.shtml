@@ -72,12 +72,27 @@ $(function(){
     }
     $(tabs[currentActiveTab].selector).show();
 
-    $(window).scroll(function(){
-	if(tabs[currentActiveTab].noMore) return;
+    // $(window).scroll(function(){
+    //     if(tabs[currentActiveTab].noMore) return;
 
-	if($(this).scrollTop() + $(this).height() == $(document).height()){
-	    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
-	}
+    //     if($(this).scrollTop() + $(this).height() == $(document).height()){
+    //         getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+    //     }
+    // });
+    swipeDetect(document, function(swipedir,dx,dy){
+        if(isRefresh(dy)){
+            getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+        }else{
+            var msg = swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height();
+            console.log(msg);
+
+            // try again
+            setTimeout(function(){
+                if(isRefresh(dy)){
+                    getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+                }
+            },200);
+        }
     });
 });
 </script>

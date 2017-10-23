@@ -95,6 +95,18 @@ $(function(){
         }else{
             var msg = swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height();
             console.log(msg);
+
+            // Fixme: sometimes scrollTop is much smaller than expected when called immediately
+            // alert(msg + ",dy=" + dy);
+            // var msg = swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height();
+            // alert(msg + ",dy=" + dy);
+
+            // try again
+            setTimeout(function(){
+                if(isRefresh(dy)){
+                    getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+                }
+            },200);
         }
     });
 });
