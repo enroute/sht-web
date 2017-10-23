@@ -269,7 +269,7 @@ function swipeDetect(el, callback){
     elapsedTime,
     startTime,
 
-    handleswipe = callback || function(swipedir){}
+    handleswipe = callback || function(swipedir,dx,dy){}
   
     touchsurface.addEventListener('touchstart', function(e){
         var touchobj = e.changedTouches[0]
@@ -292,8 +292,8 @@ function swipeDetect(el, callback){
         elapsedTime = new Date().getTime() - startTime // get time elapsed
         //if (elapsedTime <= allowedTime){ // first condition for swipe met
         if (1){
-            //if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
-            if (Math.abs(distX) >= Math.abs(distY)){
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+            //if (Math.abs(distX) >= Math.abs(distY)){
                 swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
             }
             //else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
@@ -301,9 +301,14 @@ function swipeDetect(el, callback){
                 swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
             }
         }
-        handleswipe(swipedir)
+        handleswipe(swipedir,distX,distY);
         var a = {"distX":distX, "distY":distY, "elapsedTime":elapsedTime, "allowedTime":allowedTime};
         console.log(a);
         //e.preventDefault()
     }, false)
+}
+
+function isRefresh(dy){
+    return $(window).scrollTop() + $(window).height() + 200 >= $(document).height()
+        && dy < -10;
 }

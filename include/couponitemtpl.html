@@ -32,7 +32,9 @@
 //        ]
 //    }
 
-  function getCouponListHtml(selector, url, backgroundImage) {
+  function getCouponListHtml(selector, config) {
+      var url = buildRequestUrl(config.url, "page=" + config.page);
+      var backgroundImage = config.bg;
       console.log(url);
       var records = 0;
       $.ajax({
@@ -41,6 +43,14 @@
           dataType: "json",
           success:function(res){
               console.log(res);
+              if(res.status != 0){
+                  /* TODO: no more data should have a specific status code */
+                  config.noMore = true;
+                  return;
+              }
+
+              config.page ++;
+
 	      //set background
 	      for(var i = 0; i < res.data.coupon_list.length; i++){
 		  res.data.coupon_list[i].backgroundImage = backgroundImage;

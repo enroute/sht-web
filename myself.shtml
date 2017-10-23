@@ -45,11 +45,11 @@
   var currentActiveTab = 0;
   var tabs = [
       {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_COUPON_LIST_VALID,   "type":"0",
-       "bg":"static/images/mycenter_img_yhq@3x.png","noMore":false},
+       "bg":"static/images/mycenter_img_yhq@3x.png","noMore":false,"page":0},
       {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_COUPON_LIST_EXPIRED, "type":"1",
-       "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false},
+       "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false,"page":0},
       {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url": API_URL_GET_COUPON_LIST_USED,    "type":"2",
-       "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false}
+       "bg":"static/images/mycenter_img_yhq31@3x.png","noMore":false,"page":0}
   ];
 </script>
 <!--#include virtual="include/footer.html" -->
@@ -84,30 +84,18 @@ $(function(){
     });
 
     for(var i = 0; i < tabs.length; i++){
-        getCouponListHtml(tabs[i].selector, tabs[i].url, tabs[i].bg);
+        getCouponListHtml(tabs[i].selector, tabs[i]);
     }
     console.log("currentActiveTab=" + currentActiveTab);
     $(tabs[currentActiveTab].selector).show();
 
-    // $(window).scroll(function(){
-    //     if(tabs[currentActiveTab].noMore) return;
-
-    //     if($(this).scrollTop() + $(this).height() == $(document).height()){
-    //         getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab].url, tabs[currentActiveTab].bg);
-    //     }
-    // });
-    swipeDetect(document, function(swipedir){
-        switch(swipedir){
-        case "left": break;
-        case "right": break;
-        case "up":
-            if($(window).scrollTop() + $(window).height() + 10 >= $(document).height()){
-                getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
-            }
-            break;
-        case "down": break;
+    swipeDetect(document, function(swipedir,dx,dy){
+        if(isRefresh(dy)){
+            getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+        }else{
+            var msg = swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height();
+            console.log(msg);
         }
-        console.log(swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height());
     });
 });
 </script>
