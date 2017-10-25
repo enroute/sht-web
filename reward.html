@@ -172,7 +172,8 @@ $(window).on("load",function(){
 });
 
 $("#conDialog").on("click", "#checkBtn", function(){
-    location.href = "coupondetail.html?" + sessionParameterString + "&sn=" + $(this).attr("sn");
+    //location.href = "coupondetail.html?" + sessionParameterString + "&sn=" + $(this).attr("sn");
+    location.href = buildRequestUrl("coupondetail.html", "&sn=" + $(this).attr("sn"));
 });
 	  
 $("#conDialog").on("click","#closeImg",function(){
