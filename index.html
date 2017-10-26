@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -25,7 +25,7 @@
 					<span class="icon icon-bar"></span>
 					<span class="icon icon-bar"></span>
 				</button>
-				<a href="#" class="navbar-brand">免多多</a>
+				<a href="#" class="navbar-brand"><img src="index/images/logo.png" style="margin-bottom:5px;height:100%;width:auto;object-fit:contain;" /></a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -86,28 +86,28 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
 					<h2>平台理念</h2>
-					<p>免多多立志成为国内领先的共享互助平台，帮助商家完成单打独斗到互助共赢的跨越；立志成为国内体验最好的体验式生活服务平台，帮助搭建商家和消费者之间的体验消费理念。</p>
+					<p style="text-align: left;">免多多立志成为国内领先的共享互助平台，帮助商家完成单打独斗到互助共赢的跨越；立志成为国内体验最好的体验式生活服务平台，帮助搭建商家和消费者之间的体验消费理念。</p>
 				</div>
 				<div class="col-md-12"></div>
 				<div class="col-sm-6 col-md-3">
 					<a href="#"><i class="fa fa-gx"></i></a>
 						<h3>共享</h3>
-						<p>平台创立优惠共享机制，商家之间共享优惠，共享客户流量，帮助商家实现共享互利</p>
+						<p style="text-align: left;">平台创立优惠共享机制，商家之间共享优惠，共享客户流量，帮助商家实现共享互利</p>
 				</div>
 				<div class="col-sm-6 col-md-3">
 					<a href="#"><i class="fa fa-fx"></i></a>
 						<h3>分享</h3>
-						<p>平台搭建分享机制，商家和个人更愿意把自己喜欢的，或者周边商家好的服务和产品，分享给自己的客户和朋友。</p>
+						<p style="text-align: left;">平台搭建分享机制，商家和个人更愿意把自己喜欢的，或者周边商家好的服务和产品，分享给自己的客户和朋友。</p>
 				</div>
 				<div class="col-sm-6 col-md-3">
 					<a href="#"><i class="fa fa-hz"></i></a>
 						<h3>互助</h3>
-						<p>平台建立按互助值排名机制，帮助商家建立互助习惯。</p>
+						<p style="text-align: left;">平台建立按互助值排名机制，帮助商家建立互助习惯。</p>
 				</div>
 				<div class="col-sm-6 col-md-3">
 					<a href="#"><i class="fa fa-hx"></i></a>
 						<h3>互信</h3>
-						<p>免多多搭建免费体验式生活平台，创建商家与消费者互评机制，帮助商家跟消费者建立互信。</p>
+						<p style="text-align: left;">免多多搭建免费体验式生活平台，创建商家与消费者互评机制，帮助商家跟消费者建立互信。</p>
 				</div>
 			</div>
 		</div>
@@ -159,7 +159,8 @@
 			</div>
         </div>
         <div class="container">
-        	<ul class="row-team-member">
+	<div class="team-member-wrapper">
+        	<ul class="row-team-member" id="ul-team-member">
         		<li class="member-item">
 					<img src="index/images/photo/lj.png" alt="team 1">
 						<h3>刘俊</h3>
@@ -203,6 +204,7 @@
 						<p class="memberIntro">公司第2号员工</p>
 				</li>
 			</ul>
+		</div>
 		</div>
 	</section>
 	<!-- end templatemo team -->
@@ -322,8 +324,8 @@
 
 				<div class="container">
 				<div class="row">
-				<div>
-				<span id="copyrightText">Copyright © 2017 免多多</span><img id="icpLogo" src="index/images/icp.png" /><span id="icpText">粤ICP备1001902号</span>
+				<div style="margin-bottom:10px;">
+				<span id="copyrightText">Copyright © 2017 免多多</span><img id="icpLogo" src="index/images/icp.png" style="margin-left:20px;margin-right:10px;" /><span id="icpText">粤ICP备1001902号</span>
 				</div>
 				<div class="nowrap col-sm-12 col-md-4"><span id="companyName">公司名称：深圳市微腾优创科技有限公司<span></div>
 				<div class="nowrap col-sm-12 col-md-4"><span id="companyAddress">地址：深圳市龙岗区坂田智慧谷创新园A座903A</span></div>
@@ -367,6 +369,22 @@
 				event.preventDefault();
 				$('html, body').animate({scrollTop: 0}, 300);
 			})
+		});
+
+		function autoScrollHorizontal(obj){
+			if($(window).width() < 768) return;
+
+			var objLi = $(obj).find("li");
+			var width = objLi.width();
+			var marginRight = parseInt(objLi.css("marginRight"));
+			console.log("width=" + width + ", marginRight=" + marginRight);
+			$(obj).animate({marginLeft:- width - marginRight}, 500, function(){
+				$(this).css({marginLeft:"0px"}).find("li:first").appendTo(this);
+			});
+		}
+
+		$(function(){
+			setInterval('autoScrollHorizontal("#ul-team-member")',3000);
 		});
 	</script>
 	<!-- end templatemo back to top js -->
