@@ -38,7 +38,7 @@
     }
     
     //标注点数组
-    var markerArr = [{title:"免多多",content:"来就免",point:"114.072058|22.63664",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+    var markerArr = [{title:"免多多",content:"来就免",point:"114.072058|22.63664",isOpen:0,icon:{w:27,h:35,l:0,t:0,x:6,lb:5}}
 		 ];
     //创建marker
     function addMarker(){
@@ -47,11 +47,12 @@
             var p0 = json.point.split("|")[0];
             var p1 = json.point.split("|")[1];
             var point = new BMap.Point(p0,p1);
-			var iconImg = createIcon(json.icon);
+	    var iconImg = createIcon(json.icon);
             var marker = new BMap.Marker(point,{icon:iconImg});
-			var iw = createInfoWindow(i);
-			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
-			marker.setLabel(label);
+	    var iw = createInfoWindow(i);
+	    //var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+            var label = new BMap.Label("",{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20), "border":0});
+			//marker.setLabel(label);
             map.addOverlay(marker);
             label.setStyle({
                         borderColor:"#808080",
@@ -67,10 +68,10 @@
 				    this.openInfoWindow(_iw);
 			    });
 			    _iw.addEventListener("open",function(){
-				    _marker.getLabel().hide();
+				    //_marker.getLabel().hide();
 			    })
 			    _iw.addEventListener("close",function(){
-				    _marker.getLabel().show();
+				    //_marker.getLabel().show();
 			    })
 				label.addEventListener("click",function(){
 				    _marker.openInfoWindow(_iw);
@@ -90,7 +91,13 @@
     }
     //创建一个Icon
     function createIcon(json){
-        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        var icon = new BMap.Icon("index/images/mmarker0.png",
+                                 new BMap.Size(json.w,json.h),
+                                 {
+                                     imageOffset: new BMap.Size(-json.l,-json.t),
+                                     infoWindowOffset:new BMap.Size(json.lb+5,1),
+                                     offset:new BMap.Size(json.x,json.h)
+                                 })
         return icon;
     }
     
