@@ -537,7 +537,8 @@ footer .social_icon a:hover
 
 /* start templatemo 680 media quires */
 @media only screen and ( max-width: 680px ) {
-	.navbar-default .navbar-nav li a { border-bottom: 1px solid #f6f6f6; line-height: normal; height: 40px; }
+    .navbar-default .navbar-nav li a { border-bottom: 1px solid #f6f6f6; line-height: normal; height: 40px; }
+}
 /* end templatemo 680 media quires */
 
 /* start templatemo 600 media quires */
@@ -552,3 +553,22 @@ footer .social_icon a:hover
 	}
 }
 /* end templatemo 600 media quires */
+
+/* footer */
+@media (min-width: 900px) {
+    #companyName, #companyAddress, #companyTel
+    {
+        display:inline-block;
+    }
+    #companyAddress
+    {
+        margin-left:50px;
+        margin-right:50px;
+    }
+}
+@media (max-width: 899px) {
+    #companyName, #companyAddress, #companyTel
+    {
+        display:block;
+    }
+}
