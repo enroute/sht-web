@@ -1,5 +1,7 @@
 var API_VERSION = "1";
 var API_PREFIX = "http://api.shequshenghuotong.com/ForCustomer/";
+var API_URL_OAUTH = "http://api.shequshenghuotong.com/Oauth.aspx";
+
 var API_URL_FAVORITE               = API_PREFIX + "favorite.aspx";
 var API_URL_UNFAVORITE             = API_PREFIX + "favorite.aspx?unfavorite=1";
 //var API_URL_UNFAVORITE             = API_PREFIX + "favorite?unfavorite=1";
@@ -163,13 +165,13 @@ function getRequestParameterString(){
 
 var requestParameterString = getRequestParameterString();
 var session = getQueryString('session');
-var sessionParameterString = "session=" + session;
+//var sessionParameterString = "session=" + session;
 
 function buildRequestUrl(url, param) {
     var params = param;
-    if(sessionParameterString != ""){
-        params += "&" + sessionParameterString;
-    }
+    // if(sessionParameterString != ""){
+    //     params += "&" + sessionParameterString;
+    // }
 
     if(useLocalApi){
 	params += "&useLocalApi=" + useLocalApi;
@@ -243,6 +245,9 @@ function isNull(a){
     return typeof a == 'undefined' || a == undefined || a == null;
 }
 
+function isEmpty(a){
+    return isNull(a) || a == "";
+}
 
 // fill template
 function formatTemplate(dta, tmpl){
@@ -313,3 +318,74 @@ function isRefresh(dy){
     return ($(window).scrollTop() + $(window).height() + 300 >= $(document).height() && dy < -10) ||
         ($(window).scrollTop() + $(window).height() + 100 >= $(document).height() && dy <= 0);
 }
+
+function setCookie(c_name,value,expiredays){
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+        ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+}
+
+function getCookie(c_name){
+    if (document.cookie.length>0)
+    {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        { 
+            c_start=c_start + c_name.length+1 
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+            return unescape(document.cookie.substring(c_start,c_end))
+        } 
+    }
+    return ""
+}
+
+function getPageFileName(){
+    var s=location.href;
+    s=s.replace(/\?.*$/,'');
+    s=s.replace(/^.*\//,'');
+    return s;
+}
+
+function getLocationWithSessionRemoved(){
+    var file = location.href.replace(/\?.*$/,'');
+
+    var param = window.location.search;
+    param = param.replace(/^\?/,"");
+    console.log(param);
+    param = param.replace(/(^|&)session=[^&]*/,'');
+    param = param.replace(/^&+/,"");
+
+    if(!isEmpty(param)){
+        file += "?" + param;
+    }
+
+    console.log(file);
+
+    return file;
+}
+
+function redirectIfNecessary(){
+    var redirectLoc = getLocationWithSessionRemoved();
+
+    if(!isEmpty(session)){
+        setCookie("session",session,1);
+        window.location.href = redirectLoc;
+        return;
+    }
+
+    var cookieSession = getCookie("session");
+    if(isEmpty(cookieSession)){
+        //TODO:should redirect to authority page
+        console.log("no session, should redirect to authority page");
+        window.location.href = API_URL_OAUTH;
+    }else{
+        // update session from cookie
+        session=cookieSession;
+    }
+
+    console.log("session = " + session);
+}
+        
+redirectIfNecessary();
