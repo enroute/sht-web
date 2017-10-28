@@ -29,7 +29,7 @@
 
 <script type="text/javascript">
  function getShopListHtml(selector, config) {
-     var url = buildRequestUrl(config.url, "page=" + config.page);
+     var url = buildRequestUrl(config.url, "&page=" + config.page);
      console.log(url);
      var records = 0;
      $.ajax({

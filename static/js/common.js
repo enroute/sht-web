@@ -171,6 +171,9 @@ var session = getQueryString('session');
 
 function buildRequestUrl(url, param) {
     var params = param;
+    if(isNull(params)){
+        params = "";
+    }
     
     if(session != "" && url.indexOf("session=" + session) == -1){
         params += "&session=" + session;
