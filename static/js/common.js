@@ -172,7 +172,7 @@ var session = getQueryString('session');
 function buildRequestUrl(url, param) {
     var params = param;
     if(session != ""){
-        params += "&session" + session;
+        params += "&session=" + session;
     }
 
     if(useLocalApi){
