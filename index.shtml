@@ -136,7 +136,7 @@ $(function(){
             // try again
             setTimeout(function(){
                 if(isRefresh(dy)){
-                    getCouponListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+                    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
                 }
             },200);
         }
