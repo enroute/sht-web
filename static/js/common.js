@@ -171,11 +171,12 @@ var session = getQueryString('session');
 
 function buildRequestUrl(url, param) {
     var params = param;
-    if(session != ""){
+    
+    if(session != "" && url.indexOf("session=" + session) == -1){
         params += "&session=" + session;
     }
 
-    if(useLocalApi){
+    if(useLocalApi && url.indexOf("useLocalApi") == -1){
 	params += "&useLocalApi=" + useLocalApi;
     }
 
@@ -359,7 +360,7 @@ function getLocationWithSessionRemoved(){
     param = param.replace(/(^|&)session=[^&]*/,'');
     param = param.replace(/^&+/,"");
 
-    if(!isEmpty(param)){
+    if(!isEmpty(param) && !isNull(param) && param != "undefined"){
         file += "?" + param;
     }
 
