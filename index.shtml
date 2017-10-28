@@ -29,7 +29,7 @@
 <body>
 
 <script type="text/javascript">
-  var BANNER_URL = API_URL_GET_BANNER_LIST_HOME;
+  var BANNER_URL = buildRequestUrl(API_URL_GET_BANNER_LIST_HOME);
 </script>
 <!--#include virtual="include/banner.html" -->
 
