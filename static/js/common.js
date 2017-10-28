@@ -1,3 +1,5 @@
+var IS_DEBUG = true;
+
 var API_VERSION = "1";
 var API_PREFIX = "http://api.shequshenghuotong.com/ForCustomer/";
 var API_URL_OAUTH = "http://api.shequshenghuotong.com/Oauth.aspx";

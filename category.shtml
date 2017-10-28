@@ -21,11 +21,27 @@
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
     <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
     <script type="text/javascript" src="static/js/common.js"></script>
+    <script type="text/javascript">
+      var titles = [
+          "餐饮美食",
+          "休闲娱乐",
+          "教育培训",
+          "美体健身",
+          "便利超市",
+          "汽车旅游",
+          "上门服务",
+          "其他服务"
+      ];
+
+      //document.title = decodeURI(getQueryString("title"));
+      var category = getQueryString("category");
+      if (isEmpty(category)) category = "0";
+      category = parseInt(category);
+      if (category < 0 || category >= titles.length) category = 0;
+      document.title = titles[category];
+    </script>
 
     <script type="text/javascript" src="//3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
-    <script type="text/javascript">
-      document.title = decodeURI(getQueryString("title"));
-    </script>
 </head>
 
 <body>
@@ -60,9 +76,9 @@
   var FOOTER_ACTIVE_INDEX=-1;
   var currentActiveTab = 0;
   var tabs = [
-      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_SHOP_LIST_NEAREST, "type":"20", "noMore":false, "page":0},
-      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_SHOP_LIST_RATING , "type":"21", "noMore":false, "page":0},
-      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url": API_URL_GET_SHOP_LIST_HOTTEST, "type":"22", "noMore":false, "page":0}
+      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": buildRequestUrl(API_URL_GET_SHOP_LIST_NEAREST, "category=" + category), "type":"20", "noMore":false, "page":0},
+      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": buildRequestUrl(API_URL_GET_SHOP_LIST_RATING,  "category=" + category), "type":"21", "noMore":false, "page":0},
+      {"tabSelector":"#navbarItem2", "selector":"#itemType2", "url": buildRequestUrl(API_URL_GET_SHOP_LIST_HOTTEST, "category=" + category), "type":"22", "noMore":false, "page":0}
   ];
 </script>
 <!--#include virtual="include/footer.html" -->

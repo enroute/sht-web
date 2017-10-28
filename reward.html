@@ -254,6 +254,8 @@ function autoScrollVertical(obj){
 		res.data.prize_list.forEach(function(element){
 		    element.dateFrom = element.start_date.replace(/\-/g,'.');
 		    element.dateTo = element.expired_date.replace(/\-/g,'.');
+                    element.dateFrom = element.dateFrom.replace(/T.*$/,'');
+                    element.dateTo = element.expired_date.replace(/T.*$/,'');
 		});
 
 		data = res;

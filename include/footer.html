@@ -30,6 +30,9 @@
      $(footerImgItems[i]).attr('src', getImage(IMG.footer[i].normal));
  }
 
+ if(IS_DEBUG){
+     $("#footerPMyself").html("session=" + session");
+
  function removeFooterActive(index){
      $(footerImgItems[index]).attr('src', getImage(IMG.footer[index].normal));
      $(footerPItems[index]).removeClass("footerItemPActive");
