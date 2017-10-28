@@ -5,7 +5,7 @@ var API_PREFIX = "http://api.shequshenghuotong.com/ForCustomer/";
 var API_URL_OAUTH = "http://api.shequshenghuotong.com/Oauth.aspx";
 
 var API_URL_FAVORITE               = API_PREFIX + "favorite.aspx";
-var API_URL_UNFAVORITE             = API_PREFIX + "favorite.aspx?unfavorite=1";
+var API_URL_UNFAVORITE             = API_PREFIX + "favorite.aspx?favorite=0";
 //var API_URL_UNFAVORITE             = API_PREFIX + "favorite?unfavorite=1";
 
 var API_URL_GET_BANNER_LIST_HOME   = API_PREFIX + "getBannerList.aspx?level=1";
@@ -30,7 +30,7 @@ var API_URL_GET_SHOP_LIST          = API_PREFIX + "getShopList.aspx";
 var API_URL_GET_SHOP_LIST_NEAREST  = API_PREFIX + "getShopList.aspx?tag=2";
 var API_URL_GET_SHOP_LIST_RATING   = API_PREFIX + "getShopList.aspx?tag=3";
 var API_URL_GET_SHOP_LIST_HOTTEST  = API_PREFIX + "getShopList.aspx?tag=4";
-var API_URL_GET_SHOP_LIST_FAVORITE = API_PREFIX + "getShopList.aspx";
+var API_URL_GET_SHOP_LIST_FAVORITE = API_PREFIX + "getFavoriteShopList.aspx";
 
  // index
 var API_URL_GET_SHOP_LIST_NEARBY = API_PREFIX + "getShopList.aspx?category=8&tag=0";
