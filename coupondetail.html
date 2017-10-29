@@ -80,6 +80,9 @@
 	       data.expiredDateFrom = data.expiredDateFrom.replace(/\-/g,'.');
 	       data.expiredDateTo = data.expiredDateTo.replace(/\-/g,'.');
 
+               data.expiredDateFrom = data.expiredDateFrom.replace(/T.*/,'');
+               data.expiredDateTo = data.expiredDateTo.replace(/T.*/,'');
+
 	       var renderData = data;
 	       var snOriginal = data.sn;
 	       renderData.sn = renderData.sn.replace(/\s/g,'').replace(/(.{4})/g,"$1 ");
