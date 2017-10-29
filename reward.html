@@ -249,6 +249,7 @@ function autoScrollVertical(obj){
 		if (res.status != 0 || res.data.prize_list.length <=0) {
                     //TODO:
                     alert("商家还未设置奖券，敬请期待 -:)");
+                    window.history.back();
                     return;
                 }
 
