@@ -202,7 +202,15 @@ $("#roulettetxt").click(function(){
 	type:"get",
 	dataType: "json",
         success:function(res){
-	    if(res.status != 0) return;
+            if(res.status == 5){
+                alert("你今日的抽奖已达上限，请改天再来:-)");
+                isRolling = false;
+                return;
+            }else if(res.status != 0){
+                alert("Oops :-)");
+                isRolling = false;
+                return;
+            }
 	    result = res; // save it for further usage
 	    rotateIt(result.data.prize.index);
 	},
