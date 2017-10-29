@@ -1,4 +1,4 @@
-var IS_DEBUG = true;
+// var IS_DEBUG = true;
 
 var API_VERSION = "1";
 var API_PREFIX = "http://api.shequshenghuotong.com/ForCustomer/";
@@ -11,6 +11,10 @@ var API_URL_UNFAVORITE             = API_PREFIX + "favorite.aspx?favorite=0";
 var API_URL_GET_BANNER_LIST_HOME   = API_PREFIX + "getBannerList.aspx?level=1";
 var API_URL_GET_BANNER_LIST_CATE   = API_PREFIX + "getBannerList.aspx?level=2";
 var API_URL_GET_BANNER_LIST        = API_PREFIX + "getBannerList.aspx?level=1";
+
+API_URL_GET_BANNER_LIST_HOME   = "api/v1/getBannerList1";
+API_URL_GET_BANNER_LIST_CATE   = "api/v1/getBannerList2";
+API_URL_GET_BANNER_LIST        = "api/v1/getBannerList";
 
 var API_URL_GET_COUPON_DETAIL      = API_PREFIX + "getCouponDetail.aspx";
 
