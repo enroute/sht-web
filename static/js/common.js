@@ -167,7 +167,7 @@ function getRequestParameterString(){
 
 var requestParameterString = getRequestParameterString();
 var session = getQueryString('session');
-//var sessionParameterString = "session=" + session;
+var sessionParameterString = "session=" + session;
 
 function buildRequestUrl(url, param) {
     var params = param;
@@ -389,6 +389,7 @@ function redirectIfNecessary(){
     }else{
         // update session from cookie
         session=cookieSession;
+        sessionParameterString = "session=" + session;
     }
 
     console.log("session = " + session);

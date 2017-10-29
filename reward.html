@@ -204,7 +204,10 @@ $("#roulettetxt").click(function(){
 	    if(res.status != 0) return;
 	    result = res; // save it for further usage
 	    rotateIt(result.data.prize.index);
-	}
+	},
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("出错了:" + textStatus);
+        }
     });
 });
 
