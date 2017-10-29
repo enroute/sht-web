@@ -189,11 +189,15 @@ function buildRequestUrl(url, param) {
 
     if(url.indexOf("?") == -1){
         // url does not contain "?"
-        return url + "?" + params;
+        url += "?" + params;
     }else{
         // url contains "?"
-        return url + params;
+        url += params;
     }
+
+    url = url.replace(/\?&+/,"?");
+    url = url.replace(/&+/g,"&");
+    return url;
 }
 
 function formatDistance(d) {

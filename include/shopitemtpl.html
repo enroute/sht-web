@@ -51,6 +51,11 @@
 	     res.data.shop_list.forEach(function(element){
 		 //element.tag = element.tags.join(" ");
 		 element.tag = element.tags;
+
+                 // adapt backend inconsistt data
+                 if(element.tag == null) element.tag = element.Tags;
+                 if(element.logo == null) element.logo = element.Logo;
+
 		 element.distance = element.distance > 1000 ? "" + (element.distance/1000) + "km" : "" + element.distance + "m";
                  //hide free tag if none
                  element.style = "";
