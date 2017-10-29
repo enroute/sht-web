@@ -69,8 +69,8 @@
   var FOOTER_ACTIVE_INDEX=0;
   var currentActiveTab = 0;
   var tabs = [
-      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_SHOP_LIST_NEARBY, "type":"8", "noMore":false, "page":0},
-      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_SHOP_LIST_PREFER, "type":"9", "noMore":false, "page":0}
+      {"tabSelector":"#navbarItem0", "selector":"#itemType0", "url": API_URL_GET_SHOP_LIST_NEARBY, "type":"8", "noMore":false, "page":1},
+      {"tabSelector":"#navbarItem1", "selector":"#itemType1", "url": API_URL_GET_SHOP_LIST_PREFER, "type":"9", "noMore":false, "page":1}
   ];
 </script>
 <!--#include virtual="include/footer.html" -->
