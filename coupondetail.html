@@ -17,7 +17,7 @@
 
     <div class="content">
         <script type="text/html" id="tpl">
-            <a href="shopdetail.shtml?session={{session}}&shopid={{shopId}}&useLocalApi={{useLocalApi}}">
+            <a href="shopdetail.shtml?session={{session}}&shopid={{shopid}}&useLocalApi={{useLocalApi}}">
                 <div class="header">
                     <div class="logo"><img class="logoImg" src="static/images/mycenter_icon_free@2x.png" /></div>
                     <div class="textWrapper">
@@ -74,7 +74,7 @@
 	       }
 
 	       var data = res.data;
-	       data.session = getQueryString("session");
+	       data.session = session;//getQueryString("session");
 	       data.useLocalApi = getQueryString("useLocalApi");
 
 	       data.expiredDateFrom = data.expiredDateFrom.replace(/\-/g,'.');

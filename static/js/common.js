@@ -56,7 +56,7 @@ function getQueryString(name) {
 }
 
 var useLocalApi = getQueryString("useLocalApi");
-console.log("useLocalApi=" + useLocalApi);
+//console.log("useLocalApi=" + useLocalApi);
 
 if(useLocalApi) {
     API_VERSION = "1";
@@ -238,7 +238,7 @@ function includeAllHtmlFile() {
     var includes = $('[data-include]');
     jQuery.each(includes, function() {
         var file = 'include/' + $(this).data('include') + '.html';
-        console.log($(this).data('include'));
+        //console.log($(this).data('include'));
         // POST XHR http://mobile.shequshenghuotong.com/include/footer.html not allowed in nginx
         // if ($(this).data('include') == 'footer'){
         //     file += "?active=" + FOOTER_ACTIVE_INDEX; // javascript could not retrieve this parameter?
@@ -276,7 +276,7 @@ function formatTemplate(dta, tmpl){
 }
 
 $(window).on("load", function(){
-    console.log("" + $(this).scrollTop() + ", " + $(this).height() + ", " + $(document).height());
+    //console.log("" + $(this).scrollTop() + ", " + $(this).height() + ", " + $(document).height());
 });
 
 function swipeDetect(el, callback){
@@ -323,7 +323,7 @@ function swipeDetect(el, callback){
         // Fixme: sometimes scrollTop is much smaller than expected when called immediately
         handleswipe(swipedir,distX,distY);
         var a = {"distX":distX, "distY":distY, "elapsedTime":elapsedTime, "allowedTime":allowedTime};
-        console.log(a);
+        //console.log(a);
         //e.preventDefault()
     }, false)
 }

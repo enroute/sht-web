@@ -253,7 +253,11 @@ function autoScrollVertical(obj){
             url:url,
             type:"get",
             dataType: "json",
+            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("出错了:" + textStatus);
+            },
             success:function(res){
+                console.log(res);
 		if (res.status != 0 || res.data.prize_list.length <=0) {
                     //TODO:
                     alert("商家还未设置奖券，敬请期待 -:)");
