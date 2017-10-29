@@ -158,22 +158,25 @@
 
 	     $("#call").html(Mustache.render(document.getElementById('tplCall').innerHTML.trim(), data));
              //$("#btnLuckyDraw").attr("href", Mustache.render($("#btnLuckyDraw").attr("href"), data));
-             $("#btnLuckyDraw").attr("href", buildRequestUrl("reward.html", "shopid=" + data.shopid));
+             $("#btnLuckyDraw").attr("href", buildRequestUrl("reward.html", "&shopid=" + data.shopid));
 
 
 	     $("#favoriteBtn").on("click", function(event){
 		 var url;
 		 if($("#favoriteBtn").html() == "取消关注"){
-		     url = buildRequestUrl(API_URL_UNFAVORITE, "shopid=" + $(this).attr('shopid'));
+		     url = buildRequestUrl(API_URL_UNFAVORITE, "&shopid=" + $(this).attr('shopid'));
 		 }else{
-		     url = buildRequestUrl(API_URL_FAVORITE, "shopid=" + $(this).attr('shopid'));
+		     url = buildRequestUrl(API_URL_FAVORITE, "&shopid=" + $(this).attr('shopid'));
 		 }
 		 $.ajax({
 		     url:url,
 		     type:"get",
 		     dataType: "json",
 		     success:function(res){
-			 if (0 != res.status) return;
+                         console.log(res);
+                         //TODO: FIXME, THIS API's STATUS CODE IS NOT CORRECTLY RETURNED!!
+			 //if (0 != res.status && "0" != res.status) return;
+                         
 			 $("#favoriteBtn").html(getFavoriteActionText(res.data.favorite));
 			 $("#favoriteUsers").html(res.data.favorite_users);
 		     }
