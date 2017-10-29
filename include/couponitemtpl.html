@@ -33,7 +33,7 @@
 //    }
 
   function getCouponListHtml(selector, config) {
-      var url = buildRequestUrl(config.url, "page=" + config.page);
+      var url = buildRequestUrl(config.url, "&page=" + config.page);
       var backgroundImage = config.bg;
       console.log(url);
       var records = 0;
