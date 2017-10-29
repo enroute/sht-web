@@ -149,7 +149,8 @@
 	     data.session = getQueryString("session");
 
 	     // use the first image only
-	     data.introImage = data.introImage[0];
+	     //data.introImage = data.introImage[0];
+             data.introImage = data.introImage.split(";")[0];
 	     data.favoriteActionText = getFavoriteActionText(data.favorite);
 	     $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), data));
 	     // update title

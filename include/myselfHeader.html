@@ -5,7 +5,7 @@
       <div class="myselfHeaderName">{{nickname}}</div>
       <div class="myselfHeaderSignIn" id="aSignIn">{{signInText}}</div>
     </div>
-    <div class="myselfHeaderContinuousSignIn">已连续签到{{continuous_signins}}天</div>
+    <div class="myselfHeaderContinuousSignIn">已连续签到<span id="signDays">{{continuous_signins}}</span>天</div>
   </script>
 </div>
 
@@ -55,6 +55,7 @@
 
                                 //updateScoreInfo(scoreInfo);
                                 $("#aSignIn").html(getSignInText(true));
+                                $("#signDays").html(scoreInfo.data.continuous_signins);
                                 isSignIn = true;
                             }
                         });
