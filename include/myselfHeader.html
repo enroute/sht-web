@@ -3,7 +3,7 @@
     <div class="myselfHeaderCenter">
       <div class="myselfHeaderLogo"><img src="{{avatar}}" /></div>
       <div class="myselfHeaderName">{{nickname}}</div>
-      <div class="myselfHeaderSignIn">{{signInText}}</div>
+      <div class="myselfHeaderSignIn" id="aSignIn">{{signInText}}</div>
     </div>
     <div class="myselfHeaderContinuousSignIn">已连续签到{{continuous_signins}}天</div>
   </script>
@@ -42,7 +42,28 @@
 
 		res.data.signInText = getSignInText(res.data.sign_in_status);
 		$("#myselfHeader").html(Mustache.render(document.getElementById('tplMyselfHeader').innerHTML.trim(), res.data));
-	    }
-	});	       
+                var isSignIn = res.status.sign_in_status;
+                $("#aSignIn").on("click", function(event){
+                    //$("#aSignIn").click(function(){
+                    if(! isSignIn){
+                        $.ajax({
+                            url:buildRequestUrl(API_URL_SIGN_IN, ""),
+                            type:"get",
+                            success:function(data){
+                                var scoreInfo = JSON.parse(data);
+                                if(0 != scoreInfo.status) return;
+
+                                //updateScoreInfo(scoreInfo);
+                                $("#aSignIn").html(getSignInText(true));
+                                isSignIn = true;
+                            }
+                        });
+                    }
+
+                    return false;
+                });
+
+            }
+	});
     });
 </script>
