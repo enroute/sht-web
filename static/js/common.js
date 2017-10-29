@@ -1,4 +1,4 @@
-// var IS_DEBUG = true;
+var IS_DEBUG = false;
 
 var API_VERSION = "1";
 var API_PREFIX = "http://api.shequshenghuotong.com/ForCustomer/";
