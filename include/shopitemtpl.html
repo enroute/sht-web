@@ -29,8 +29,12 @@
 
 <script type="text/javascript">
  function getShopListHtml(selector, config) {
+     if(config.noMore) return;
+
      var url = buildRequestUrl(config.url, "&page=" + config.page);
      console.log(url);
+     console.log(config);
+
      var records = 0;
      $.ajax({
          url:url,
@@ -42,6 +46,7 @@
 	     if (res.status != 0) {
 		 // TODO: no more data should have a specific status code
 		 config.noMore = true;
+                 $(".noMoreHint").show();
 		 return;
 	     }
 
@@ -128,6 +133,10 @@
 
              $('.stars').stars();
 
+             if(res.data.shop_list.length < 10) {
+                 config.noMore = true;
+                 $(".noMoreHint").show();
+             }
 	 },
 	 error: function (XMLHttpRequest, textStatus, errorThrown) {
 	     //              $("#p_test").innerHTML = "there is something wrong!";

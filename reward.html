@@ -126,7 +126,8 @@ function drawRoulettePrizes(prizes){
     var canvas = document.getElementById("wheelcanvas");
     var ctx = canvas.getContext("2d");
     var img = document.getElementById("imgFreeCoupon");
-    var arc = Math.PI / (prizes.length/2);
+    //var arc = Math.PI / (prizes.length/2);
+    var arc = Math.PI / (6/2);
     var startAngle = 0;
     for(var i = 0; i < 6; i++){
 	ctx.font = 'bold 24px Microsoft YaHei';

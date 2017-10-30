@@ -33,6 +33,8 @@
 //    }
 
   function getCouponListHtml(selector, config) {
+      if(config.noMore) return;
+
       var url = buildRequestUrl(config.url, "&page=" + config.page);
       var backgroundImage = config.bg;
       console.log(url);
@@ -46,6 +48,7 @@
               if(res.status != 0){
                   /* TODO: no more data should have a specific status code */
                   config.noMore = true;
+                  $(".noMoreHint").show();
                   return;
               }
 
@@ -67,6 +70,12 @@
 		  console.log($(this).attr("sn"));
 		  location.href = "coupondetail.html?" + sessionParameterString + "&sn=" + $(this).attr("sn");
 	      });
+
+              if(res.data.coupon_list.length < 10){
+                  config.noMore = true;
+                  $(".noMoreHint").show();
+              }
+
 	  },
 	  error: function (XMLHttpRequest, textStatus, errorThrown) {
 	      //              $("#p_test").innerHTML = "there is something wrong!";

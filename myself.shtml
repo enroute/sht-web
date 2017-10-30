@@ -40,6 +40,8 @@
 
 <!--#include virtual="include/couponitemtpl.html" -->
 
+<div class="noMoreHint">~到底啦~</div>
+
 <script type="text/javascript">
   var FOOTER_ACTIVE_INDEX=2;
   var currentActiveTab = 0;
