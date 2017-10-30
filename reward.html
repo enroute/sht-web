@@ -239,7 +239,7 @@ $("#roulettetxt").click(function(){
                 return;
             }
 	    result = res; // save it for further usage
-	    setTimeout(rotateIt(result.data.prize.index),5000);
+	    rotateIt(result.data.prize.index - 1); //1-based
 	},
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             xhrDrawResult = null;
