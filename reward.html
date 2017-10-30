@@ -92,8 +92,26 @@ var isDataReady = false;
 var isRolling = false;
 var result;
 var data;
+var xhrDrawResult;
+
+function rotateToPrepare(){
+    $("#wheelcanvas").rotate({
+	angle:0,
+	animateTo:3600,
+	duration:16000,
+	callback:function (){
+            if(xhrDrawResult != null){
+                xhrDrawResult.abort();
+                alert("出错了@_@");
+            }
+        }
+    });  
+}
 
 function rotateIt(i){
+    // $("#wheelcanvas").stopRotate();
+    // return;
+
     $("#wheelcanvas").rotate({
 	angle:0,
 	animateTo:3600 - i * (360 / 6),
@@ -198,24 +216,34 @@ $("#roulettetxt").click(function(){
     isRolling = true;
     var url = buildRequestUrl(API_URL_GET_LUCKY_DRAW_RESULT, "id=" + data.data.id);
     console.log(data);
-    $.ajax({
+
+    // rotate it anyway
+    rotateToPrepare();
+     
+    xhrDrawResult = $.ajax({
 	url:url,
 	type:"get",
 	dataType: "json",
         success:function(res){
             if(res.status == 5){
-                alert("你今日的抽奖已达上限，请改天再来:-)");
+                $("#wheelcanvas").stopRotate();
+                xhrDrawResult = null;
                 isRolling = false;
+                alert("你今日的抽奖已达上限，请改天再来:-)");
                 return;
             }else if(res.status != 0){
-                alert("Oops :-)");
+                $("#wheelcanvas").stopRotate();
+                xhrDrawResult = null;
                 isRolling = false;
+                alert("出错了 :-(");
                 return;
             }
 	    result = res; // save it for further usage
-	    rotateIt(result.data.prize.index);
+	    setTimeout(rotateIt(result.data.prize.index),5000);
 	},
         error: function (XMLHttpRequest, textStatus, errorThrown) {
+            xhrDrawResult = null;
+            $("#wheelcanvas").stopRotate();
             alert("出错了:" + textStatus);
         }
     });
