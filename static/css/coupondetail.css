@@ -75,7 +75,6 @@ headerTopSpacer {
 .couponImg {
   object-fit: contain;
   width: 100%;
-  max-height: 8rem;
 }
 .couponSNText {
   margin-top: 0.66666667rem;
