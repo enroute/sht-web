@@ -102,22 +102,7 @@ function setActive(index){
     }
 }
 
-$(function(){
-    updateLocation();
-    $(".refreshLocation").on("click", "img", function(){
-	updateLocation();
-    });
-
-    $(".navbarText .item").on("click", function(){
-        for(var i = 0; i < tabs.length; i++){
-            if (tabs[i].type == $(this).attr("type")) {
-                setActive(i);
-            }
-        }       
-
-        return false;
-    });
-
+ function populateList(){
     for(var i = 0; i < tabs.length; i++){
         getShopListHtml(tabs[i].selector, tabs[i]);
     }
@@ -138,28 +123,46 @@ $(function(){
             },200);
         }
     });
+ }
+
+$(function(){
+    //updateLocation();
+    $(".refreshLocation").on("click", "img", function(){
+	updateLocation();
+    });
+
+    $(".navbarText .item").on("click", function(){
+        for(var i = 0; i < tabs.length; i++){
+            if (tabs[i].type == $(this).attr("type")) {
+                setActive(i);
+            }
+        }       
+
+        return false;
+    });
+
+     //Not until location is ready
+     //populateList();
 });
 
-var geolocation = new qq.maps.Geolocation("EQIBZ-BOD3S-RQUOM-6H3IT-J3YOK-P6BUS", "mdd");
-var positionNum = 0;
-var options = {timeout: 8000};
-var currentPosition;
+ getGeoLocation(
+     {
+         onSuccess:function(position){
+             console.log("------getGeoLocation-----------");
 
-function updateLocation(){
-    geolocation.getLocation(showPosition, showErr, options);
-    console.log("positionNum=" + positionNum);
-    console.log(currentPosition);
-}
-function showPosition(position) {
-    positionNum ++;
-    currentPosition = position;
-    console.log("addr=" + currentPosition.addr);
-    $("#currentLocation").html(currentPosition.city + currentPosition.addr);
-};
+             currentPosition = position;
+             $("#currentLocation").html(currentPosition.city + currentPosition.addr);
+             populateList();
 
-function showErr() {
-    positionNum ++;
-    $("#currentLocation").html("定位失败");
-};
+             console.log("------getGeoLocation-----------");
+         },
+         onError:function(){
+             $("#currentLocation").html("定位失败");
+             console.log("error");
+         }
+     },
+     {timeout:20000}
+ );
+
 </script>
 </html>

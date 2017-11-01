@@ -355,6 +355,15 @@ function getCookie(c_name){
     return ""
 }
 
+// Start of geolocation
+var currentPosition = null;
+function getGeoLocation(callback, options) {
+    var geolocation = new qq.maps.Geolocation("EQIBZ-BOD3S-RQUOM-6H3IT-J3YOK-P6BUS", "mdd");
+    console.log("==================== getting geolocation");
+    geolocation.getLocation(callback.onSuccess, callback.onError, options);
+}
+// end of geolocation
+
 function getPageFileName(){
     var s=location.href;
     s=s.replace(/\?.*$/,'');

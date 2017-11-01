@@ -32,6 +32,10 @@
      if(config.noMore) return;
 
      var url = buildRequestUrl(config.url, "&page=" + config.page);
+     if(!isNull(currentPosition)){
+         url += "&lat=" + currentPosition.lat + "&lng=" + currentPosition.lng;
+     }
+
      console.log(url);
      console.log(config);
 

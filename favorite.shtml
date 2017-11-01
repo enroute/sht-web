@@ -20,7 +20,9 @@
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
     <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
     <link rel="stylesheet" type="text/css" href="static/css/myself.css">
-    <script type="text/javascript" src="static/js/common.js"></script>
+
+    <script type="text/javascript" src="//3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script src="static/js/common.js"></script>
 
     <style type="text/css">
     .shopItemLuckyBtn, .shopItemHot, .star { display:none; }
@@ -68,19 +70,12 @@ function setActive(index){
     }
 }
 
-$(function(){
+function populateList(){
     for(var i = 0; i < tabs.length; i++){
         getShopListHtml(tabs[i].selector, tabs[i]);
     }
     $(tabs[currentActiveTab].selector).show();
 
-    // $(window).scroll(function(){
-    //     if(tabs[currentActiveTab].noMore) return;
-
-    //     if($(this).scrollTop() + $(this).height() == $(document).height()){
-    //         getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
-    //     }
-    // });
     swipeDetect(document, function(swipedir,dx,dy){
         if(isRefresh(dy)){
             getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
@@ -95,7 +90,25 @@ $(function(){
                 }
             },200);
         }
-    });
-});
+    })
+}
+
+getGeoLocation(
+    {
+        onSuccess:function(position){
+            console.log("------getGeoLocation-----------");
+
+            currentPosition = position;
+            populateList();
+
+            console.log("------getGeoLocation-----------");
+        },
+        onError:function(){
+            console.log("error");
+        }
+    },
+    {timeout:20000}
+);
+
 </script>
 </html>

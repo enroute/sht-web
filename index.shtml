@@ -21,7 +21,9 @@
 
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
     <link rel="stylesheet" type="text/css" href="static/css/shopitem.css">
-    <script type="text/javascript" src="static/js/common.js"></script>
+
+    <script type="text/javascript" src="//3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script src="static/js/common.js"></script>
 
     <script src="//int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
 </head>
@@ -79,6 +81,22 @@
 </body>
 
 <script type="text/javascript">
+ getGeoLocation(
+     {
+         onSuccess:function(position){
+             console.log("------getGeoLocation-----------");
+             console.log(position);
+             currentPosition = position;
+             populateList();
+             console.log("------getGeoLocation-----------");
+         },
+         onError:function(){
+             console.log("error");
+         }
+     },
+     {timeout:20000}
+ );
+
 function setActive(index){
     if (0 <= index && index < tabs.length){
         for(var i = 0; i < tabs.length; i++){
@@ -99,6 +117,29 @@ function updateLocation(){
     console.log(remote_ip_info);
     $("#locationCity").html(remote_ip_info.city);
 }
+
+ function populateList(){
+     for(var i = 0; i < tabs.length; i++){
+         getShopListHtml(tabs[i].selector, tabs[i]);
+     }
+     $(tabs[currentActiveTab].selector).show();
+
+     swipeDetect(document, function(swipedir,dx,dy){
+         if(isRefresh(dy)){
+             getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+         }else{
+             var msg = swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height();
+             console.log(msg);
+
+             // try again
+             setTimeout(function(){
+                 if(isRefresh(dy)){
+                     getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
+                 }
+             },200);
+         }
+     });
+ }
 
 $(function(){
     updateLocation();
@@ -122,26 +163,7 @@ $(function(){
         return false;
     });
 
-    for(var i = 0; i < tabs.length; i++){
-        getShopListHtml(tabs[i].selector, tabs[i]);
-    }
-    $(tabs[currentActiveTab].selector).show();
-
-    swipeDetect(document, function(swipedir,dx,dy){
-        if(isRefresh(dy)){
-            getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
-        }else{
-            var msg = swipedir + ", scrollTop=" + $(window).scrollTop() + ", window.height=" + $(window).height() + ", document.height=" + $(document).height();
-            console.log(msg);
-
-            // try again
-            setTimeout(function(){
-                if(isRefresh(dy)){
-                    getShopListHtml(tabs[currentActiveTab].selector, tabs[currentActiveTab]);
-                }
-            },200);
-        }
-    });
+     //populateList();
 });
 </script>
 </html>
