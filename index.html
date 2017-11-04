@@ -343,13 +343,16 @@
 
 	<script src="index/js/jquery.js"></script>
 	<script src="index/js/bootstrap.min.js"></script>
-	<script src="index/js/smoothscroll.js"></script>
+	<!-- <script src="index/js/smoothscroll.js"></script> -->
+        <script src="index/js/jquery.smooth-scroll.js"></script>
 	<script src="index/js/jquery.flexslider.js"></script>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
-	<script src="index/js/map.js"></script>
+	<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+	     <script src="index/js/map.js"></script> -->
 	<!-- start templatemo back to top js -->
 	<script>
 		$(document).ready(function() {
+                    $(".smoothScroll").smoothScroll();
+
 			// FlexSlider 
 		  	$('.flexslider').flexslider({
 		      animation: "fade",
