@@ -51,7 +51,7 @@
   <div id="roulettetxt"><img src="static/images/choujiang_img_wycj@3x.png"</img></div>
 </div>
 
-<div id="participant">参与人次: {{participants}}</div>
+<div id="participant">参与人次: <span id="pnum">{{participants}}</span></div>
 <div id="couponListTitle">奖券列表</div>
 
 <div id="couponListWrapper">
@@ -118,6 +118,9 @@
 	 duration:8000,
 	 callback:function (){
 	     console.log("rotateIt finished");
+             //update participants, +1
+             $("#pnum").html(parseInt($("#pnum").html()) + 1);
+             
 	     var r = data.data.prize_list[i];
 	     //r.sn = result.data.prize.sn;
              r.sn = result.data.prize.SN;
