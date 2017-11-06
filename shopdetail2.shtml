@@ -27,6 +27,8 @@
 
 <!--#include virtual="include/banner.html" -->
 
+<div id="session"></div>
+
 <div class="content">
     <script type="text/html" id="tpl">
       <div class="header">
@@ -118,7 +120,8 @@
  $(function(){
      //alert(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
      console.log(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
-     
+
+     $("#session").html(getQueryString("session"));
      // var data = {
      //     shopid:001283,
      //     avatar:"static/images/mycontent_img_touxiang@3x.png",
@@ -170,10 +173,10 @@
              $("#addressTextA").attr("href", "http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:"+data.latitude+","+data.longitude+";title:"+data.name+";addr:"+data.address + "&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp");
 
              //customize weixin share
-             /* wxSetConfig({
-              *     title:"免多多合作商铺 - " + data.name,
-              *     desc:data.introText
-              * });*/
+             wxSetConfig({
+                 title:"免多多合作商铺 - " + data.name,
+                 desc:data.introText
+             });
 
 	     $("#favoriteBtn").on("click", function(event){
 		 var url;
