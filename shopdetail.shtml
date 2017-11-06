@@ -170,10 +170,11 @@
              $("#addressTextA").attr("href", "http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:"+data.latitude+","+data.longitude+";title:"+data.name+";addr:"+data.address + "&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp");
 
              //customize weixin share
-             /* wxSetConfig({
-              *     title:"免多多合作商铺 - " + data.name,
-              *     desc:data.introText
-              * });*/
+             wxSetConfig({
+                 title:"免多多合作商铺 - " + data.name,
+                 desc:data.introText,
+                 link:wxShareUrlPrefix + "shopdetail.shtml?shopid=" + data.shopid
+             });
 
 	     $("#favoriteBtn").on("click", function(event){
 		 var url;
