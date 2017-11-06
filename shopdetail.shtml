@@ -50,7 +50,7 @@
                   <div class="addressWrapper">
                       <div class="addressImage"><img class="locLogo" src="static/images/dianpu_icon_website@3x.png" /></div>
                       <div class="addressText">
-                          <a href="map.html?session={{session}}&longitude={{longitude}}&latitude={{latitude}}">{{address}}</a>
+                          <a href="#" id="addressTextA">{{address}}</a>
                       </div>
                   </div>
                   <div class="tel"><a href="javascript:toggleCall();"><img src="static/images/dianpu_icon_tel@3x.png" /></a></div>
@@ -91,6 +91,8 @@
 </body>
 
 <script type="text/javascript">
+ var data;
+
  function getFavoriteActionText(favorite){
      if(favorite){
          return "取消关注";
@@ -145,7 +147,7 @@
 	     console.log(res);
              if (0 != res.status) return;
 
-	     var data = res.data;
+	     data = res.data;
 	     data.session = getQueryString("session");
 
 	     // use the first image only
@@ -162,6 +164,7 @@
              //$("#btnLuckyDraw").attr("href", Mustache.render($("#btnLuckyDraw").attr("href"), data));
              $("#btnLuckyDraw").attr("href", buildRequestUrl("reward.html", "&shopid=" + data.shopid));
 
+             $("#addressTextA").attr("href", "http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:"+data.latitude+","+data.longitude+";title:"+data.name+";addr:"+data.address + "&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp");
 
 	     $("#favoriteBtn").on("click", function(event){
 		 var url;
@@ -189,7 +192,6 @@
 	     });
 	 }
      });
-
 
  });
 </script>
