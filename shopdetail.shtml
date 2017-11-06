@@ -18,6 +18,9 @@
 
     <link rel="stylesheet" type="text/css" href="static/css/shopdetail.css">
     <script type="text/javascript" src="static/js/common.js"></script>
+
+    <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="static/js/wx.js"></script>
 </head>
 
 <body>
@@ -165,6 +168,12 @@
              $("#btnLuckyDraw").attr("href", buildRequestUrl("reward.html", "&shopid=" + data.shopid));
 
              $("#addressTextA").attr("href", "http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:"+data.latitude+","+data.longitude+";title:"+data.name+";addr:"+data.address + "&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp");
+
+             //customize weixin share
+             wxSetConfig({
+                 title:"免多多合作商铺 - " + data.name,
+                 desc:data.introText
+             });
 
 	     $("#favoriteBtn").on("click", function(event){
 		 var url;
