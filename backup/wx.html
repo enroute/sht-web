@@ -10,7 +10,7 @@
     <link type="image/x-icon" href="favicon.png" rel="icon" />
     <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
 
-    <script src="static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
@@ -30,10 +30,18 @@
          jsApiList: [
              'checkJsApi',
              'openLocation',
-             'getLocation'
+             'getLocation',
+             'onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ'
          ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
      });
  }
+
+ var title="标题";
+ var url="http://www.baidu.com";
+ var img="http://www.miandodo.com:8080/favicon.png";
+ var desc="这是描述";
+ var type="link";
+ var dataUrl="";          
 
  wx.ready(function () {
      wx.checkJsApi({
@@ -62,6 +70,31 @@
          },
          cancel: function (res) {
              alert('用户拒绝授权获取地理位置');
+         }
+     });
+
+     wx.onMenuShareAppMessage({
+         title:title,
+         desc:desc,
+         link:url,
+         imgurl:img,
+         type:type,//type: music/video/link, default is link
+         dataUrl:dataUrl,//link for data if type=music/vidoe
+         sucess:function(){
+         },
+         cancel:function(){
+         }
+     });
+
+     wx.onMenuShareTimeline({
+         title:title,
+         link:url,
+         imgUrl:img,
+         success:function(){
+             console.log("Thanks for sharing :-)");
+         },
+         cancel:function(){
+             console.log("User cancel the sharing");
          }
      });
  });
