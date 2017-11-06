@@ -121,7 +121,7 @@
      //alert(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
      console.log(window.navigator.appVersion + ", data-dpr=" + $("html").attr('data-dpr'));
 
-     $("#session").html(getQueryString("session"));
+     $("#session").html(session);
      // var data = {
      //     shopid:001283,
      //     avatar:"static/images/mycontent_img_touxiang@3x.png",
