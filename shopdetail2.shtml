@@ -176,7 +176,7 @@
              wxSetConfig({
                  title:"免多多合作商铺 - " + data.name,
                  desc:data.introText,
-                 link:"http://www.miandodo.com:8080/myself.shtml",
+                 link:wxShareUrlPrefix + "shopdetail.shtml?shopid=" + data.shopid,
                  imgUrl:"http://www.miandodo.com:8080/favicon.png"
              });
 
