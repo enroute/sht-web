@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- for UC compatibility -->
+    <meta name="wap-font-scale" content="no">
+
+    <title>免多多</title>
+
+    <link type="image/x-icon" href="favicon.png" rel="icon" />
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script src="../static/js/common.js"></script>
+</head>
+
+<body>
+
+
+</body>
+
+<script type="text/javascript">
+
+ getGeoLocation(
+     {
+         onSuccess:function(position){
+             console.log("------getGeoLocation-----------");
+             console.log(position);
+             console.log("------getGeoLocation-----------");
+         },
+         onError:function(){
+             console.log("error");
+         }
+     },
+     {timeout:20000}
+ );
+
+</script>
+</html>
