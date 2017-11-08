@@ -42,14 +42,26 @@
                  var bannerInnerHtml = "";
                  if (0 < bannerList.length){
                      indicatorsHtml = '<li data-target="#headerBanner" data-slide-to="0" class="active"></li>';
-                     bannerInnerHtml = '<div class="item active"><img src="' + bannerList[0].url + '" width="100%" alt="First slide"></div>';
+                     bannerInnerHtml = '<div class="item active"><a href="#" class="bannerHref" target="' + bannerList[0].target + '"><img src="' + bannerList[0].url + '" width="100%" alt="First slide"></a></div>';
                      for(var i = 1; i < bannerList.length; i++){
                          indicatorsHtml += '<li data-target="#headerBanner" data-slide-to="' + i + '"></li>';
-                         bannerInnerHtml += '<div class="item"><img src="' + bannerList[i].url + '" width="100%" alt="Second slide"></div>';
+                         bannerInnerHtml += '<div class="item"><a href="#" class="bannerHref" target="' + bannerList[i].target + '"><img src="' + bannerList[i].url + '" width="100%" alt="Second slide"></a></div>';
                      }
                  }
                  $('#headerBannerIndicators').html(indicatorsHtml);
                  $('#headerBannerInner').html(bannerInnerHtml);
+
+                 $(".bannerHref").on("click",function(){
+                     var target = $(this).attr("target");
+                     //alert(target);
+                     if(target.match("https?://")){
+                         location.href = target;
+                     }else{
+                         console.log("not valid url:" + target);
+                     }
+
+                     return false;
+                 });
 
                  // debug
                  // var elt = $(".carousel-indicators li:first");
