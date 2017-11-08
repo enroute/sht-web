@@ -411,5 +411,7 @@ function redirectIfNecessary(){
 
     console.log("session = " + session);
 }
-        
-redirectIfNecessary();
+
+if (useLocalApi != 1){
+    redirectIfNecessary();
+}
