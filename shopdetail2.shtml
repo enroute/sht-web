@@ -175,7 +175,9 @@
              //customize weixin share
              wxSetConfig({
                  title:"免多多合作商铺 - " + data.name,
-                 desc:data.introText
+                 desc:data.introText,
+                 link:wxShareUrlPrefix + "shopdetail.shtml?shopid=" + data.shopid,
+                 imgUrl:"http://www.miandodo.com:8080/favicon.png"
              });
 
 	     $("#favoriteBtn").on("click", function(event){
