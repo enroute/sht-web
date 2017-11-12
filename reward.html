@@ -124,7 +124,7 @@
 	     var r = data.data.prize_list[i];
 	     //r.sn = result.data.prize.sn;
              r.sn = result.data.prize.SN;
-	     r.claimWay = "到店使用";
+             r.claimWay = isNull(result.data.claimWay) ? "参考优惠券详情" : result.data.claimWay;
 	     $("#conDialog").html(Mustache.render(document.getElementById("tplConDialog").innerHTML.trim(), r));
 	     $("#conDialog").show();
              $("#dimmerOverlay").show();
