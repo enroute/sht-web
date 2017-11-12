@@ -37,7 +37,7 @@
 
             <div class="note1">请向店家出示二维码进行兑奖</div>
             <div class="note2">使用说明</div>
-            <div class="note3"><p>1.仅限一人使用</p><p>2.周末、节假日不可使用</p></div>      
+            <div class="note3" id="usage"><p>1.仅限一人使用</p><p>2.周末、节假日不可使用</p></div>
 
         </script>
     </div>
@@ -90,6 +90,13 @@
 	       //Mustache.parse(tpl);
 	       //var html2Render = Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData);
 	       $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), renderData));
+
+	       if(!isNull(renderData.usage)){
+		   var usage = renderData.usage;
+		   usage = usage.replace("\n","<p>");
+		   console.log(usage);
+		   $("#usage").html(usage);
+	       }
 	       
 	       data.sn = snOriginal;
 	       var qrcode = new QRCode(document.getElementById("qrcode"), {
