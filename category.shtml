@@ -126,7 +126,7 @@ function setActive(index){
  }
 
 $(function(){
-    //updateLocation();
+    updateLocation();
     $(".refreshLocation").on("click", "img", function(){
 	updateLocation();
     });
@@ -145,6 +145,7 @@ $(function(){
      //populateList();
 });
 
+function updateLocation(){
  getGeoLocation(
      {
          onSuccess:function(position){
@@ -163,6 +164,7 @@ $(function(){
      },
      {timeout:20000}
  );
+}
 
 </script>
 </html>
