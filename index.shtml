@@ -41,13 +41,13 @@
 
 <div class="categoryNav">
   <div class="categoryItem" category="0"><img src="static/images/home_icon_food@3x.png"  /><p>餐饮美食</p></div>
-  <div class="categoryItem" category="1"><img src="static/images/home_icon_ent@3x.png"   /><p>休闲娱乐</p></div>
-  <div class="categoryItem" category="2"><img src="static/images/home_icon_edu@3x.png"   /><p>教育培训</p></div>
-  <div class="categoryItem" category="3"><img src="static/images/home_icon_play@3x.png"  /><p>美体健身</p></div>
-  <div class="categoryItem" category="4"><img src="static/images/home_icon_super@3x.png" /><p>便利超市</p></div>
-  <div class="categoryItem" category="5"><img src="static/images/home_icon_car@3x.png"   /><p>汽车旅游</p></div>
-  <div class="categoryItem" category="6"><img src="static/images/home_icon_back@3x.png"  /><p>上门服务</p></div>
-  <div class="categoryItem" category="7"><img src="static/images/home_icon_others@3x.png"/><p>其他服务</p></div>
+  <div class="categoryItem" category="1"><img src="static/images/home_icon_tianpin@2x.png"   /><p>饮品甜品</p></div>
+  <div class="categoryItem" category="2"><img src="static/images/home_icon_shuiguo@2x.png"   /><p>水果鲜花</p></div>
+  <div class="categoryItem" category="3"><img src="static/images/home_icon_jiansheng@2x.png"  /><p>健身瑜伽</p></div>
+  <div class="categoryItem" category="4"><img src="static/images/home_icon_xiuxian@2x.png" /><p>休闲娱乐</p></div>
+  <div class="categoryItem" category="5"><img src="static/images/home_icon_hunsha@2x.png"   /><p>婚纱摄影</p></div>
+  <div class="categoryItem" category="6"><img src="static/images/home_icon_meirong@2x.png"  /><p>美容美发</p></div>
+  <div class="categoryItem" category="7"><img src="static/images/home_icon_yishu@2x.png"/><p>艺术培训</p></div>
 </div>
 
 <div class="vSpacer20"></div>

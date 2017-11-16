@@ -24,13 +24,13 @@
     <script type="text/javascript">
       var titles = [
           "餐饮美食",
+          "饮品甜品",
+          "水果鲜花",
+          "健身瑜伽",
           "休闲娱乐",
-          "教育培训",
-          "美体健身",
-          "便利超市",
-          "汽车旅游",
-          "上门服务",
-          "其他服务"
+          "婚纱摄影",
+          "美容美发",
+          "艺术培训"
       ];
 
       //document.title = decodeURI(getQueryString("title"));
