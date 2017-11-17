@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
+    <link href="../../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../../css/app_bee2b467.css" rel="stylesheet" />
+ 	  <link href="hexiao_08550b3f.css" rel="stylesheet" />
+
+    <title>核销记录</title>   
+</head>
+	<body ontouchstart>
+      <input type="hidden" id="hid_yearMonth" name="">
+       <div class="hx-body f28">
+       		<div class="ls-hd2">
+            <div class="item1">
+              <div class="c1" id="nowDate"></div>
+              <div class="c2 f20">已验证卡券 <span id="sp_sum"></span>张</div>
+            </div>
+            <div class="item2">
+              <img src="../../images/verification/verification_icon_calender@2x.png">
+            </div>
+          </div>
+          <div class="ls-bd">    
+          </div>
+          <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+          </div>
+       </div>
+            <script id="tpl-list" type="text/html">
+            {{each CouponDetailList}}
+            <div class="ls-item f28">
+              <div class="item1 f20">
+                券码编号：{{$value.SNNum}}
+              </div>
+              <div class="item2">
+                <div class="item-hd">
+                  {{$value.Name}}
+                </div>
+                <div class="item-ft">
+                  {{$value.OfferValue}}元
+                </div>
+              </div>
+              <div class="item3 f20">
+                <div class="item-hd">
+                  {{$value.WriteOffDate}}
+                </div>
+                <div class="item-ft">
+                  核销员：{{$value.WriteOffOperator}}
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          </script>
+
+    <script type="text/javascript" src="../../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.2/weui.min.js"></script>
+    <script type="text/javascript" src="../../lib/js/template_e1990b45.js"></script>
+    <script type="text/javascript" src="../../lib/js/infinite_1ebf62cd.js"></script>
+    <script type="text/javascript" src="../../lib/js/common_a7230570.js"></script>
+    <script type="text/javascript" src="../../js/app_b472b0cc.js"></script>
+    <script type="text/javascript">
+      var session=getSession();
+      $(function(){
+
+        var date=new Date();
+        var year=date.getFullYear();
+        var month=date.getMonth()+1;
+        $("#nowDate").text(year+"年"+month+"月");
+
+        var page = 1;//页码
+        var loading = false;  //状态标记
+        //第一次加载
+        
+        loadData(1,null);
+
+        //滚动加载消息
+        $(document.body).infinite().on("infinite", function () {
+            var date=$("#hid_yearMonth").val();
+            if (loading) return;
+            page++;
+            loading = true;
+            setTimeout(function () {
+                loadData(page,date);
+                loading = false;
+            }, 1200);   //模拟延迟
+        });
+
+        $(".ls-hd2 .item2").click(function(){
+
+              var date=new Date;  
+              var year=date.getFullYear(); 
+
+              var yearList=[];
+              var startYear=2010
+              for (var i =0; i <30; i++) {
+                  var yValue=startYear+i;
+                  yearList.push({label:yValue,value:yValue});
+              }
+              var monthList=[];
+              var startMonth=1;
+              for (var m = 0; m<12; m++) {
+                  var mValue=startMonth+m;
+                  monthList.push({label:mValue,value:mValue});
+              }
+                  weui.picker(yearList,monthList, {
+                  defaultValue: [year,1],
+                  onChange: function (result) {
+
+                  },
+                  onConfirm: function (result) {
+                      console.log(result);//返回的2个选项的数组
+                      var date=result[0].value+"-"+result[1].value;
+                      $("#hid_yearMonth").val(date);
+                      loadData(1,date);
+                  },
+                  id: 'dateSimplePicker'
+              });
+        });
+      });
+
+      var pageSize=10;
+      function loadData(page,yearMonth){     
+              $.ajax({
+                url: globalData.apiBusiness + 'WriteOffList.aspx',
+                dataType: 'json',
+                data: {
+                  "session": session,
+                  "page": page,
+                  "page_size":pageSize,
+                  "YearMonth": yearMonth
+                },
+                success: function(res) {
+                  if (res.status == 0) {
+                    if (res.data.CouponDetailList.length < pageSize) {
+                      $(document.body).destroyInfinite();
+                    }
+                    var html = template('tpl-list', res.data);
+                    if (page == 1) {
+                      $('.ls-bd').html(html);
+                      $("#sp_sum").text(res.sum);
+                    } else {
+                      $('.ls-bd').append(html);
+                    }
+
+                  } else {
+                    $(document.body).destroyInfinite();
+                    alert(res.message || "系统异常");
+                    return;
+                  }
+                },
+                  complete: function () {
+                      setTimeout(function () {
+                          $(".weui-loadmore").hide();
+                      }, 800);
+                  }
+              });
+      }
+    </script>
+  </body>
+</html>

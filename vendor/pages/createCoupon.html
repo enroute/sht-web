@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>创建奖券</title>
+    <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../css/createCoupon_de3f2577.css" rel="stylesheet" />
+    <link href="../lib/css/mobiscroll.custom-2.16.1.min_47809868.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="mainPage">
+    <div class="rowWrap">
+     <div class="row">
+      名称
+      <input type="text" id="txtname" placeholder="请输入您的奖券名称（不超过8个字）" maxlength="8">
+      </div>
+    </div>
+    <div class="rowWrap">
+     <div class="row">
+      面值
+      <input type="number" id="txtface" placeholder="请输入您的奖券面值" maxlength="5">
+      </div>
+    </div>
+    <div class="rowWrap">
+     <div class="row">
+      数量
+      <input type="tel" id="txtnum" placeholder="请输入您的奖券数量（不超过10000张）" maxlength="4">
+      </div>
+    </div>
+    <div class="uploadTip">上传奖品内容照片<span style="font-size: 1.1rem;color: #999">（最少上传一张照片）</span></div>
+    <ul class="imgWrap">
+       <!-- <li><img src="../images/decoration/decoration_img_tx@2x.png"><span class="imgdel"></span></li> -->
+       <div class="uploadExample" style="cursor: pointer;"><i class="horizontal"></i><i class="vertical"></i></div>
+       <div class="clearFloat"></div>
+    </ul>
+    <div class="uploadTip">有效期<span style="font-size: 1rem;">（最长30天）</span></div>
+    <div class="rowWrap" style="margin-top: 1rem;" onclick="chooseBeginTime()">
+     <div class="row choose">
+        <span id="span_begintime" class="gray">请选择奖券有效期起始时间</span>
+     </div>
+    </div>
+    <div class="rowWrap" onclick="chooseEndTime()">
+     <div class="row choose" style="border-bottom: none;">
+       <span id="span_endtime" class="gray">请选择奖券有效期结束时间</span>
+     </div>
+    </div>
+    <div class="uploadTip">奖券内容与使用说明：</div>
+    <div class="remarkWrap"><textarea id=txtremark placeholder="填写使用限制和条件"></textarea></div>
+    <div class="btn" onclick="create()">创建奖券</div>
+    <input type="text" id="begintime" style="display: none;">
+    <input type="text" id="endtime" style="display: none;">
+  </div>
+  <script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+  <script src="../lib/js/common_a7230570.js"></script>
+  <script src="../js/app_b472b0cc.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <script src="../lib/js/mobiscroll.custom-2.16.1.min_661b5367.js"></script>
+  <script src="../lib/js/template_e1990b45.js"></script>
+  <script src="../js/createCoupon_8f46f45e.js"></script>
+  <script src="../js/wxapi_bb7720c6.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>免多多商家</title>
+    <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../css/app_bee2b467.css" rel="stylesheet" />
+    <link href="../css/shopPreview_80a5c338.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="mainPage">
+      <div class="banner"><img src="../images/activity/dianpu_img_banner@2x.png"/></div>
+      <div class="header">
+        <div class="imgWrap">
+          <div class="circle">
+            <img class="headerimg" id="s_headerimg" src="">
+          </div>
+        </div>
+        <div class="name" id="s_name"></div>
+        <div class="attention">+关注
+         <div class="fansnum">粉丝数&nbsp;<span id="s_favorites"></span></div>
+        </div>
+        
+      </div>
+      <div class="info">
+         <span class="stitle">商家信息</span>
+         <span class="addr">
+            <span class="btn_address"><i class="icon_location" style="cursor: pointer;"></i>
+            <span id="s_address"></span>
+            </span>
+            <span class="icon_tel" style="cursor: pointer;"></span>
+         </span>
+         <span class="tel"></span>
+      </div>
+      <div class="des">
+         <span class="title">店铺介绍</span>
+         <span id="s_introduction"></span>
+         <span class="title">店铺推荐</span>
+         <span id="s_recommands"></span>
+         <span class="title">店铺照片</span>
+         <div id="imgList">
+         
+         </div>
+      </div>
+    </div>
+    <div class="btn-fixbottom" style="cursor: pointer;" onclick="create()">上线店铺</div>
+    <div class="popUpOver"></div>
+    <div class="tu-popUp">
+        <div class="pop-hd">选择电话</div>
+        <div class="pop-cancel"><a href="javascript:;">取消</a></div>
+    </div>
+    <script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <script src="../lib/js/template_e1990b45.js"></script>
+    <script src="../lib/js/common_a7230570.js"></script>
+    <script type="text/javascript" src="../js/app_b472b0cc.js"></script>
+    <script type="text/javascript">
+        var session=getSession();
+        function apply(){
+           location.href="apply.html";
+        }
+
+        $(function(){
+          var address,lat,lng;
+          $.ajax({
+            url: globalData.apiBusiness + 'ShopView.aspx',
+            dataType: 'json',
+            data: {
+              "session": session
+            },
+            success: function(res) {
+                if (res.status == 0) {
+                  address=res.data.Address;
+                  lat=res.data.Latitude;
+                  lng=res.data.Longitude;
+                  $("#s_headerimg").attr("src",res.data.LogoICON);
+                  $("#s_name").text(res.data.Name);
+                  $("#s_favorites").text(res.data.Favorite_Users);
+                  $("#s_address").text(res.data.Address);
+                  $("#s_introduction").text(res.data.Introduction);
+                  $("#s_recommands").text(res.data.Recommends);
+                  if(res.data.MasterBanner){
+                    $(".header").css({"background":'url(' + res.data.MasterBanner + ') no-repeat',"background-size":"100% 100%"});
+                  }
+                  if(res.data.Photos&&res.data.Photos.length>0){
+                    var imgs=res.data.Photos.split(";");
+                    $.each(imgs,function(index,value){
+                         $("#imgList").append('<img src="'+value+'" style="width: 100%;height: 100%;border:none;" />');
+                    });
+                  }
+
+                  //联系方式
+                  $(".pop-hd").after('<div class="pop-item"><a href="tel:' + res.data.ResponsibleMobileNum + '">' + res.data.ResponsibleMobileNum + '</a></div>');
+                  $(".pop-hd").after('<div class="pop-item"><a href="tel:' + res.data.FixTel + '">' + res.data.FixTel + '</a></div>');
+              } else {
+                alert(res.message || "系统异常");
+                return;
+              }
+            }
+          });
+
+
+          $(".btn_address").click(function(){
+            var marker="coord:"+lat+","+lng+";title:"+address+";addr:"+address;
+            location.href="http://apis.map.qq.com/tools/poimarker?type=0&marker="+marker+"&key=VJWBZ-TIJ3K-QIEJV-AL7UI-OV4NQ-F6F3Q&referer=myapp";
+          });
+
+          $(".icon_tel").click(function(){
+            $(".popUpOver").show();
+            $(".tu-popUp").show();
+          });
+          $(".pop-cancel").click(function(){
+            $(".popUpOver").hide();
+            $(".tu-popUp").hide();
+          });
+
+
+        });
+
+        function create(){
+          $.ajax({
+            url: globalData.apiBusiness + 'ShopOnline.aspx',
+            dataType: 'json',
+            data: {
+              "Session": session,
+            },
+            success: function(res) {
+              if (res.status == 0) {
+                if (res.data.Result == "1") {
+                  showTip("上线成功",2000,function(){
+                    location.href = "home.html";
+                  });              
+                } else {
+                  showMsg("创建失败");
+                }
+              } else {
+                showMsg(res.message || "系统异常");
+                return;
+              }
+            }
+          });
+        }
+    </script>
+</body>
+</html>

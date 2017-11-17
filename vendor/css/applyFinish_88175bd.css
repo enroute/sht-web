@@ -1,0 +1,52 @@
+body{
+	margin:0;
+    padding:0;
+    background-color: #fff;
+}
+
+.icon_success{
+	display: block;
+	width: 3.5rem;
+	height: 3.5rem;
+	margin:0 auto;
+	margin-top: 10.3rem;
+	background: url(../images/register/register_icon_true@2x.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tip1{
+	display: block;
+	width: 100%;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	font-size: 1.6rem;
+	text-align:center;
+	color:#78c993;
+	margin-top: 1.6rem;
+
+}
+.tip2{
+	display: block;
+	width: 100%;
+	height: 1.1rem;
+	line-height: 1.1rem;
+	font-size: 1.1rem;
+	text-align:center;
+	color:#999;
+	margin-top: 1.1rem;
+
+}
+
+.btn{
+	width: auto;
+	height: 4.9rem;
+	line-height: 4.9rem;
+	text-align: center;
+	font-size: 1.7rem;
+	color: #fff;
+	background-color: #78c993;
+	margin: 10.4rem 1.6rem 2rem 1.6rem;
+	order-radius: 0.3rem;
+   -moz-border-radius:0.3rem;
+   -webkit-border-radius:0.3rem;
+}

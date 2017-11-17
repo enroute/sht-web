@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>�齱</title>
+  <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+  <link href="../css/activityPreview_3b200b23.css" rel="stylesheet" />
+  <!-- <link href="//g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"  rel="stylesheet"/> -->
+
+</head>
+<body>
+  <img id="imgWheel" src="../images/activity/choujiang_img_zpbg@2x.png" style="display: none;" />
+  <img id="imgFreeCoupon" src="../images/activity/choujiang_img_mfq@3x.png" style="display: none;"/>
+
+  <span class="tip">��ϲ&nbsp;188****8833�û�����&nbsp;���ʹ���&nbsp;<span class="tip2">88Ԫ����ȯ</span></span>
+  <div class="dialWrap">
+    <div class="imgWrap">
+         <img src="../images/activity/choujiang_img_cjzp@2x.png"/>
+         <!-- <canvas id="wheelcanvas" width="300" height="300"></canvas> -->
+         <div id="rouletteptr"><img src="../images/activity/choujiang_img_cj@3x.png" /></div>
+         <div id="roulettetxt"><img src="../images/activity/choujiang_img_wycj@3x.png"</img></div> 
+         <!-- <img src="../images/activity/choujiang_img_cjzp@2x.png"/> -->
+         <!-- <canvas id="wheelcanvas" width="300" height="300"></canvas> -->
+<!--          <div id="rouletteptr"><img src="../images/activity/choujiang_img_cj@3x.png" /></div>
+         <div id="roulettetxt"><img src="../images/activity/choujiang_img_wycj@3x.png"</img></div>  -->
+
+    <img src="../images/activity/choujiang_img_mfq@3x.png" id="shan-img" style="display:none;" />
+    <img src="../images/activity/choujiang_img_mfq@3x.png" id="sorry-img" style="display:none;" />
+    <div class="banner">
+        <div class="turnplate" style="background-image:url(../images/activity/turnplate-bg.png);background-size:100% 100%;">
+            <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
+            <img class="pointer" src="../images/activity/turnplate-pointer.png" style="cursor: pointer;" />
+        </div>
+    </div>
+    </div>
+  </div>
+  <div class="content">
+    <span class="joinNum">����������<span id="partiNum">100</span></span>
+    <span class="listname">��ȯ�б�</span>
+    <div class="line"></div>
+    <div class="couponWrap">
+      <ul class="couponList">
+          <!-- <li>
+         <img src="{{value.Image}}">
+         <span class="cname">{{value.coupon_name}}</span>
+         <div class="line"></div>
+         <span class="des">
+           ���ã�{{value.shopName}}}<br/>
+           <span style="color: #999">{{value.StartDate}}-{{value.EndDate}}</span>
+         </span>
+       </li> -->
+       
+      </ul>
+      <div class="clearFloat"></div>
+      <script id="couponItem" type="text/html">
+        {{each CouponList as value i}}
+        <li>
+         <img src="{{value.Image}}">
+         <span class="cname">{{value.coupon_name}}</span>
+         <div class="line"></div>
+         <span class="des">
+           ���ã�{{value.ShopName}}<br/>
+           <span style="color: #999">{{value.StartDate}}-{{value.EndDate}}</span>
+         </span>
+       </li> 
+       {{/each}}
+      
+     </script>
+   </div>
+   <div class="line"></div>
+ </div>
+
+ <script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+ <script src="../lib/js/awardRotate_38d3e08e.js"></script>
+ <script src="../lib/js/common_a7230570.js"></script>
+ <script type="text/javascript" src="../js/app_b472b0cc.js"></script>
+ <script src="../lib/js/template_e1990b45.js"></script>
+ <script src="../js/activityPreview2_c7a35553.js"></script>
+ <script src="../lib/js/awardRotate_38d3e08e.js"></script>
+ <script type="text/javascript">
+  var session=getSession();
+  var isDataReady = false;
+  var isRolling = false;
+  var result;
+  var data;
+  var IsDebug=false;
+
+  function rotateIt(i){
+    $("#wheelcanvas").rotate({
+      angle:0,
+      animateTo:3600 - i * (360 / 6),
+      duration:8000,
+      callback:function (){
+        console.log("rotateIt finished");
+        var r = data.data.prize_list[i];
+        r.sn = result.data.prize.sn;
+        r.claimWay = "����ʹ��";
+        $("#conDialog").html(Mustache.render(document.getElementById("tplConDialog").innerHTML.trim(), r));
+        $("#conDialog").show();
+        $("#dimmerOverlay").show();
+         isRolling = false;
+      }
+    });
+  }
+
+  function drawRoulettePrizes(prizes){
+    // make it not smaller than 6
+    var len = prizes.length;
+    if (len <= 0) return;
+    while(prizes.length < 6){
+      for (var i = 0; i < len; i++){
+        prizes.push(prizes[i]);
+      }
+    }
+
+    var canvas = document.getElementById("wheelcanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("imgFreeCoupon");
+    var arc = Math.PI / (prizes.length/2);
+    var startAngle = 0;
+    for(var i = 0; i < 6; i++){
+      ctx.font = 'bold 24px Microsoft YaHei';
+      ctx.fillStyle = i % 2 ? "#f46747" : "#ffffff";
+      ctx.strokeStyle = "#FFBE04";
+
+      ctx.save();
+      var angle = startAngle + i * arc;
+      ctx.translate(canvas.width/2, canvas.height/2);
+      ctx.rotate(angle);
+
+      ctx.fillText(prizes[i].prize, -ctx.measureText(prizes[i].prize).width/2, -200);
+      var width = canvas.width * 0.2;
+      var height = width * 0.4;
+      var x = - width / 2;
+      var y = - height / 2 - 160;
+      img.onload = function(){
+         ctx.drawImage(img, x, y, width, height);
+      };
+      ctx.drawImage(img, x, y, width, height);
+      ctx.restore();
+    }
+  }
+
+  function drawRoulette(){
+    var canvas = document.getElementById("wheelcanvas");
+    if (! canvas.getContext) {
+      console.log("Error in canvas.getContext");
+      return;
+    }
+
+    var ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
+
+    var imgWheel = document.getElementById("imgWheel");
+    ctx.drawImage(imgWheel, 0, 0, canvas.width, canvas.height);
+}
+
+
+  
+  $(function(){
+    //drawRoulette();
+    requestLuckyDrawData();
+  });
+
+  function autoScrollHorizontal(obj){
+    var objLi = $(obj).find("li");
+    var width = objLi.width()
+    var marginRight = parseInt(objLi.css("marginRight"));
+    console.log("width=" + width + ", marginRight=" + marginRight);
+    $(obj).animate({marginLeft:- width - marginRight}, 500, function(){
+       $(this).css({marginLeft:"0px"}).find("li:first").appendTo(this);
+    });
+}
+
+   
+ function drawRoulette(){
+    var canvas = document.getElementById("wheelcanvas");
+    if (! canvas.getContext) {
+      console.log("Error in canvas.getContext");
+      return;
+    }
+    var ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
+    var imgWheel = document.getElementById("imgWheel");
+    ctx.drawImage(imgWheel, 0, 0, canvas.width, canvas.height);
+}
+
+  function requestLuckyDrawData(){
+    if(IsDebug){
+      result=fakeData;
+      drawRoulettePrizes(result.data.prize_list);
+    }else{
+      var key=getUrlPara(location.href,"key");
+    $.ajax({
+      url: globalData.apiBusiness + 'LotteryView.aspx',
+      dataType: 'json',
+      data: {
+        "session": session,
+        "LotteryKey":key
+      },
+      success: function(res) {
+        if (res.status == 0) {
+          document.title=res.LotteryName;
+          result=res;
+          var html = template('couponItem', res.data);
+          $('.couponList').html(html);
+          autoResizeCouponList();
+          setInterval('autoScrollHorizontal(".couponList")',3000);
+        } else {
+          showTip("�����Ż�ȯ����");
+          return;
+        }
+      }
+    });
+    }
+  }
+
+  function autoResizeCouponList(){
+    var swidth=$("ul.couponList li:first").width();
+    var num=$("ul.couponList li").length;
+    var totalWidth=swidth*num;
+    totalWidth=totalWidth+swidth;
+    $("ul.couponList").css("width",totalWidth+"px");
+  }
+</script>
+</body>
+</html>

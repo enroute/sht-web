@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>创建活动</title>
+  <link rel="stylesheet" href="../swiper/css/swiper.min_d9b07f5b.css">
+  <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+  <link href="../css/app_bee2b467.css" rel="stylesheet" />
+  <link href="../css/createActivity_88cc840f.css" rel="stylesheet" />
+   <link href="../lib/css/mobiscroll.custom-2.16.1.min_47809868.css" rel="stylesheet" />
+  <style type="text/css">
+    .imgWrap .swiper-container{
+      height: 8rem;
+    }
+    .imgWrap .swiper-pagination{
+      margin:5px;
+      bottom: 0;
+    }
+    .imgWrap .swiper-pagination-bullet{
+      float: left;
+    }
+    .imgWrap .swiper-pagination-bullet-active{
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="mainPage">
+    <input type="hidden" id="hid_LotteryKey" name="">
+    <div class="tip">活动名称</div>
+    <div class="rowWrap">
+     <div class="row" style="border: none;">
+      <input type="text" id="txt_name" name="" placeholder="请输入您创建的活动名称">
+    </div>
+  </div>
+
+  <div class="tip">活动时间</div>
+  <div class="rowWrap chooseDate" onclick="selectStartDate()" style="cursor: pointer;">
+    <div class="row choose">
+      
+      <span class="gray" id="sel_startDate">请选择奖券有效期起始时间</span>
+    </div>
+  </div>
+  <div class="rowWrap chooseDate" onclick="selectEndDate()" style="cursor: pointer;">
+    <div class="row choose" style="border-bottom: none;">
+      
+      <span class="gray" id="sel_endDate">请选择奖券有效期结束时间</span>
+    </div>
+  </div>
+
+  <div class="tip" style="padding-bottom: 0">抽奖奖品<span style="font-size: 1.1rem;color: #999">（点击添加，关联奖品）</span></div>
+  <ul class="imgWrap">
+   <li>
+     <!-- <img src="../images/decoration/decoration_img_tx@2x.png"/> -->
+     <div class="uploadExample"><i class="horizontal"></i><i class="vertical"></i></div>
+     <span class="name">奖品一</span>
+     <input type="hidden" class="hid_key" name="">
+   </li>
+   <li>
+     <!-- <img src="../images/decoration/decoration_img_tx@2x.png"/> -->
+     <div class="uploadExample"><i class="horizontal"></i><i class="vertical"></i></div>
+     <span class="name">奖品二</span>
+     <input type="hidden" class="hid_key" name="">
+   </li>
+   <li>
+     <!-- <img src="../images/decoration/decoration_img_tx@2x.png"/> -->
+     <div class="uploadExample"><i class="horizontal"></i><i class="vertical"></i></div>
+     <span class="name">奖品三</span>
+     <input type="hidden" class="hid_key" name="">
+   </li>
+   <li>
+     <!-- <img src="../images/decoration/decoration_img_tx@2x.png"/> -->
+     <div class="uploadExample"><i class="horizontal"></i><i class="vertical"></i></div>
+     <span class="name">奖品四</span>
+     <input type="hidden" class="hid_key" name="">
+   </li>
+   <li>
+     <!-- <img src="../images/decoration/decoration_img_tx@2x.png"/> -->
+     <div class="uploadExample"><i class="horizontal"></i><i class="vertical"></i></div>
+     <span class="name">奖品五</span>
+     <input type="hidden" class="hid_key" name="">
+   </li>
+   <li>
+     <!-- <img src="../images/decoration/decoration_img_tx@2x.png"/> -->
+     <div class="uploadExample"><i class="horizontal"></i><i class="vertical"></i></div>
+     <span class="name">奖品六</span>
+     <input type="hidden" class="hid_key" name="">
+   </li>
+   <div class="clearFloat"></div>
+ </ul>
+
+ <span class="tip" style="padding-top: 0.4rem;padding-bottom: 0.4rem;">奖品设置说明：</span>
+ <span class="tip2">
+  A、请点击添加，进入奖券市场，选择关联相关奖品，本店奖券最多关联2张<br>
+  B、所有奖品中奖几率均等
+</span>
+
+<input type="text" id="hid_startDate" name="" style="display: none;">
+<input type="text" id="hid_endDate" name=""  style="display: none;">
+<div class="btn btn-create">创建活动</div>
+</div>
+<div id="couponPage">
+  <input type="hidden" id="hid_type" name="">
+  <div class="searchWrap">
+    <form id="formId" action onsubmit="SearchCoupon();return false;">
+      <div class="search"><input type="search" id="txt_key" name="" placeholder="搜索关键字"></div>
+      <span class="cancelBtn">取消</span>
+    </form>
+  </div>
+  <span class="tip" style="margin-top:0.4rem;padding-left: 0">热门分类</span>
+  <ul class="typeList">
+    <li data-type="1">餐饮美食</li>
+    <li data-type="2">休闲娱乐</li>
+    <li data-type="3">教育培训</li>
+    <li data-type="4">美体健康</li>
+    <li data-type="5">便利超市</li>
+    <li data-type="6">汽车旅游</li>
+    <li data-type="7">上门服务</li>
+    <li data-type="8">其他服务</li>
+    <div class="clearFloat"></div>
+  </ul>
+
+  <ul class="couponList">
+  </ul>
+  <div class="clearFloat"></div>
+  <script id="tpl-list" type="text/html">
+    {{each CouponList}}
+      <li data-key="{{$value.CouponKey}}" data-name="{{$value.Name}}">
+     <div class="imgWrap">
+       <div class="swiper-container">
+        <div class="swiper-wrapper">
+          {{if $value.Image}}
+          <input type="hidden" id="hid_otherImg" value="{{$value.Image.split(';')[0]}}">
+          {{each $value.Image.split(";") as imgValue imgIndex}}
+          <div class="swiper-slide"><img src="{{imgValue}}"/></div>
+          {{/each}}
+          {{/if}}
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+       <span class="price">价值：{{$value.OfferValue}}元</span>
+     </div>
+   </div>
+     <span class="coudes">
+       <span class="couname">{{$value.ShopName}}</span>
+       <span class="coufree">
+          {{$value.Name}}
+       </span>
+       <span class="counum">剩余{{$value.Number}}份</span>
+     </span>
+      <span class="relateBtn" style="cursor: pointer;" >点击关联</span>
+      </li>
+    {{/each}} 
+  </script>
+</div>
+<div id="selfCouponPage" style="display: none;">
+  <ul class="navbar">
+    <li class="active">在线券</li>
+    <li>历史券</li>
+  </ul>
+    <ul class="couponList">
+    </ul>
+      <script id="couponItem" type="text/html">
+        {{each CouponList as value i}}
+          <li data-key="{{value.cKey}}" data-name="{{value.name}}">
+            {{if value.Image}}
+             <input type="hidden" id="hid_selfSelImg" value="{{value.Image.split(';')[0]}}">
+            {{/if}}
+            <div class="header">
+              <span class="couponTitle">{{value.name}}</span>
+              <span class="faceval">价值{{value.OfferValue}}元</span>
+              <span class="state" style="display: none;">
+                已领取&nbsp;{{value.ReleaseCount}}张<br>
+                已使用&nbsp;{{value.UsedCount}}张
+              </span>
+              <span class="detailBtn">查看详情</span>
+            </div>
+            <div class="body">
+               <span style="display: none;" class="delBtn">删除</span>
+               <span class="remarkTip">使用限制</span>
+              {{value.Remark}}
+            </div>
+            <div class="bottom">
+              <div style="float: left; ">有效期：{{value.StartDate}}-{{value.EndDate}}</div>
+              <div style="float: right; "><span style="color: #f7a05d">剩余</span>/总量：<span style="color: #f7a05d">{{value.Rest}}</span>/{{value.Sum}}</div>
+            </div>
+          </li>
+        {{/each}}
+      </script>
+</div>
+<div class="popUpOver"></div>
+<div class="tu-popUp">
+  <div class="pop-item btn-relateSelf"><a href="javascript:;">关联本店体验券</a></div>
+  <div class="pop-item btn-relateOther"><a href="javascript:;">关联周边商家体验券</a></div>
+  <div class="pop-cancel"><a href="javascript:;">取消</a></div>
+</div>
+<script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+<script src="../swiper/js/swiper.jquery.min_d7749c8a.js"></script>
+<script type="text/javascript" src="../lib/js/infinite_1ebf62cd.js"></script>
+<script type="text/javascript" src="../js/app_b472b0cc.js"></script>
+<script src="../lib/js/common_a7230570.js"></script>
+<script src="../lib/js/mobiscroll.custom-2.16.1.min_661b5367.js"></script>
+<script src="../lib/js/template_e1990b45.js"></script>
+<script src="../js/createActivity_d25b7504.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link href="../../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../../css/app_bee2b467.css" rel="stylesheet" />
+    <link href="huodong_32970e03.css" rel="stylesheet" />
+
+
+    <title>活动管理</title>   
+</head>
+  <body ontouchstart>
+    <div class="index-bd f28">
+    </div>
+      <script id="tpl-list" type="text/html">
+      {{each LotteryList}}
+        <div class="index-content">
+        <div class="index-cell1">
+          <div class="c1 f32">{{$value.Name}}</div>
+          <div class="c2 btn-preview"  data-key="{{$value.LotteryKey}}" style="cursor: pointer;"><button>预览</button></div>
+        </div>
+        <div class="index-cell2">
+          <span class="c1">活动时间</span>
+          <span class="c2">{{$value.StartDate.replace('-','/').replace('-','/')}}-{{$value.EndDate.replace('-','/').replace('-','/')}}</span>
+        </div>
+        <div class="index-cell3">
+          <span class="c1">创建日期</span>
+          <span class="c2">{{$value.CreateDate.replace('-','').replace('-','')}}</span>
+        </div>
+        <div class="index-cell4">
+          <button class="c1 f24 btn-edit" data-key="{{$value.LotteryKey}}">修改活动</button>
+          <button class="c2 f24 btn-del" data-key="{{$value.LotteryKey}}">删除活动</button>
+        </div>        
+      </div>
+    {{/each}}
+</script>
+    <script type="text/javascript" src="../../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <script type="text/javascript" src="../../lib/js/template_e1990b45.js"></script>
+    <script type="text/javascript" src="../../lib/js/common_a7230570.js"></script>
+    <script type="text/javascript" src="../../js/app_b472b0cc.js"></script>
+      <script type="text/javascript">
+        var session=getSession();
+
+        $(function(){
+
+          $.ajax({
+            url: globalData.apiBusiness + 'getLotteryList.aspx',
+            dataType: 'json',
+            data: {
+              "Session": session
+            },
+            success: function(res) {
+                if (res.status == 0) {
+                  var html = template('tpl-list', res.data);
+                  $('.index-bd').html(html);
+              } else {
+                showTip(res.message || "系统异常");
+                return;
+              }
+            }
+          });
+
+          $(document).on("click",".btn-preview",function(){
+            var key=$(this).attr("data-key");
+            return jumpUrl("../activityPreview.html?key="+key);
+          });
+
+          $(document).on("click",".btn-edit",function(){
+            var key=$(this).attr("data-key");
+            return jumpUrl("../createActivity.html?key="+key);
+          });
+
+          $(document).on("click",".btn-del",function(){
+            var obj=$(this);
+            var key=$(this).attr("data-key");
+            showConfirm("确定要删除吗？",function(){
+                  $.ajax({
+                    url: globalData.apiBusiness + 'LotteryDelete.aspx',
+                    dataType: 'json',
+                    data: {
+                      "Session": session,
+                      "LotteryKey": key
+                    },
+                    success: function(res) {
+                      if (res.status == 0) {
+                        if (res.data.Result == 1) {
+                          showTip('操作成功',1500,function(){
+                            obj.parents(".index-content").hide();
+                          });  
+                        } else {
+                          showTip("删除失败，请重试");
+                        }
+                      } else {
+                        showTip(res.message || "系统异常");
+                        return;
+                      }
+                    }
+                  });
+            });
+          });
+        });
+      </script>
+   </body>
+  </html>
+

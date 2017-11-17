@@ -1,0 +1,216 @@
+body{
+	background-color: #f5f5f5;
+}
+.wlsq-body{
+	color: #666666;
+}
+.item-cell{
+	background-color: #fff;
+	line-height: 5.0rem;
+	display: flex;
+	border-bottom: 1px solid #dddddd;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+.item-cell-bd{
+	flex: 1;
+}
+.item-cell-ft{
+	margin-left: 1.5rem;
+	color: #999999;
+}
+.ca-item-cell{
+	background-color: #fff;
+	line-height: 5.0rem;
+	display: flex;
+	border-bottom: 1px solid #dddddd;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;	
+}
+.ca-item-cell-bd{
+	float: left;
+}
+.ca-item-cell-ft{
+	float: left;
+	margin-left: 1.0rem;
+}
+.item-title{
+	padding-left:1.5rem ;
+	line-height: 4.4rem;
+}
+.item-title2{
+	padding-left: 1.5rem;
+	line-height: 4.1rem;
+}
+.item
+.wlsq-flag{
+	background-color: #f5f5f5;
+}
+.wlsq-flag img{
+	width: 100%;
+}
+.wlsq-item1{
+	display: flex;
+}
+.wlsq-item1 .item-bd{
+	flex: 1;
+	padding: 1.7rem 1.5rem 1.5rem 1.5rem;
+}
+.wlsq-item1 .item-bd2{
+	line-height: 6.7rem;
+	flex: 1;
+	padding-left: 1.5rem;
+}
+.wlsq-item1 .item-ft{
+	position: relative;
+	margin-right: 2.1rem;
+}
+.wlsq-item1 .item-ft img{
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    margin-top: -0.6rem;
+    width: 0.6rem;
+    height: 1.25rem;
+}
+.wlsq-item1 .item1{
+	padding-bottom: 1.0rem
+}
+.wlsq-item1 .item2{
+	color: #999999;
+	padding-left: 2.75rem;
+}
+.wlsq-item1 .item1 img{
+	width: 1.2rem;
+	height: 1.4rem;
+}
+.wlsq-item1 .item1 .item1-k1{
+	padding-left: 1.0rem;
+}
+.wlsq-item1 .item1 .item1-k2{
+	float: right;
+	padding-right:1.5rem;
+}
+.wlsq-flag{
+	padding-bottom: 1.0rem;
+}
+.wlsq-item2{
+	background-color: #ffffff;
+	display: flex;
+	line-height: 10.0rem;
+}
+.wlsq-item2 .item-bd{
+	flex: 1;
+	padding-left: 1.5rem;
+}
+.wlsq-item2 .item-ft{
+	padding-right: 1.5rem;
+}
+.wlsq-item2 .item-ft img{
+	text-align: right;
+	vertical-align: middle;
+	padding-bottom: 1.0rem;
+	padding-top: 1.5rem;
+	width: 8.0rem;
+	height: 8.0rem;
+}
+.wlsq-item4{
+	margin-top: 1.5rem;
+}
+.wlsq-item4 .item-cell-ft{
+	color: #666666;
+}
+.wlsq-item5{	
+	margin-top: 6.1rem;
+}
+.wlsq-item5 .submit{
+	background-color: #fff;
+	height: 4.9rem;
+}
+.wlsq-item5 .submit button{
+	width: 14.5rem;
+}
+.wlsq-item6{
+	position: absolute;
+	bottom: 1.0rem;
+	width: 100%;
+}
+.wlsq-item6 .submit{
+		padding-left:1.5rem;
+	padding-right: 1.5rem;
+}
+.wlsq-item6 button{
+	border-radius: 0.5rem;
+	width: 100%;
+
+}
+
+.sc-item1{
+	padding-left: 1.5rem;
+	line-height: 8.5rem;
+	background-color: #fff;
+}
+.sc-item1 img{
+	vertical-align: middle;
+	width: 3.3rem;
+	height: 3.3rem;
+}
+.sc-item1 .item-k1{
+	padding-left: 1.0rem;
+}
+.sc-item2{
+	margin-top: 10.5rem;
+	text-align: center;
+}
+.sc-item2 img{
+	vertical-align: text-bottom;
+	width: 2.05rem;
+	height: 2.05rem;
+}
+.sc-item2 .item-k1{
+	color: #40bf58;
+	font-weight: 400;
+}
+
+.ls-item1{
+	box-sizing: border-box;
+	display: flex;
+	height: 8.5rem;
+	background-color: #fff;
+	margin-bottom: 1.0rem;
+}
+.ls-item1 .item-bd{
+	flex: 1;
+	padding: 1.7rem 0 0.15rem 1.5rem;
+}
+.ls-item1 .item-ft{
+	position: relative;
+	margin-right: 3.7rem;
+}
+.ls-item1 .item-ft img{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -0.6rem;
+    width: 2.2rem;
+    height: 2.2rem;
+}
+.ls-item1 .item1{
+	padding-bottom: 1.2rem;
+	font-weight: 400;
+}
+.ls-item1 .item2{
+	color: #999;
+}
+.ls-item2{
+	background-color: #fff;
+	position: fixed;
+	bottom: 0;
+	line-height: 4.95rem;
+	width: 100%;
+}
+.ls-item2 .submit{
+	color: #ff9b73;
+	text-align: center;
+	font-weight: 400;
+}

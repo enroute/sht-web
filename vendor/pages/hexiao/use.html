@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link href="../../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../../css/app_bee2b467.css" rel="stylesheet" />
+    <link href="hexiao_08550b3f.css" rel="stylesheet" />
+
+    <title>核销</title>   
+</head>
+  <body ontouchstart>
+      <div class="use-bd">
+        <div class="use-cell1 f32">请输入券码核销</div>
+        <div class="use-cell2">
+          <input type="text" id="txt_w1" maxlength="1" name="num">
+          <input type="text" id="txt_w2" maxlength="1" name="num">
+          <input type="text" id="txt_w3" maxlength="1" name="num">
+          <input type="text" id="txt_w4" maxlength="1" name="num">
+          <input type="text" id="txt_w5" maxlength="1" name="num">
+          <input type="text" id="txt_w6" maxlength="1" name="num">
+        </div>
+        <div class="btn btn-create" style="cursor: pointer;">确定</div>
+      </div>
+
+    <script type="text/javascript" src="../../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <script type="text/javascript" src="../../lib/js/template_e1990b45.js"></script>
+    <script type="text/javascript" src="../../lib/js/common_a7230570.js"></script>
+    <script type="text/javascript" src="../../js/app_b472b0cc.js"></script>
+    <script type="text/javascript">
+      var session=getSession();
+      $(function(){
+        //输入完自动到下一个输入框
+
+        $(".btn-create").click(function(){
+            var value='';  
+            $("input[name='num']").each(function(){
+              value+=$(this).val();
+            });
+            if(value.length!=6){
+              showTip("请输入6位的核销码");
+              return;
+            }
+            $.ajax({
+              url: globalData.apiBusiness + 'WriteOffCoupon.aspx',
+              dataType: 'json',
+              data: {
+                "session": session,
+                "SNNumber": value
+              },
+              success: function(res) {
+                if (res.status == 0) {
+                  if (res.data.Result == 1) {
+                          showLayer('<div class="popLayer"><img src="../../images/material/material_icon_success@2x.png" style="width:2rem;height:2rem;"/>核销成功</div>');
+                          var work = setTimeout(function () {
+                            //$(".mLayer").hide();
+                            location.href="index.html";
+                          }, 2500);
+                  } else {
+                        showLayer('<div class="popLayer"><img src="../../images/register/register_icon_error@2x.png" style="width:2rem;height:2rem;"/>'+res.message+'</div>');
+                          var work = setTimeout(function () {
+                            //$(".mLayer").hide();
+                            location.href="index.html";
+                          }, 2500);
+                  }
+                } else {
+                  alert(res.message || "系统异常");
+                  return;
+                }
+              }
+            });
+        });
+        
+        $("input[name='num']").on('keyup blur', function () {
+            var $input = $(this).next("input[name='num']");
+            if ($(this).val().length>0) {
+                $input.focus();
+            }
+        });
+      });
+    </script>
+  </body> 
+</html>

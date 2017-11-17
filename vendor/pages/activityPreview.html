@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>抽奖</title>
+  <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+  <link href="../css/activityPreview_3b200b23.css" rel="stylesheet" />
+  <!-- <link href="//g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"  rel="stylesheet"/> -->
+</head>
+<body>
+  <img id="imgWheel" src="../images/activity/choujiang_img_zpbg@2x.png" style="display: none;" />
+  <img id="imgFreeCoupon" src="../images/activity/choujiang_img_mfq@3x.png" style="display: none;"/>
+
+  <span class="tip">恭喜&nbsp;188****8833用户抽中&nbsp;永和大王&nbsp;<span class="tip2">88元免费券</span></span>
+  <div class="dialWrap">
+    <div class="imgWrap">
+         <!-- <img src="../images/activity/choujiang_img_cjzp@2x.png"/> -->
+         <canvas id="wheelcanvas" width="402" height="402"></canvas>
+         <div id="rouletteptr" onclick="RandomOneCoupon()"><img src="../images/activity/choujiang_img_cj@3x.png" /></div>
+         <div id="roulettetxt" onclick="RandomOneCoupon()"><img src="../images/activity/choujiang_img_wycj@3x.png"</img></div> 
+    </div>
+  </div>
+  <div class="content">
+    <span class="joinNum">参与人数：<span id="partiNum">100</span></span>
+    <span class="listname">奖券列表</span>
+    <div class="line"></div>
+    <div class="couponWrap">
+      <ul class="couponList">
+        
+      </ul>
+      <div class="clearFloat"></div>
+      <script id="couponItem" type="text/html">
+       {{each CouponList as value i}}
+        <li>
+          <img src="{{value.Image}}">
+          <span class="cname">{{value.coupon_name}}</span>
+          <div class="line"></div>
+          <span class="des">
+           适用：{{value.ShopName}}<br/>
+           <span style="color: #999">{{value.StartDate.replace('-','.').replace('-','.')}}-{{value.EndDate.replace('-','.').replace('-','.')}}</span>
+          </span>
+        </li> 
+       {{/each}}
+      
+     </script>
+   </div>
+   <div class="line"></div>
+ </div>
+
+ <script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+ <script src="../lib/js/common_a7230570.js"></script>
+ <script type="text/javascript" src="../js/app_b472b0cc.js"></script>
+ <script src="../lib/js/template_e1990b45.js"></script>
+ <script src="../lib/js/awardRotate_38d3e08e.js"></script>
+ <script src="../js/activityPreview_3bf6a3da.js"></script>
+</body>
+</html>

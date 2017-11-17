@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link href="../../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../../css/app_bee2b467.css" rel="stylesheet" />
+ 	  <link href="hexiao_08550b3f.css" rel="stylesheet" />
+
+
+    <title>核销</title>   
+</head>
+	<body ontouchstart>
+       <div class="hx-body f28">
+       		<div class="ls-hd">
+            <div class="item1 btn-scan" id="scanQRCode1" style="cursor: pointer;">
+              <div class="line1"><img src="../../images/verification/verification_icon_sm@2x.png"/></div>
+              <div class="line2">扫码核销</div>
+              <div class="line3 f20">请消费者出示二维码进行核销</div>
+            </div>
+            <a href="use.html">
+            <div class="item2">
+              <div class="line1"><img src="../../images/verification/verification_icon_qm@2x.png"/></div>
+              <div class="line2">券码核销</div>
+              <div class="line3 f20">请消费者出示券码进行核销</div>
+            </div>
+          </a>
+          </div>
+          <div class="ls-tag">
+            <img class="c1" src="../../images/verification/verification_icon_time@2x.png"/>
+            <span class="c2">最近核销记录</span>
+            <img class="c3" style="cursor: pointer;" src="../../images/verification/verification_icon_history2@2x.png"/>
+          </div>
+          <div class="ls-bd">    
+
+          </div>
+          <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+          </div>
+       </div>
+      <script id="tpl-list" type="text/html">
+      {{each CouponDetailList}}
+            <div class="ls-item f28">
+              <div class="item1 f20">
+                券码编号：{{$value.SNNum}}
+              </div>
+              <div class="item2">
+                <div class="item-hd">
+                  {{$value.Name}}
+                </div>
+                <div class="item-ft">
+                  {{$value.OfferValue}}元
+                </div>
+              </div>
+              <div class="item3 f20">
+                <div class="item-hd">
+                  {{$value.WriteOffDate}}
+                </div>
+                <div class="item-ft">
+                  核销员：{{$value.WriteOffOperator}}
+                </div>
+              </div>
+            </div>
+    {{/each}}
+    </script>
+    <script type="text/javascript" src="../../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script type="text/javascript" src="../../lib/js/template_e1990b45.js"></script>
+    <script type="text/javascript" src="../../lib/js/infinite_1ebf62cd.js"></script>
+    <script type="text/javascript" src="../../lib/js/common_a7230570.js"></script>
+    <script type="text/javascript" src="../../js/app_b472b0cc.js"></script>
+    <script src="../../js/wxapi_bb7720c6.js"></script>
+    <script type="text/javascript">
+      var session=getSession();
+      $(function(){
+
+        var page = 1;//页码
+        var loading = false;  //状态标记
+        //第一次加载
+        
+        loadData(1);
+
+        //滚动加载消息
+        $(document.body).infinite().on("infinite", function () {
+            if (loading) return;
+            page++;
+            loading = true;
+            setTimeout(function () {
+                loadData(page);
+                loading = false;
+            }, 1200);   //模拟延迟
+        });
+
+        $(".ls-tag .c3").click(function(){
+          return jumpUrl("list.html");
+        });
+
+        document.querySelector('#scanQRCode1').onclick = function() {
+          wx.scanQRCode({
+            needResult: 1,
+            desc: 'scanQRCode desc',
+            success: function(res) {
+              console.log(res);
+              var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+              if (result) {
+                $.ajax({
+                  url: globalData.apiBusiness + 'WriteOffCoupon.aspx',
+                  dataType: 'json',
+                  data: {
+                    "Session": session,
+                    "SNNumber": result
+                  },
+                  success: function(res) {
+                    if (res.status == 0) {
+                      if (res.data.Result == 1) {
+                          showLayer('<div class="popLayer"><img src="../../images/material/material_icon_success@2x.png" style="width:2rem;height:2rem;"/>核销成功</div>');
+                        var work = setTimeout(function() {
+                          $(".mLayer").hide();
+                          jumpUrl(location.href);
+                        }, 2500);
+                      } else {
+                        showLayer('<div class="popLayer"><img src="../../images/register/register_icon_error@2x.png" style="width:2rem;height:2rem;"/>核销失败，请重试</div>');
+                        var work = setTimeout(function() {
+                          $(".mLayer").hide();
+                        }, 2500);
+                      }
+                    } else {
+                      alert(res.message || "系统异常");
+                      return;
+                    }
+                  }
+                });
+              }
+            }
+          });
+        };
+
+      });
+
+      var pageSize=10;
+      function loadData(page){
+          $.ajax({
+            url: globalData.apiBusiness + 'WriteOffList.aspx',
+            dataType: 'json',
+            data:{
+              "Session": session,
+              "page": page,
+              "page_size":pageSize,
+            },
+            success: function(res) {
+              if (res.status == 0) {
+                if (res.data.CouponDetailList.length < pageSize) {
+                  $(document.body).destroyInfinite();
+                }
+                var html = template('tpl-list', res.data);
+                if (page == 1) {
+                  $('.ls-bd').html(html);
+                } else {
+                  $('.ls-bd').append(html);
+                }
+              } else {
+                 $(document.body).destroyInfinite();
+                alert(res.message || "系统异常");
+                return;
+              }
+            },
+            complete: function() {
+              setTimeout(function() {
+                $(".weui-loadmore").hide();
+              }, 800);
+            }
+          });
+      }
+    </script>
+    </body>
+</html>

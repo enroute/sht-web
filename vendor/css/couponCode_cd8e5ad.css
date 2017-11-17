@@ -1,0 +1,100 @@
+body{
+	margin:0;
+	padding: 2rem 1.5rem;
+	background-color: #e3e8e9;
+}
+
+#container{
+	display: block;
+   width: 100%;
+   height: 28.4rem;
+   border-radius: 1rem;
+   -moz-border-radius:1rem;
+   -webkit-border-radius:1rem;
+   background-color: #fff;
+}
+
+#container .header{
+	width: 100%;
+	height: 7.5rem;
+	padding: 2.4rem 2rem 2rem 4.9rem;
+	border-bottom: 1px solid #e2e2e2;
+	position: relative;
+}
+
+#container .header .header_l{
+	float: left;
+	width: 3rem;
+	height: 3rem;
+}
+
+#container .header .header_l img{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+#container .header .header_r{
+	float: left;
+	margin-left: 1.1rem;
+	width: auto;
+	height: 3rem;
+}
+
+#container .header .header_r .shop{
+	display: block;
+	width: auto;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	font-size: 1.5rem;
+	color: #606060
+}
+
+#container .header .header_r .deadline{
+	display: block;
+	width: auto;
+	height: 1.1rem;
+	line-height: 1.1rem;
+	font-size: 1.1rem;
+	color: #a1a1a1;
+	margin-top: 0.4rem;
+}
+
+#container .arrow{
+	display: block;
+	position: absolute;
+	top: 3rem;
+	right: 2rem;
+	width: 1rem;
+	height: 1.6rem;
+    background: url(../images/mycenter_icon_arrow@2x.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+#container .content{
+	width: 100%;
+	height: auto;
+}
+
+#container .content .codenum{
+   width: 100%;
+   height: 1.5rem;
+   line-height: 1.5rem;
+   font-size: 1.5rem;
+   text-align: center;
+   margin-top: 2.5rem;
+   color: #606060;
+}
+
+#container .content .codeimg{
+    width: 10.6rem;
+    height: 10.6rem;
+    margin:0 auto;
+    margin-top: 2.8rem;
+}
+
+#container .content .codeimg img{
+    width: 100%;
+    height: 100%;
+    border: none;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>测试</title>
+    <!-- <link href="../flexible/flexible_ae57b990.css" rel="stylesheet" /> -->
+    <style type="text/css">
+        html{
+          font-size: 75px;
+        }
+    </style>
+    <style type="text/css">
+       .bg{
+        color: #fff;
+       }
+    </style>
+</head>
+<body >
+    <div class="row">
+       <i class="icon_mobile"></i>
+       <input id="mobile" type="tel" class="txt" name="mobile" maxlength="11" placeholder="请输您的手机号">
+    </div>
+    <div class="row">
+       <i class="icon_lock"></i>
+       <input id="pwd" type="password" class="txt" name="pwd" maxlength="15" placeholder="请输入您的密码(不少于六位数)">
+       <i id="clear" class="clear"></i>
+       <i id="eye" class="eye close"></i>
+    </div>
+    <div class="loginbtn" onclick="return login();">登录</div>
+    <div class="tiprow">
+      <a class="fastlogin"  href="javascript:;" onclick="return jumpFastLogin();">手机快速登陆</a>
+      <a class="forget" href="javascript:void(0);" onclick="return jumpForGetPwd();">忘记密码？</a>
+    </div>
+    <a class="openshop" href="javascript:void(0);" onclick="return jumpShop();">免费开店</a>
+    <script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <!-- <script src="../flexible/flexible_8f16100c.js"></script> -->
+    <script type="text/javascript">
+     var dd= window.document.documentElement.getBoundingClientRect().width + 'px';
+     alert(dd);
+     </script>
+</body>
+</html>

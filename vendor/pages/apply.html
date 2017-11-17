@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>店铺信息</title>
+    <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../css/apply_dce054fe.css" rel="stylesheet" />
+    <link href="../lib/css/mobiscroll.custom-2.16.1.min_47809868.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="mainPage">
+    <div class="row">
+      <div class="row-l">店铺名称</div>
+      <div class="row-r"><input type="text" id="shopname" style="margin-left: 0" placeholder="请输入您的店铺名称"></div>
+    </div>
+    <div class="row choose" onclick="ShowShopTypes()">
+      <div class="row-l">店铺分类</div>
+      <div id="dv_shoptype" class="row-r gray">请选择您的店铺类型</div>
+    </div>
+    <div id="dv_addr" class="row choose" style="border:none;">
+      <div class="row-l">店铺地址</div>
+      <div id="dv_addrdetail" class="row-r gray">请选择您的店铺地址</div>
+    </div>
+
+    <div class="row" style="margin-top: 1.5rem">
+      <div class="row-l">负责人</div>
+      <div class="row-r"><input type="text" id="name" placeholder="请输入负责人姓名"></div>
+    </div>
+    <div class="row" style="border-bottom: 0">
+      <div class="row-l">负责人电话</div>
+      <div class="row-r"><input type="tel" id="mobile" placeholder="请输入负责人联系方式"></div>
+    </div>
+
+    <div id="dv_business" class="row choose" style="border:none;margin-top: 1.5rem">
+      <div class="row-l">营业执照</div>
+      <div class="row-r gray floatTxt">未完成</div>
+    </div>
+
+    <div id="dv_person" class="row choose" style="border:none;margin-top: 1.5rem;display: none">
+      <div class="row-l">法人代表手持身份证照</div>
+      <div class=" row-r gray floatTxt" >未完成</div>
+    </div>
+
+    <div id="dv_license" class="row choose" style="border:none;margin-top: 1.5rem;display: none">
+      <div class="row-l">餐饮服务许可证</div>
+      <div class=" row-r gray floatTxt" >未完成</div>
+    </div>
+    <div class="commitbtn" onclick="SubmitShop(1)">提交</div>
+    </div>
+    <script type="text/html" id="typeList">
+      <div class="typeWrap">
+        <span class="typeTitle">请选择您的店铺品类</span>
+        <ul class="typeItems">
+          <li value="1">餐饮美食</li>
+          <li value="2">休闲娱乐</li>
+          <li value="3">教育培训</li>
+          <li value="4">美体健康</li>
+          <li value="5">便利超市</li>
+          <li value="6">汽车旅游</li>
+          <li value="7">上门服务</li>
+          <li value="8">其他服务</li>
+        </ul>
+      </div>
+    </script>
+  </div>
+  <div id="mapPage">
+    <iframe id="mapWr" width="100%" height="100%" frameborder=0 
+    src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=VJWBZ-TIJ3K-QIEJV-AL7UI-OV4NQ-F6F3Q&referer=myapp">
+    </iframe>
+    <!-- <script>
+        window.addEventListener('message', function(event) {
+            // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+            var loc = event.data;
+            console.log(JSON.stringify(loc));
+            // if (loc && loc.module == 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+            //   console.log('location', loc);  
+            //   $("#hid_lat").val(loc.latlng.lat);
+            //   $("#hid_lng").val(loc.latlng.lng);
+            //   $("#hid_address").val(loc.poiaddress);
+            //   $(".mapAddress").text(loc.poiaddress);
+            //   $("#mainPage").show();
+            //   $("#map").hide();
+            // }                                
+        }, false); 
+    </script> -->
+  </div>
+  <!-- <div id="mapPage">
+    <div class="search">
+      <form id="sform" action onsubmit="SearchMap();return false;">
+         <input id="region" type="search" placeholder="查找小区/大厦/学校等">
+      </form>
+    </div>
+      <div class="addr">
+         <i class="icon_addr"></i> <span id="span_addr"></span>
+      </div>
+      <div class="addr">
+        <span class="black">详细地址</span>
+        <input id="addrdetail" type="text" name="" placeholder="例：2栋-1101室">
+      </div>
+      <div id="mapWrap" class="mapWrap">
+        
+      </div>
+      <ul id="regionList" class="regionList">
+        
+      </ul>
+  </div> -->
+
+  <div id="personPage">
+     <div class="modelWrap permodel">
+        <div class="mask">
+          <div class="model">
+            <div class="header"><span class="sl">示例</span></div>
+            <img src="../images/register/register_img_p2@2x.png">
+            <div class="txt">
+              1、正面需要清晰拍出人体五官和文字信息<br/>
+              2、不可只拍身份证信息
+            </div>
+            <div class="bottom">我知道啦</div>
+          </div>
+        </div>
+     </div>
+     <div class="picWrap" data-type="pimg1">
+          <div class="personImg"></div>
+          <span class="tp">法人手持身份证正面照</span>
+     </div>
+
+     <div class="picWrap" data-type="pimg2" style="margin-top: 3.5rem">
+          <div class="personImg"></div>
+          <span class="tp">法人手持身份证反面照</span>
+     </div>
+     <div class="row" style="margin-top: 4.7rem;">
+         姓名<input id="pName" type="text" placeholder="请输入姓名" />
+     </div>
+     <div class="row">
+         法人身份证号<input id="pCardnum" type="text" placeholder="请输入身份证号"/>
+     </div>
+     <input type="hidden" id="personImg1">
+     <input type="hidden" id="personImg2">
+     <div class="saveBtn" onclick="SavePerson()">保存</div>
+  </div>
+
+  <div id="businessPage">
+    <div class="modelWrap bumodel">
+        <div class="mask">
+          <div class="model">
+            <div class="header"><span class="sl">示例</span></div>
+            <img src="../images/register/register_img_p1@2x.png">
+            <div class="txt">
+              1、需文字清晰，边框完整、露出印章<br/>
+              2、拍复印件需加盖印章
+            </div>
+            <div class="bottom">我知道啦</div>
+          </div>
+        </div>
+     </div>
+    <div class="picWrap" data-type="bimg">
+          <div class="personImg"></div>
+          <span class="tp">点击上传营业执照</span>
+     </div>
+     <div class="row" style="margin-top: 4.7rem;">
+         执照名称<input id="bName" type="text" placeholder="请输入营业执照名称" />
+     </div>
+     <div class="row">
+         法人代表<input id="bPersonName" type="text" placeholder="请输入法人代表姓名"/>
+     </div>
+     <div class="row">
+         执照注册号<input id="bNum" type="text" placeholder="请输入执照注册号"/>
+     </div>
+     <div class="row">
+         执照注册地<input id="bAddr" type="text" placeholder="请输入执照注册地"/>
+     </div>
+     <div class="row" style="display: none">
+         执照有效期<input id="bDate" type="text" placeholder="日期格式：2018-08-08"/>
+     </div>
+     <input type="hidden" id="businessImg">
+     <div class="saveBtn" onclick="SaveBusiness()">保存</div>
+  </div>
+
+  <div id="licensePage">
+     <div class="modelWrap licmodel">
+        <div class="mask">
+          <div class="model">
+            <div class="header"><span class="sl">示例</span></div>
+            <img src="../images/register/register_img_p3@2x.png"/>
+            <div class="txt">
+              需文字清晰，边框完整，真实有效
+            </div>
+            <div class="bottom">我知道啦</div>
+          </div>
+        </div>
+     </div>
+     <div class="picWrap" data-type="limg">
+          <div class="personImg"></div>
+          <span class="tp">点击上传餐饮服务许可证</span>
+     </div>
+     <div class="row" style="margin-top: 4.7rem;">
+         许可证名称<input id="lName" type="text" placeholder="请输入许可证名称" />
+     </div>
+     <div class="row">
+         法人代表<input id="lPersonName" type="text" placeholder="请输入法人代表"/>
+     </div>
+     <div class="row">
+         许可证注册号<input id="lNum" type="text" placeholder="请输入许可证注册号"/>
+     </div>
+     <div class="row">
+         许可证所在地<input id="lAddr" type="text" placeholder="请输入许可证所在地"/>
+     </div>
+     <div class="row" >
+         许可证有效期 <input id="lDate" type="text" placeholder="日期格式：2018-08-08" />
+     </div>
+     <input type="hidden" id="licenseImg">
+     <div class="saveBtn" onclick="SaveLicense()">保存</div>
+  </div>
+  
+  <script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <script src="../lib/js/common_a7230570.js"></script>
+  <script src="../lib/js/template_e1990b45.js"></script>
+  <script src="../js/wxapi_bb7720c6.js"></script>
+  <script src="../js/apply_8cb00566.js"></script>
+ <!--  <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=VJWBZ-TIJ3K-QIEJV-AL7UI-OV4NQ-F6F3Q&libraries=autocomplete,convertor"></script>
+   <script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script> -->
+  <script src="../lib/js/mobiscroll.custom-2.16.1.min_661b5367.js"></script>
+</body>
+</html>

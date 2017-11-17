@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>本店奖券</title>
+    <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../css/couponList_53d1f7e1.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="mainPage">
+    <ul class="navbar">
+      <li class="active" data-type="1">在线券</li>
+      <li data-type="0">历史券</li>
+    </ul>
+    <ul class="couponList">
+    </ul>
+      <script id="couponItem" type="text/html">
+        {{each CouponList as value i}}
+          <li {{Available==1?"":"class=used"}}>
+            <div class="header">
+              <span class="couponTitle">{{value.name}}</span>
+              <span class="faceval">价值{{value.OfferValue}}元</span>
+              <span class="state" style="display: none;">
+                已领取&nbsp;{{value.ReleaseCount}}张<br>
+                已使用&nbsp;{{value.UsedCount}}张
+              </span>
+              <span class="detailBtn">查看详情</span>
+            </div>
+            <div class="body">
+               <!-- <span class="tag">{{value.Tags}}</span> -->
+               {{if $data.Available==1}}
+                 <span class="delBtn" style="cursor: pointer;" onclick="del('{{value.cKey}}')">删除</span>
+               {{/if}}
+               <span class="remarkTip">使用限制</span>
+               {{value.Remark}}
+            </div>
+            <div class="bottom">
+              <div style="float: left; ">有效期：{{value.StartDate}}至{{value.EndDate}}</div>
+              <div style="float: right; "><span style="color: #f7a05d">剩余</span>/总量：<span style="color: #f7a05d">{{value.Rest}}</span>/{{value.Sum}}</div>
+            </div>
+          </li>
+        {{/each}}
+      </script>
+  </div>
+  <script type="text/javascript" src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+  <script type="text/javascript" src="../lib/js/common_a7230570.js"></script>
+  <script type="text/javascript" src="../js/app_b472b0cc.js"></script>
+  <script type="text/javascript" src="../lib/js/template_e1990b45.js"></script>
+  <script type="text/javascript" src="../lib/js/infinite_1ebf62cd.js"></script>
+  <script type="text/javascript" src="../js/couponList_390822ef.js"></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"> 
+    <link href="../../lib/css/base_e13b4915.css" rel="stylesheet" />
+    <link href="../../css/app_bee2b467.css" rel="stylesheet" />
+ 	  <link href="wlsq_0fd99f30.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../lib/js/fastclick_6e9d3b0d.js"></script>
+
+    <title>物料申请</title>   
+</head>
+	<body ontouchstart>
+       <div id="mainPage" class="wlsq-body f28">
+       		<div class="wlsq-item1">     
+       			<div class="item-bd btn_addressList" style="display: none;cursor:pointer;" id="list1">
+       				<div class="item1">
+       					<img src="../../images/material/material_icon_position@2x.png"/>
+       					<span class="item1-k1">收货人：<span id="list1_name"></span></span>
+       					<span class="item1-k2" id="list1_mobile">137***1230</span>
+       				</div>
+       				<div class="item2">
+       					<span>收货地址：<span id="list1_address"></span></span>
+       				</div>
+       			</div>  
+            <div class="item-bd2 btn_addAddress" id="list2" style="cursor:pointer;">
+              <div class="item1"> 
+                <span class="item1-k3">+</span>
+                <span class="item1-k4">新增收货地址</span>
+              </div>
+            </div>
+       			<div  class="item-ft">
+       				<img src="../../images/material/material_icon_arrow@2x.png"/>
+       			</div>
+       		</div>
+       		<div class="wlsq-flag">
+       			<img src="../../images/material/material_img_p1@2x.png">
+       		</div>
+       		<div class="wlsq-item2">
+       			<div class="item-bd">我的二维码</div>
+       			<div class="item-ft"><img src="" id="v_mycode" /></div>
+       		</div>
+       		<div class="wlsq-item3">
+       			<div class="item-title">物料</div>
+       			<div class="item-cell">
+       				<div class="item-cell-bd">台卡</div>
+       				<div class="item-cell-ft">
+                <input type="tel" id="txt_cardCount" name="" class="tu-input" placeholder="请输入领取数量">
+              </div>
+       			</div>
+       			<div class="item-cell">
+       				<div class="item-cell-bd">桌贴</div>
+       				<div class="item-cell-ft">
+                <input type="tel" id="txt_tieCount" name="" class="tu-input" placeholder="请输入领取数量">
+              </div>
+       			</div>
+       			<div class="item-cell">
+       				<div class="item-cell-bd">海报</div>
+       				<div class="item-cell-ft">
+                <input type="tel" id="txt_baoCount" name="" class="tu-input" placeholder="请输入领取数量">   
+              </div>
+       			</div>
+       		</div>
+       		<div class="wlsq-item4">
+       			<div class="item-cell">
+       				<div class="item-cell-bd">配送方式</div>
+       				<div class="item-cell-ft">快递</div>
+       			</div>
+       			<div class="item-cell">
+       				<div class="item-cell-bd">买家留言</div>
+       				<div class="item-cell-ft">
+       					<input type="text" id="txt_remark" name="" class="tu-input" placeholder="选填：对本次申请的说明">
+       				</div>
+       			</div>
+       		</div>
+       		<div class="wlsq-item5">
+            <div class="submit">
+       			<button class="tu-btn" id="btn_submit">提交申请</button>
+          </div>
+       		</div>
+       </div>   
+
+      <div id="addresslist" style="display: none;">
+      </div> 
+      <script id="tpl-addressList" type="text/html">
+        <div class="wlsq-body f28">
+          {{each ReceiveAddressList}}
+          <div class="ls-item1">
+            <div class="item-bd btn_chooseAddress" data-key="{{$value.ReceiveAddressKEY}}" style="cursor:pointer;">
+              <div class="item1 f32">
+                <span class="item1-k1 choose_name">{{$value.Name}}</span>
+                <span class="item1-k2 choose_mobile">{{$value.Mobile}}</span>
+              </div>
+              <div class="item2">
+                <span>收货地址：<span class="choose_area">{{$value.Area}}</span><span class="choose_address">{{$value.Address}}</span></span>
+              </div>
+            </div>
+            <div  class="item-ft btn_editAddress" data-key="{{$value.ReceiveAddressKEY}}" style="cursor:pointer;">
+              <img src="../../images/material/material_icon_edit@2x.png"/>
+            </div>
+          </div>
+          {{/each}}
+          <div class="ls-item2 btn_addAddress" style="cursor:pointer;">
+            <div class="submit f32">
+            +添加收货地址
+          </div>
+          </div>
+       </div>
+      </script>
+
+    <div id="createaddress" style="display: none;">
+        <div class="wlsq-body f28">
+          <div class="ca-item">
+            <div class="item-title2 f24">联系人</div>
+            <div class="ca-item-cell">
+              <div class="ca-item-cell-bd">姓名</div>
+              <div class="ca-item-cell-ft">
+                <input type="text" id="txt_name" name="" class="tu-input tu-txt-left" placeholder="请填写收货人姓名">
+              </div>
+            </div>
+            <div class="ca-item-cell">
+              <div class="ca-item-cell-bd">手机</div>
+              <div class="ca-item-cell-ft">
+                <input type="tel" id="txt_phone" name="" class="tu-input tu-txt-left" placeholder="请填写收货手机号码">
+              </div>
+            </div>
+          </div>
+          <div class="ca-item">
+            <div class="item-title2 f24">收货地址</div>
+            <div class="ca-item-cell">
+              <div class="ca-item-cell-bd">地区</div>
+              <div class="ca-item-cell-ft">
+                <input type="text" id="txt_area" name="" class="tu-input tu-txt-left" placeholder="请填写地区">
+              </div>
+            </div>
+            <div class="ca-item-cell">
+              <div class="ca-item-cell-bd">详细地址</div>
+              <div class="ca-item-cell-ft">
+                <input type="text" id="txt_address" name="" class="tu-input tu-txt-left" placeholder="请填写详细的门牌号地址">
+              </div>
+            </div>
+          </div>
+          <a class="btn" href="javascript:void(0);" onclick="create();">保存</a>
+           <input type="hidden" id="hid_editAddressKey" name="">
+       </div>
+    </div>
+
+    <input type="hidden" id="hide_receiveKey" name="">
+
+    <script type="text/javascript" src="../../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.2/weui.min.js"></script>
+    <script type="text/javascript" src="../../lib/js/template_e1990b45.js"></script>
+    <script type="text/javascript" src="../../lib/js/common_a7230570.js"></script>
+    <script src="../../js/app_b472b0cc.js"></script>
+    <script type="text/javascript">
+      var session=getSession();
+      $(function(){
+          FastClick.attach(document.body);
+
+          $.ajax({
+            url: globalData.apiBusiness + 'GetMyCode.aspx',
+            dataType: 'json',
+            data: {
+              "session": session
+            },
+            success: function(res) {
+                if (res.status == 0) {
+                  if(res.data.CodeUrl&&res.data.CodeUrl.length>0){
+                    $("#v_mycode").attr("src",res.data.CodeUrl);
+                  }
+              } else {
+                alert(res.message || "系统异常");
+                return;
+              }
+            }
+          });
+          
+          $(window).bind("hashchange", function (e) {
+            if (this.location.hash != "#createaddress" && $("#createaddress").is(":visible")) {
+              $("#createaddress").hide();
+              $("#addresslist").show();
+            }
+            if (this.location.hash != "#addresslist" && $("#addresslist").is(":visible")) {
+              $("#addresslist").hide();
+              $("#mainPage").show();
+            }
+        });
+
+        $(document).on("click",".btn_addressList",function(){
+            $("#mainPage").hide();
+            $("#addresslist").show();
+            location.href = "#addresslist";
+        });
+
+        $(document).on("click",".btn_addAddress",function(){
+            addressInfoClear();
+            $("#mainPage").hide();
+            $("#addresslist").hide();
+            $("#createaddress").show();
+            location.href = "#createaddress";
+        });
+
+        $(document).on("click",".btn_editAddress",function(){
+            var parent=$(this).parent();
+            $("#hid_editAddressKey").val($(this).attr("data-key"));
+            var name=parent.find(".choose_name").text();
+            var mobile=parent.find(".choose_mobile").text();
+            var area=parent.find(".choose_area").text();
+            var address=parent.find(".choose_address").text();
+
+            $("#txt_name").val(name);
+            $("#txt_phone").val(mobile);
+            $("#txt_area").val(area);
+            $("#txt_address").val(address);
+
+            $("#addresslist").hide();
+            $("#createaddress").show();
+            location.href = "#createaddress";
+        });
+
+
+        $(document).on("click",".btn_chooseAddress",function(){
+            $("#hide_receiveKey").val($(this).attr("data-key"));
+            var name=$(this).find(".choose_name").text();
+            var mobile=$(this).find(".choose_mobile").text();
+            var address=$(this).find(".choose_address").text();
+
+            $("#list1_name").text(name);
+            $("#list1_mobile").text(mobile);
+            $("#list1_address").text(address);
+
+            $("#list2").hide();
+            $("#list1").show();
+
+            $("#addresslist").hide();
+            $("#mainPage").show();
+        });
+
+
+        $("#btn_submit").click(function(){
+           var cardCount=$.trim($("#txt_cardCount").val());
+           var tieCount=$.trim($("#txt_tieCount").val());
+           var baoCount=$.trim($("#txt_baoCount").val());
+           if(!isNumber(cardCount)){
+              weui.alert('请输入正确的台卡数量！');
+              return false;
+           }
+           if(!isNumber(tieCount)){
+              weui.alert('请输入正确的桌贴数量！');
+              return false;
+           }
+           if(!isNumber(baoCount)){
+              weui.alert('请输入正确的海报数量！');
+              return false;
+           }
+
+           var remark=$("#txt_remark").val();
+           var receiveKey=$("#hide_receiveKey").val();
+           if(receiveKey.length==0){
+              weui.alert('请选择收货地址');
+              return false;
+           }
+
+           $.ajax({
+            url: globalData.apiBusiness + 'CreateGoodsRequire.aspx',
+            dataType: 'json',
+            data: {
+              "session": session,"TaiKaCount":cardCount,"ZhuoTie":tieCount,"HaiBao":baoCount,
+              "Remark":remark,"DeliveryType":"快递","ReceiveAddressKEY":receiveKey
+            },
+            success: function(res) {
+                if (res.status == 0) {
+                  if(res.data.Result=="1"){
+                    location.href="success.html";
+                  }
+              } else {
+                alert(res.message || "系统异常");
+                return;
+              }
+            }
+          });
+        });
+
+      });
+
+      function create(){
+          var name=$.trim($("#txt_name").val());
+           var phone=$.trim($("#txt_phone").val());
+           var area=$.trim($("#txt_area").val());
+           var address=$.trim($("#txt_address").val());
+           var key=$("#hid_editAddressKey").val();
+           if(!name){
+            weui.alert('请填写收货人姓名');
+            return false;
+           }
+           if(!phone){
+            weui.alert('请填写收货手机号码');
+            return false;
+           }
+           if(phone.length!=11){
+            weui.alert('请填写11位手机号码');
+            return false;
+           }
+           if(!area){
+            weui.alert('请填写地区');  
+            return false;
+           }
+           if(!address){
+            weui.alert('请填写详细的门牌号地址');
+            return false;
+           }
+
+           $.ajax({
+            url: globalData.apiBusiness + 'CreateReceiveAddress.aspx',
+            dataType: 'json',
+            data: {
+              "session": session,"Name":name,"Mobile":phone,"Area":area,
+              "Address":address,"ReceiveAddressKEY":key
+            },
+            success: function(res) {
+                if (res.status == 0) {
+                  if(res.data.Result=="1"){
+                    getAddressList(function(){
+                        $("#createaddress").hide();
+                        $("#addresslist").show();
+                        location.href = "#addresslist";
+                    });
+
+                  }
+              } else {
+                weui.alert(res.message || "系统异常");
+                return;
+              }
+            }
+          });
+      }
+
+      function getAddressList(callback){
+        $.ajax({
+            url: globalData.apiBusiness + 'GetReceiveAddressList.aspx',
+            dataType: 'json',
+            data: {
+              "session": session
+            },
+            success: function(res) {
+                if (res.status == 0) {
+                  var html = template('tpl-addressList', res.data);
+                  $('#addresslist').html(html);
+                  if(callback){
+                    callback();
+                  }
+              } else {
+                weui.alert(res.message || "系统异常");
+                return;
+              }
+            }
+        });
+      }
+
+      function addressInfoClear(){
+          $("#txt_name").val("");
+          $("#txt_phone").val("");
+          $("#txt_area").val("");
+          $("#txt_address").val("");
+      }
+    </script>
+    </body>
+
+</html>

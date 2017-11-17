@@ -1,0 +1,17 @@
+{
+	"status": 0,
+	"data": {
+		"LotteryName": "活动名",
+		"StartTime": "2017-1-1 10:21",
+		"EndTime": "2017-10-1 11:30",
+		"CouponList": [{
+			"coupon_name": "优惠券A",
+			"CouponKey": "aaa",
+			"Image": "第一张图片地址（只需要第一张）"
+		}, {
+			"coupon_name": "优惠C"
+		}, {
+			"coupon_name": "优惠B"
+		}]
+	}
+}

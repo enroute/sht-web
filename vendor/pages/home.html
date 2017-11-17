@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>免多多</title>
+  <link rel="stylesheet" href="../swiper/css/swiper.min_d9b07f5b.css">
+  <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+  <link href="../css/home_cdc051de.css" rel="stylesheet" />
+  <style type="text/css">
+  .swiper-container {
+    height: 8rem;
+  }  
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  <script id="tpl-list" type="text/html">
+    {{each banner_list}}
+    <div class="swiper-slide"><a href="{{$value.target}}"><img src="{{$value.url}}"/></a></div>
+    {{/each}}
+  </script>
+  <div class="headerWrap">
+    <span class="headerImg"></span>
+    <span class="name"></span>
+    <span class="fans"></span>
+    <span class="exit">退出</span>
+  </div>
+  <ul class="actionList">
+    <li class="cjjq" onclick="jumpCreateCoupon()">
+      <i class="icon"></i>
+      <span class="icname">创建奖券</span>
+    </li>
+    <li class="cjhd" onclick="jumpCreateActivity()">
+      <i class="icon"></i>
+      <span class="icname">创建活动</span>
+    </li>
+    <li class="hx" onclick="jumpHx()">
+      <i class="icon"></i>
+      <span class="icname">核销</span>
+    </li>
+  </ul>
+  <ul class="acList">
+  <li onclick="jumpShopEdit()">
+    <i class="acicon" ><img src="../images/home/home_icon_dpzx@2x.png"></i>
+    <span class="acname">店铺装修</span>
+  </li>
+   <li onclick="jumpMyCoupon()">
+    <i class="acicon" ><img src="../images/home/home_icon_wdjq@2x.png"></i>
+    <span class="acname">我的奖券</span>
+  </li>
+  <li onclick="jumpActivity()">
+    <i class="acicon"><img src="../images/home/home_icon_hdgl@2x.png"></i>
+    <span class="acname" onclick="jumpActivity()">活动管理</span>
+  </li>
+  <li onclick="jumpApply()">
+    <i class="acicon"><img src="../images/home/home_icon_wlsq@2x.png"></i>
+    <span class="acname">物料申请</span>
+  </li>
+  <li onclick="showQrcode()">
+    <i class="acicon"><img src="../images/home/home_icon_zsewm@2x.png"></i>
+    <span class="acname">专属二维码</span>
+  </li>
+  <div class="clearFloat"></div>
+</ul>
+<script type="text/html" id="qrCode">
+  <div class="qrCodeWrap">
+    <div style="box-shadow: 0px 0px 16px #d3d3d3"><img src="{{$data.qrCodeImg}}"/></div>
+  </div>
+</script>
+<script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+<script src="../swiper/js/swiper.jquery.min_d7749c8a.js"></script>
+<script src="../lib/js/common_a7230570.js"></script>
+<script src="../lib/js/template_e1990b45.js"></script>
+<script type="text/javascript" src="../js/app_b472b0cc.js"></script>
+<script src="../js/home_053ff2f1.js"></script>
+</body>
+</html>

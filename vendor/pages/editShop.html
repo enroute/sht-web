@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>店铺装修</title>
+  <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
+  <link href="../css/editShop_161497b1.css" rel="stylesheet" />
+  <link href="../lib/css/mobiscroll.custom-2.16.1.min_47809868.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="mainPage">
+    <div class="headerWrap">
+      头像
+      <span class="headerImg headerImgUpload"><img src="" id="v_img"><span>
+      </div>
+      <div class="row" style="margin-top: 1rem;">
+        <div class="row-l">店铺名</div>
+        <div class="row-r">
+          <input type="text" id="txt_shopName" name="mobile" placeholder="请输入店铺名">
+        </div>
+      </div>
+      <div id="dv_type" class="row choose" style="cursor: pointer;">
+        <div class="row-l">分类</div>
+        <div class="row-r gray type_text">请选择您的类型</div>
+        <input type="hidden" id="hid_type" name="">
+      </div>
+      <div class="row">
+        <div class="row-l">座机号</div>
+        <div class="row-r"><input type="text" id="txt_tel" name="tel" placeholder="如：0755-88886666"></div>
+      </div>
+      <div class="row">
+        <div class="row-l">手机号</div>
+        <div class="row-r"><input type="text" id="txt_mobile" name="mobile" placeholder="请输入您的手机号"></div>
+      </div>
+      <div id="btn_chooseMap" class="row choose" style="cursor: pointer;">
+        <div class="row-l">地址</div>
+        <div class="row-r mapAddress" style="width: 60%;"></div>
+      </div>
+<!--     </div>
+    <div class="row">
+      <div class="row-l">门牌号</div>
+      <div class="row-r"><input id="txt_menpai" type="text" name="" placeholder="尽量详细"></div>
+    </div> -->
+    <div class="row">
+      <div class="row-l">店内人均消费</div>
+      <div class="row-r"><input type="text" id="txt_cost" name="" placeholder="请输入数字"></div>
+    </div>
+    <div id="dv_introduce" class="row choose" style="cursor: pointer;">
+      <div class="row-l">店铺介绍</div>
+      <div class="row-r"></div>
+    </div>
+    <div id="dv_recommand" class="row choose" style="cursor: pointer;border-bottom: none">
+      <div class="row-l">店长推荐</div>
+      <div class="row-r"></div>
+    </div>
+    <div class="uploadTip">上传店铺照片<span style="font-size: 1rem;">（最少上传一张照片）</span></div>
+    <ul class="imgWrap">
+     <!-- <li><img src="../images/decoration/decoration_img_tx@2x.png"></li> -->
+     <div class="uploadExample shopImageUpload" style="cursor: pointer;"><i class="horizontal"></i><i class="vertical"></i></div>
+     <div class="clearFloat"></div>
+   </ul>
+   <!-- <div class="btn" style="cursor: pointer;" onclick="create()">创建店铺</div> -->
+   <div class="btn" style="" onclick="preview()">保存并预览店铺</div>
+   <br/>
+ </div>
+ <div id="typePage">
+   <ul class="typeList">
+    <li class="active" data-type="1">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_food@2x.png"></span>
+      <span class="name">餐饮美食</span>
+    </li>
+    <li data-type="2">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_drink@2x.png"></span>
+      <span class="name">休闲娱乐</span>
+    </li>
+    <li data-type="3">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_edu@2x.png"></span>
+      <span class="name">教育培训</span>
+    </li>
+  </ul>
+  <ul class="typeList">
+    <li data-type="4">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_sing@2x.png"></span>
+      <span class="name">美体健身</span>
+    </li>
+    <li data-type="5">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_fruits@2x.png"></span>
+      <span class="name">便利超市</span>
+    </li>
+    <li data-type="6">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_play@2x.png"></span>
+      <span class="name">汽车旅游</span>
+    </li>
+  </ul>
+  <ul class="typeList">
+    <li data-type="7">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_bea@2x.png"></span>
+      <span class="name">上门服务</span>
+    </li>
+    <li data-type="8">
+      <span class="imgWrap"><img src="../images/decoration/home_icon_move@2x.png"></span>
+      <span class="name">其他服务</span>
+    </li>
+  </ul>
+</div>
+<div id="introducePage">
+ <textarea id="txt_introduce" placeholder="店铺介绍"></textarea>
+ <div class="btn" style="" onclick="gotoIntroduce()">保存并返回</div>
+</div>
+<div id="recommandPage">
+ <textarea id="txt_recommand" placeholder="红烧狮子头"></textarea>
+ <div class="btn" style="" onclick="gotoRecommand();">保存并返回</div>
+</div>
+<div id="map" style="display: none;height: 100%;">
+  <iframe id="mapPage" width="100%" height="100%" frameborder=0 
+  src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=VJWBZ-TIJ3K-QIEJV-AL7UI-OV4NQ-F6F3Q&referer=myapp">
+</iframe> 
+<input type="hidden" id="hid_lat" name="">
+<input type="hidden" id="hid_lng" name="">
+<input type="hidden" id="hid_address" name="">
+<script>
+  window.addEventListener('message', function(event) {
+            // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+            var loc = event.data;
+            if (loc && loc.module == 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+              console.log('location', loc);  
+            $("#hid_lat").val(loc.latlng.lat);
+            $("#hid_lng").val(loc.latlng.lng);
+            $("#hid_address").val(loc.poiaddress);
+            $(".mapAddress").text(loc.poiaddress);
+            $("#mainPage").show();
+            $("#map").hide();
+          }                                
+        }, false); 
+      </script>
+    </div>
+    <script src="../lib/js/jquery-2.2.3.min_bac8bdec.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="../lib/js/common_a7230570.js"></script>
+    <script src="../lib/js/template_e1990b45.js"></script>
+    <script src="../js/app_b472b0cc.js"></script>
+    <script src="../js/wxapi_bb7720c6.js"></script>
+    <script src="../js/editShop_cd59dea7.js"></script>
+    <script src="../lib/js/mobiscroll.custom-2.16.1.min_661b5367.js"></script>
+    <script type="text/javascript">
+      function gotoIntroduce(){
+        $("#introducePage").hide();
+        $("#mainPage").show();
+      }
+      function gotoRecommand(){
+       $("#recommandPage").hide();
+       $("#mainPage").show();
+     }
+
+     $(function(){
+       $(window).bind("hashchange", function (e) {
+         if (this.location.hash != "#typePage" && $("#typePage").is(":visible")) {
+          $("#typePage").hide();
+          $("#mainPage").show();
+        }
+        if (this.location.hash != "#introducePage" && $("#introducePage").is(":visible")) {
+          $("#introducePage").hide();
+          $("#mainPage").show();
+        }
+              //recommandPage
+              if (this.location.hash != "#recommandPage" && $("#recommandPage").is(":visible")) {
+                $("#recommandPage").hide();
+                $("#mainPage").show();
+              }
+              //map
+              if (this.location.hash != "#map" && $("#map").is(":visible")) {
+                $("#map").hide();
+                $("#mainPage").show();
+              }
+            });
+
+       $("#mainPage").on("click","#dv_type",function(){
+        $("#mainPage").hide();
+        $("#typePage").show();
+        location.href = "#typePage";
+      });
+       $("#mainPage").on("click","#dv_introduce",function(){
+        $("#mainPage").hide();
+        $("#introducePage").show();
+        location.href = "#introducePage";
+      });
+       $("#mainPage").on("click","#dv_recommand",function(){
+        $("#mainPage").hide();
+        $("#recommandPage").show();
+        location.href = "#recommandPage";
+      });
+
+       $("#btn_chooseMap").click(function(){
+        $("#mainPage").hide();
+        $("#map").show();
+        location.href="#map";
+      });
+
+       $(".headerImgUpload").click(function(){
+        var obj=$(this);
+        userUpload(function(res){
+          if(res){
+            obj.find("img").attr("src",res[0]);
+          }
+        });
+      });
+
+       $(".shopImageUpload").click(function(){
+         var obj=$(this);
+         userUpload(function(res){
+          if(res&&res.length>0){
+            $.each(res,function(index,value){
+              obj.before('<li style="position: relative;""><img src="'+value+'"><span class="base-badge btn-imgDel">×</span></li>');
+            });          
+          }
+        },5);
+       });
+     });
+   </script>
+ </body>
+ </html>
