@@ -1,11 +1,11 @@
   var TypeArray=[{'id':1,'name':'餐饮美食'},
-                 {'id':2,'name':'休闲娱乐'},
-                 {'id':3,'name':'教育培训'},
-                 {'id':4,'name':'美体健康'},
-                 {'id':5,'name':'便利超市'},
-                 {'id':6,'name':'汽车旅游'},
-                 {'id':7,'name':'上门服务'},
-                 {'id':8,'name':'其他服务'}];
+                 {'id':2,'name':'饮品甜品'},
+                 {'id':3,'name':'水果鲜花'},
+                 {'id':4,'name':'健身瑜伽'},
+                 {'id':5,'name':'休闲娱乐'},
+                 {'id':6,'name':'婚纱摄影'},
+                 {'id':7,'name':'美容美发'},
+                 {'id':8,'name':'艺术培训'}];
   var shopType = 0;
   var searchService, markers = [],
       pageIndex = 1,
