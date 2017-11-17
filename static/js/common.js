@@ -394,7 +394,13 @@ function redirectIfNecessary(){
 
     if(!isEmpty(session)){
         setCookie("session",session,1);
-        window.location.href = redirectLoc;
+        var redirectFromCookie=getCookie("redirect");
+        if(!isEmpty(redirectFromCookie)){
+            setCookie("redirect","",1);
+            window.location.href=redirectFromCookie;
+        }else{
+            window.location.href = redirectLoc;
+        }
         return;
     }
 
@@ -402,6 +408,7 @@ function redirectIfNecessary(){
     if(isEmpty(cookieSession)){
         //TODO:should redirect to authority page
         console.log("no session, should redirect to authority page");
+        setCookie("redirect",redirectLoc,1);
         window.location.href = API_URL_OAUTH;
     }else{
         // update session from cookie
