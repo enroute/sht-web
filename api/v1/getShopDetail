@@ -12,7 +12,7 @@
         "tel":["0755-88886666","13800138000"],
         "introText":"拥有专业的法式烘焙技术，从多年前品牌创立之初就湖心研究符合亚洲人品味的美食",
         "recommend":"剁椒鱼头 酸辣杂 炸腐竹 山木耳 酸辣土豆丝 烟笋腊肉 广式春卷 炒油麦菜 油麦菜 巴口香猪...",
-        "introImage":["static/images/dianpu_img_p1@3x.png", "static/images/dianpu_img_p1@3x.png"],
+        "introImage":"static/images/dianpu_img_p1@3x.png;static/images/dianpu_img_p1@3x.png",
         "star_level":2.3,
         "average_cost":75,
         "tags":["美食"]

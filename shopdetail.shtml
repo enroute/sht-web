@@ -68,7 +68,9 @@
       <div class="intro">{{recommend}}</div>
 
       <div class="shopIntroTitle">店铺照片</div>
-      <div class="introImageWrapper"><img src="{{introImage}}" class="introImage" /></div>
+      {{#introImage}}
+      <div class="introImageWrapper"><img src="{{.}}" class="introImage" /></div>
+      {{/introImage}}
 
     </script>
 </div>
@@ -156,7 +158,8 @@
 	     // use the first image only
 	     //data.introImage = data.introImage[0];
              if(data.introImage != null){
-                 data.introImage = data.introImage.split(";")[0];
+                 //data.introImage = data.introImage.split(";")[0];
+                 data.introImage = data.introImage.split(";");
              }
 	     data.favoriteActionText = getFavoriteActionText(data.favorite);
 	     $(".content").html(Mustache.render(document.getElementById('tpl').innerHTML.trim(), data));
