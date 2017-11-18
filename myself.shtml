@@ -30,8 +30,8 @@
 
 <div class="navbarText" style="background:white">
   <div class="item active" id="navbarItem0" type="0">有效优惠券</a></div>
-  <div class="item" id="navbarItem1" type="1">已过期</a></div>
-  <div class="item" id="navbarItem2" type="2">已使用</a></div>
+  <div class="item" id="navbarItem1" type="1">已使用</a></div>
+  <div class="item" id="navbarItem2" type="2">已过期</a></div>
 </div>
 
 <div class="couponList" id="itemType0"></div>
