@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
   <title>店铺装修</title>
   <link href="../lib/css/base_e13b4915.css" rel="stylesheet" />
-  <link href="../css/editShop_161497b1.css" rel="stylesheet" />
+  <link href="../css/editShop_9883e675.css" rel="stylesheet" />
   <link href="../lib/css/mobiscroll.custom-2.16.1.min_47809868.css" rel="stylesheet"/>
 </head>
 <body>
@@ -17,7 +17,7 @@
       <div class="row" style="margin-top: 1rem;">
         <div class="row-l">店铺名</div>
         <div class="row-r">
-          <input type="text" id="txt_shopName" name="mobile" placeholder="请输入店铺名">
+          <input type="text" id="txt_shopName" name="mobile" placeholder="请输入店铺名" maxlength="20">
         </div>
       </div>
       <div id="dv_type" class="row choose" style="cursor: pointer;">
@@ -61,7 +61,7 @@
      <div class="clearFloat"></div>
    </ul>
    <!-- <div class="btn" style="cursor: pointer;" onclick="create()">创建店铺</div> -->
-   <div class="btn" style="" onclick="preview()">保存并预览店铺</div>
+   <div class="btn" style="margin-right: 1.5rem;margin-left: 1.5rem;" onclick="preview()">保存并预览店铺</div>
    <br/>
  </div>
  <div id="typePage">
@@ -105,12 +105,14 @@
   </ul>
 </div>
 <div id="introducePage">
- <textarea id="txt_introduce" placeholder="店铺介绍"></textarea>
+ <textarea id="txt_introduce" placeholder="店铺介绍" maxlength="300"></textarea>
+ <div style="color:#ccc;font-size: 1.2rem;text-align: right;">最多输入300个字符</div>
  <div class="btn" style="" onclick="gotoIntroduce()">保存并返回</div>
 </div>
 <div id="recommandPage">
- <textarea id="txt_recommand" placeholder="红烧狮子头"></textarea>
- <div class="btn" style="" onclick="gotoRecommand();">保存并返回</div>
+ <textarea id="txt_recommand" placeholder="红烧狮子头" maxlength="200"></textarea>
+ <div style="color:#ccc;font-size: 1.2rem;text-align: right;">最多输入200个字符</div>
+ <div class="btn" onclick="gotoRecommand();">保存并返回</div>
 </div>
 <div id="map" style="display: none;height: 100%;">
   <iframe id="mapPage" width="100%" height="100%" frameborder=0 
@@ -141,7 +143,7 @@
     <script src="../lib/js/template_e1990b45.js"></script>
     <script src="../js/app_b472b0cc.js"></script>
     <script src="../js/wxapi_bb7720c6.js"></script>
-    <script src="../js/editShop_cd59dea7.js"></script>
+    <script src="../js/editShop_240707c8.js"></script>
     <script src="../lib/js/mobiscroll.custom-2.16.1.min_661b5367.js"></script>
     <script type="text/javascript">
       function gotoIntroduce(){
