@@ -25,7 +25,7 @@
     <script type="text/javascript" src="//3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
     <script src="static/js/common.js"></script>
 
-    <script src="//int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+    <!-- <script src="//int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script> -->
 </head>
 
 <body>
@@ -87,6 +87,7 @@
              console.log("------getGeoLocation-----------");
              console.log(position);
              currentPosition = position;
+             updateLocation();
              populateList();
              console.log("------getGeoLocation-----------");
          },
@@ -114,8 +115,9 @@ function setActive(index){
 
 function updateLocation(){
     // var remote_ip_info from http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js
-    console.log(remote_ip_info);
-    $("#locationCity").html(remote_ip_info.city);
+    //console.log(remote_ip_info);
+    //$("#locationCity").html(remote_ip_info.city);
+    $("#locationCity").html(currentPosition.city); 
 }
 
  function populateList(){
@@ -142,7 +144,7 @@ function updateLocation(){
  }
 
 $(function(){
-    updateLocation();
+    //updateLocation();
 
     $(".categoryItem").on("click", function(){
 	var type=$(this).attr("category");
